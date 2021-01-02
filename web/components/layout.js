@@ -16,10 +16,16 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header className="flex justify-between py-12">
-          <a href="/" target="_blank" rel="noopener noreferrer">
-            <img
-              className="h-24"
+        <header className="flex justify-between items-center py-12">
+          <a
+            className="w-64"
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              width="2578"
+              height="1052"
               src="/ravens-logo-white.png"
               alt="Ravens Logo"
             />
@@ -55,7 +61,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
       </div>
       <div className="bg-black relative z-10 px-4">
         <main className="container mx-auto">{children}</main>
-        <footer className="text-center lg:text-left">
+        <footer className="text-center lg:text-left pt-12">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
             Contact Us
           </h2>
