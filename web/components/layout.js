@@ -66,7 +66,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
             Contact Us
           </h2>
           <div className="lg:flex justify-center">
-            <div className="lg:pr-8 lg:border-r-2 border-gold leading-7 tracking-wider lg:text-right">
+            <div className="lg:pr-8 lg:border-r-2 border-gold leading-9 tracking-wider lg:text-right">
               <p>
                 RAVENS FILM WORKS
                 <br />
@@ -76,7 +76,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
                 </a>
               </p>
             </div>
-            <div className="lg:pl-8 pt-12 lg:pt-0 leading-7 tracking-wider">
+            <div className="lg:pl-8 pt-12 lg:pt-0 leading-9 tracking-wider">
               <p>
                 <span className="mr-2">P:</span>
                 <Obfuscate tel="801-971-4683" />

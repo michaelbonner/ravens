@@ -1,9 +1,18 @@
 import Layout from "../components/layout";
+import Image from "next/image";
 
 const heroContent = () => {
   return (
     <h1 className="flex justify-center items-center h-80 mt-12 mb-48">
-      <img className="h-16" src="/images/slc-x-kauai.png" alt="SLC X KAUAI" />
+      <span className="w-96">
+        <Image
+          alt="SLC X KAUAI"
+          height="346"
+          src="/images/slc-x-kauai.png"
+          title="SLC X Kauai"
+          width="1896"
+        />
+      </span>
     </h1>
   );
 };
@@ -50,13 +59,16 @@ export default function Home() {
               AERIALS
             </h3>
             <div className="h-32 flex items-center my-8">
-              <img
-                className="w-2/3 mx-auto"
-                src="/images/altax-groundview.png"
-                alt="AltaX Groundview"
-              />
+              <div className="w-2/3 mx-auto">
+                <Image
+                  alt="AltaX Groundview"
+                  height="513"
+                  src="/images/altax-groundview.png"
+                  width="1178"
+                />
+              </div>
             </div>
-            <p>
+            <p className="leading-8">
               CINEMA PACKAGES &lt; 35LBS
               <br />
               MID-SIZE W/ RED KOMODO
@@ -71,13 +83,16 @@ export default function Home() {
               HIGH-SPEED
             </h3>
             <div className="h-32 flex items-center my-8">
-              <img
-                className="w-2/3 mx-auto"
-                src="/images/phantom-flex-4k.jpg"
-                alt="AltaX Groundview"
-              />
+              <div className="w-2/3 mx-auto">
+                <Image
+                  alt="Phantom Flex 4k"
+                  height="939"
+                  src="/images/phantom-flex-4k.jpg"
+                  width="1500"
+                />
+              </div>
             </div>
-            <p>
+            <p className="leading-8">
               ACTION / AUTO
               <br />
               PRODUCT / TABLETOP
@@ -92,13 +107,16 @@ export default function Home() {
               VEHICLES
             </h3>
             <div className="h-32 flex items-center my-8">
-              <img
-                className="w-2/3 mx-auto"
-                src="/images/land-rover-discovery-front.png"
-                alt="AltaX Groundview"
-              />
+              <div className="w-2/3 mx-auto">
+                <Image
+                  alt="Land rover discovery front"
+                  height="1067"
+                  src="/images/land-rover-discovery-front.png"
+                  width="1600"
+                />
+              </div>
             </div>
-            <p>
+            <p className="leading-8">
               LAND ROVER W/ VVI LIGHT
               <br />
               CAN-AM 4X4 RIG
@@ -112,17 +130,20 @@ export default function Home() {
 
         <div className="py-12">
           <h2 className="font-bold text-3xl my-12 uppercase">Client Reviews</h2>
-          <p>
-            True professionals. They walked on set and you knew they meant
-            business from the way they dressed to how they handled their
-            equipment. This is a classy group. You can do no better than RAVENS.
-          </p>
-          <p>- Ryan Smith -</p>
-          <img
-            className="w-52 mx-auto"
-            src="/images/customer-review-5-star.png"
-            alt="5 stars"
-          />
+          <div className="max-w-2xl mx-auto leading-7">
+            <p>
+              True professionals. They walked on set and you knew they meant
+              business from the way they dressed to how they handled their
+              equipment. This is a classy group. You can do no better than
+              RAVENS.
+            </p>
+            <p>- Ryan Smith -</p>
+            <img
+              className="w-52 mx-auto"
+              src="/images/customer-review-5-star.png"
+              alt="5 stars"
+            />
+          </div>
           <p className="py-12">
             <a
               className="rounded-full uppercase tracking-wider border-2 border-white py-2 px-8"
