@@ -1,0 +1,15 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#092422",
+        "titleBar.inactiveForeground": "#092422CC",
+        "titleBar.activeBackground": "#62b0bf",
+        "titleBar.inactiveBackground": "#62b0bfCC"
+      },
+      "cSpell.words": [
+        "forza",
+        "iefix",
+        "opentype",
+        "ravensfilmworks",
+        "truetype"
+      ]
+}
