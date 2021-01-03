@@ -42,7 +42,7 @@ export default function Home() {
           </p>
           <p className="py-12">
             <Link href="/contact">
-              <a className="rounded-full uppercase tracking-wider border-2 border-white py-2 px-8">
+              <a className="rounded-full font-bold uppercase tracking-wider border border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
                 Get in Touch
               </a>
             </Link>
@@ -146,7 +146,7 @@ export default function Home() {
           </div>
           <p className="py-12">
             <a
-              className="rounded-full uppercase tracking-wider border-2 border-white py-2 px-8"
+              className="rounded-full font-bold uppercase tracking-wider border border-white py-3 px-8 hover:bg-gold hover:text-black transition-all"
               href="https://g.page/bootpack/review?rc"
             >
               Give One

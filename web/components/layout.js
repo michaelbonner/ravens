@@ -32,7 +32,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
           </Link>
           <div className="flex justify-end items-center">
             <Link href="/contact">
-              <a className="hidden lg:inline-block rounded-full uppercase tracking-wider border-2 border-white py-2 px-8">
+              <a className="hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all">
                 Get in Touch
               </a>
             </Link>
