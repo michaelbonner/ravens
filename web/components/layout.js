@@ -25,7 +25,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
               <Image
                 width="2578"
                 height="1052"
-                src="/ravens-logo-white.png"
+                src="/images/ravens-logo-white.png"
                 alt="Ravens Logo"
               />
             </a>
