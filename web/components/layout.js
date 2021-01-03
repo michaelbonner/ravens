@@ -58,7 +58,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
               <div
                 className={`${
                   menuOpen ? "absolute" : "hidden"
-                } z-40 right-0 top-12 text-right`}
+                } z-40 right-0 top-14 text-right`}
               >
                 <Link href="/work">
                   <a className="block py-6 uppercase text-bold text-xl">Work</a>
