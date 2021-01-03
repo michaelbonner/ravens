@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import Obfuscate from "react-obfuscate";
 
 const Layout = ({ children, title, heroImage, heroContent = "" }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       {heroImage && (
@@ -11,49 +14,72 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
           <Image src={`${heroImage}`} layout="fill" />
         </div>
       )}
-      <div className="relative container mx-auto z-10">
+      <div className="relative container mx-auto z-20">
         <Head>
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <header className="flex justify-between items-center py-12">
-          <a
-            className="w-64"
-            href="/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              width="2578"
-              height="1052"
-              src="/ravens-logo-white.png"
-              alt="Ravens Logo"
-            />
-          </a>
-          <div className="flex justify-end items-center">
-            <a
-              className="rounded-full uppercase tracking-wider border-2 border-white py-2 px-8"
-              href="/"
-            >
-              Get in Touch
+          <Link href="/">
+            <a className="w-64">
+              <Image
+                width="2578"
+                height="1052"
+                src="/ravens-logo-white.png"
+                alt="Ravens Logo"
+              />
             </a>
-            <button className="w-16 ml-8 focus:outline-black">
-              <svg
-                className="w-16 fill-current text-white stroke-2 stroke-current"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                viewBox="0 0 120 74.7"
-                style={{ enableBackground: "new 0 0 120 74.7" }}
+          </Link>
+          <div className="flex justify-end items-center">
+            <Link href="/contact">
+              <a className="hidden lg:inline-block rounded-full uppercase tracking-wider border-2 border-white py-2 px-8">
+                Get in Touch
+              </a>
+            </Link>
+            <div className="relative ml-8 mr-4 lg:mr-0">
+              <button
+                className="w-16 h-10 focus:outline-none"
+                onClick={() => setMenuOpen(!menuOpen)}
               >
-                <g>
-                  <rect class="st0" width="120" height="3.3" />
-                  <rect y="35.7" class="st0" width="120" height="3.3" />
-                  <rect y="71.4" class="st0" width="120" height="3.3" />
-                </g>
-              </svg>
-            </button>
+                {menuOpen ? (
+                  <Image
+                    className="w-16 fill-current text-white stroke-2 stroke-current"
+                    src={`/images/menu-close.svg`}
+                    layout="fill"
+                  />
+                ) : (
+                  <Image
+                    className="w-16 fill-current text-white stroke-2 stroke-current"
+                    src={`/images/menu.svg`}
+                    layout="fill"
+                  />
+                )}
+              </button>
+              <div
+                className={`${
+                  menuOpen ? "absolute" : "hidden"
+                } z-40 right-0 top-12 text-right`}
+              >
+                <Link href="/work">
+                  <a className="block py-6 uppercase text-bold text-xl">Work</a>
+                </Link>
+                <Link href="/equipment">
+                  <a className="block py-6 uppercase text-bold text-xl">
+                    Equipment
+                  </a>
+                </Link>
+                <Link href="/services">
+                  <a className="block py-6 uppercase text-bold text-xl">
+                    Services
+                  </a>
+                </Link>
+                <Link href="/contact">
+                  <a className="block py-6 uppercase text-bold text-xl">
+                    Contact
+                  </a>
+                </Link>
+              </div>
+            </div>
           </div>
         </header>
 

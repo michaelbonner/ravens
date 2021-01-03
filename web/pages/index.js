@@ -1,5 +1,6 @@
 import Layout from "../components/layout";
 import Image from "next/image";
+import Link from "next/link";
 
 const heroContent = () => {
   return (
@@ -40,12 +41,11 @@ export default function Home() {
             you have a story to tell, we are the only ones to talk to.
           </p>
           <p className="py-12">
-            <a
-              className="rounded-full uppercase tracking-wider border-2 border-white py-2 px-8"
-              href="/"
-            >
-              Get in Touch
-            </a>
+            <Link href="/contact">
+              <a className="rounded-full uppercase tracking-wider border-2 border-white py-2 px-8">
+                Get in Touch
+              </a>
+            </Link>
           </p>
         </div>
 
