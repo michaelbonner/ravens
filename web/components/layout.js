@@ -6,6 +6,21 @@ import Obfuscate from "react-obfuscate";
 
 const Layout = ({ children, title, heroImage, heroContent = "" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const toggleMenu = () => {
+    if (menuOpen) {
+      setMenuOpen(!menuOpen);
+      setTimeout(() => {
+        setMenuVisible(!menuOpen);
+      }, 100);
+    } else {
+      setMenuVisible(!menuOpen);
+      setTimeout(() => {
+        setMenuOpen(!menuOpen);
+      }, 100);
+    }
+  };
 
   return (
     <>
@@ -38,43 +53,66 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
             </Link>
             <div className="relative ml-8 mr-4 lg:mr-0">
               <button
-                className="w-16 h-10 focus:outline-none"
-                onClick={() => setMenuOpen(!menuOpen)}
+                className="w-16 h-10 focus:outline-none relative"
+                onClick={() => toggleMenu(!menuOpen)}
               >
-                {menuOpen ? (
+                <span
+                  className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
+                    menuVisible ? "absolute" : "hidden"
+                  } top-0 right-0 w-16 h-10 transform transition-all ease-in duration-300`}
+                >
                   <Image
-                    className="w-16 fill-current text-white stroke-2 stroke-current"
+                    className={`w-16 h-10 fill-current text-white stroke-2 stroke-current`}
                     src={`/images/menu-close.svg`}
                     layout="fill"
                   />
-                ) : (
+                </span>
+                <span
+                  className={`${!menuOpen ? "opacity-100" : "opacity-0"} ${
+                    !menuVisible ? "absolute" : "hidden"
+                  } top-0 right-0 w-16 h-10 transform transition-all ease-in duration-300`}
+                >
                   <Image
-                    className="w-16 fill-current text-white stroke-2 stroke-current"
+                    className={`w-16 h-10 fill-current text-white stroke-2 stroke-current`}
                     src={`/images/menu.svg`}
                     layout="fill"
                   />
-                )}
+                </span>
               </button>
               <div
                 className={`${
-                  menuOpen ? "absolute" : "hidden"
-                } z-40 right-0 top-14 text-right`}
+                  menuOpen
+                    ? "translate-x-0 opacity-90"
+                    : "translate-x-4 opacity-0"
+                } ${
+                  menuVisible ? "absolute" : "hidden"
+                } transform transition-all ease-in duration-300 z-40 right-0 top-14 text-right`}
               >
                 <Link href="/work">
-                  <a className="block py-6 uppercase text-bold text-xl">Work</a>
+                  <a
+                    className={`block transform py-6 uppercase text-bold text-xl`}
+                  >
+                    Work
+                  </a>
                 </Link>
                 <Link href="/equipment">
-                  <a className="block py-6 uppercase text-bold text-xl">
+                  <a
+                    className={`block transform py-6 uppercase text-bold text-xl`}
+                  >
                     Equipment
                   </a>
                 </Link>
                 <Link href="/services">
-                  <a className="block py-6 uppercase text-bold text-xl">
+                  <a
+                    className={`block transform py-6 uppercase text-bold text-xl`}
+                  >
                     Services
                   </a>
                 </Link>
                 <Link href="/contact">
-                  <a className="block py-6 uppercase text-bold text-xl">
+                  <a
+                    className={`block transform py-6 uppercase text-bold text-xl`}
+                  >
                     Contact
                   </a>
                 </Link>
