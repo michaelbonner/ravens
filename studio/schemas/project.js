@@ -79,6 +79,9 @@ export default {
           name: "frame",
           title: "Frame",
           type: "image",
+          options: {
+            hotspot: true,
+          },
         },
       ],
       options: {
@@ -95,6 +98,9 @@ export default {
           name: "image",
           title: "Image",
           type: "image",
+          options: {
+            hotspot: true,
+          },
         },
       ],
       options: {
