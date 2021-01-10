@@ -1,4 +1,5 @@
 import imageUrlBuilder from "@sanity/image-url";
+import Image from "next/image";
 import Layout from "../../components/layout";
 import client from "../../lib/client";
 
@@ -48,9 +49,13 @@ const Project = (props) => {
         <div className="lg:grid grid-cols-2 gap-12">
           {frames.map((image) => {
             return (
-              <div>
-                <img className="w-full" src={urlFor(image).width(800).url()} />
-              </div>
+              <Image
+                className="w-full overflow-hidden"
+                key={image._key}
+                width="717"
+                height="300"
+                src={urlFor(image).width(717).height(300).url()}
+              />
             );
           })}
         </div>
@@ -61,9 +66,13 @@ const Project = (props) => {
         <div className="lg:grid grid-cols-2 gap-12">
           {behindTheScenes.map((image) => {
             return (
-              <div className="w-full max-h-60 overflow-hidden">
-                <img src={urlFor(image).width(800).url()} />
-              </div>
+              <Image
+                className="w-full overflow-hidden"
+                key={image._key}
+                width="717"
+                height="300"
+                src={urlFor(image).width(717).height(300).url()}
+              />
             );
           })}
         </div>
