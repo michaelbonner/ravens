@@ -7,7 +7,6 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 
 const Home = (props) => {
   const { projects = [] } = props;
-  console.log("projects", projects);
   return (
     <Layout title="Contact | RAVENS">
       <div className="flex justify-center">
