@@ -1,53 +1,49 @@
 import Layout from "../components/layout";
 import Image from "next/image";
+import client from "../lib/client";
+import groq from "groq";
+import Link from "next/link";
+import urlForSanitySource from "../lib/urlForSanitySource";
 
-export default function Home() {
+const Home = (props) => {
+  const { projects = [] } = props;
+  console.log("projects", projects);
   return (
     <Layout title="Contact | RAVENS">
-      <div className="prose text-center max-w-5xl mx-auto pt-12">
-        <div className="py-12">
-          <h2 className="font-bold text-3xl">Work</h2>
-          <p className="pt-8 mt-12">
-            Mascarpone cheeseburger cottage cheese. Roquefort smelly cheese
-            airedale cheese slices cheesy feet stilton rubber cheese cheesecake.
-            Cheddar cheesy grin cheddar blue castello cheese slices stinking
-            bishop cheesecake blue castello. Bocconcini smelly cheese cheese and
-            biscuits blue castello roquefort rubber cheese cottage cheese cheesy
-            feet. Port-salut taleggio fromage frais.
-          </p>
-          <p className="pt-8 mt-12">
-            Who moved my cheese jarlsberg ricotta. Everyone loves brie squirty
-            cheese cheese on toast st. agur blue cheese cheesecake caerphilly
-            roquefort. Cut the cheese emmental say cheese who moved my cheese
-            smelly cheese smelly cheese cheese strings taleggio. Chalk and
-            cheese cheese triangles cheese slices squirty cheese stilton danish
-            fontina everyone loves fondue. Roquefort bocconcini.
-          </p>
-          <p className="pt-8 mt-12">
-            Pecorino smelly cheese stinking bishop. Pecorino chalk and cheese
-            roquefort camembert de normandie red leicester fromage squirty
-            cheese cottage cheese. Pecorino brie cheesy grin rubber cheese
-            pecorino blue castello pepper jack port-salut. Brie caerphilly say
-            cheese.
-          </p>
-          <p className="pt-8 mt-12">
-            Cheese and wine caerphilly fromage frais. Feta edam cheese on toast
-            hard cheese smelly cheese squirty cheese fondue camembert de
-            normandie. Cheesy grin fromage frais feta pepper jack cheesecake
-            jarlsberg everyone loves cream cheese. Gouda cottage cheese
-            cauliflower cheese.
-          </p>
-          <p className="pt-8 mt-12">
-            Cauliflower cheese manchego hard cheese. Who moved my cheese rubber
-            cheese halloumi cottage cheese macaroni cheese roquefort boursin
-            melted cheese. Cut the cheese cheese slices goat monterey jack
-            taleggio caerphilly cheddar mascarpone. Gouda dolcelatte lancashire
-            fromage frais mascarpone.
-          </p>
-        </div>
-
-        <hr className="border-2 border-gold my-8" />
+      <div className="flex justify-center">
+        <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">
+          Work
+        </h1>
       </div>
+      {projects.map((project) => {
+        return (
+          <Link key={project._id} href={`/work/${project.slug.current}`}>
+            <a
+              className="w-full text-right flex justify-end items-end mt-8"
+              style={{
+                height: "20vw",
+                background: `url(${urlForSanitySource(project.poster)
+                  .width(1200)
+                  .url()}) center center no-repeat`,
+                backgroundSize: "cover",
+              }}
+            >
+              <h3 className="py-2 px-4">
+                {project.clientName ? `${project.clientName} // ` : ""}
+                {project.title}
+              </h3>
+            </a>
+          </Link>
+        );
+      })}
     </Layout>
   );
-}
+};
+
+Home.getInitialProps = async () => ({
+  projects: await client.fetch(groq`
+    *[_type == "project"]|order(date desc)
+  `),
+});
+
+export default Home;

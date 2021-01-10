@@ -4,5 +4,10 @@
         "titleBar.inactiveForeground": "#092422CC",
         "titleBar.activeBackground": "#e8a135",
         "titleBar.inactiveBackground": "#e8a135CC"
-      }
+      },
+      "cSpell.words": [
+        "datetime",
+        "hotspot",
+        "nnjdfopi"
+      ]
 }

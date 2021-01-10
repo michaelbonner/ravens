@@ -1,11 +1,7 @@
-import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import Layout from "../../components/layout";
 import client from "../../lib/client";
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
+import urlForSanitySource from "../../lib/urlForSanitySource";
 
 const Project = (props) => {
   const {
@@ -26,7 +22,10 @@ const Project = (props) => {
             {fullTitle}
           </h1>
         </div>
-        <img className="w-full mt-14" src={urlFor(poster).width(1200).url()} />
+        <img
+          className="w-full mt-14"
+          src={urlForSanitySource(poster).width(1200).url()}
+        />
         <h2 className="font-bold text-3xl text-center my-12 uppercase">
           Credits
         </h2>
@@ -54,7 +53,7 @@ const Project = (props) => {
                 key={image._key}
                 width="717"
                 height="300"
-                src={urlFor(image).width(717).height(300).url()}
+                src={urlForSanitySource(image).width(717).height(300).url()}
               />
             );
           })}
@@ -71,7 +70,7 @@ const Project = (props) => {
                 key={image._key}
                 width="717"
                 height="300"
-                src={urlFor(image).width(717).height(300).url()}
+                src={urlForSanitySource(image).width(717).height(300).url()}
               />
             );
           })}
