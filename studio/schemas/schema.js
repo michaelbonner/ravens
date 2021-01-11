@@ -5,10 +5,10 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // We import object and document schemas
 import blockContent from "./blockContent";
-import crewMember from "./crewMember";
-import castMember from "./castMember";
-import movie from "./movie";
-import person from "./person";
+// import crewMember from "./crewMember";
+// import castMember from "./castMember";
+// import movie from "./movie";
+// import person from "./person";
 import project from "./project";
 import plotSummary from "./plotSummary";
 import plotSummaries from "./plotSummaries";
@@ -22,15 +22,15 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    movie,
-    person,
+    // movie,
+    // person,
     project,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
     plotSummary,
     plotSummaries,
-    castMember,
-    crewMember,
+    // castMember,
+    // crewMember,
   ]),
 });
