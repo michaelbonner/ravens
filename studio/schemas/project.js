@@ -2,7 +2,7 @@ import { MdLocalMovies as icon, MdTagFaces } from "react-icons/md";
 
 export default {
   name: "project",
-  title: "Project",
+  title: "Work",
   type: "document",
   icon,
   fields: [
