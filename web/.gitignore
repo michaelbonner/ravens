@@ -29,7 +29,8 @@ test/**/next-env.d.ts
 
 # examples
 examples/**/out
-examples/**/.env*.local
+
+.env*.local
 
 pr-stats.md
 test-timings.json
@@ -37,3 +38,7 @@ test-timings.json
 # Vercel
 .vercel
 .now
+
+# AWS
+.cdk.staging
+cdk.out

@@ -8,9 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@aws-cdk/aws-dynamodb": "^1.88.0",
+    "@aws-cdk/core": "^1.88.0",
     "@sanity/client": "^2.1.0",
     "@sanity/image-url": "^0.140.19",
     "autoprefixer": "^10.1.0",
+    "aws-sdk": "^2.836.0",
     "groq": "^2.1.4",
     "next": "10.0.4",
     "postcss": "^8.2.2",
