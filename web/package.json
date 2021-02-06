@@ -14,13 +14,17 @@
     "@sanity/image-url": "^0.140.19",
     "autoprefixer": "^10.1.0",
     "aws-sdk": "^2.836.0",
+    "formik": "^2.2.6",
     "groq": "^2.1.4",
     "next": "10.0.4",
     "postcss": "^8.2.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-obfuscate": "^3.6.8",
+    "react-toastify": "^7.0.3",
     "tailwindcss": "^2.0.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "yup": "^0.32.8",
+    "yup-phone": "^1.2.19"
   }
 }

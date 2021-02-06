@@ -1,46 +1,24 @@
 import { useState } from 'react'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { toast } from 'react-toastify'
+import * as Yup from 'yup'
+import "yup-phone";
 import Layout from "../components/layout";
-// import Image from "next/image";
 
-/**
- * @TODO
- * validation
- * ui error handling
- * form submission notification
- */
+const contactSchema = Yup.object().shape({
+  name: Yup.string().min(2, 'Too short').max(120, 'Too long').required('Full name is required'),
+  emailAddress: Yup.string().email('Invalid email').required('Email address is required'),
+  phoneNumber: Yup.string().phone('Invalid phone').required('Valid Phone number is Required'),
+  message: Yup.string().min(2, 'Too short').required('Message is Required'),
+})
 
 export default function Home() {
-  const [name, setName] = useState("");
-  const [emailAddress, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: name,
-          emailAddress: emailAddress,
-          phoneNumber: phoneNumber,
-          message: message
-        })
-      })
-
-      // if(response?.status === 200){
-
-      // }
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    emailAddress: '',
+    phoneNumber: '',
+    message: ''
+  })
 
   return (
     <Layout title="Contact | RAVENS">
@@ -50,60 +28,81 @@ export default function Home() {
           <div className="relative mx-auto">
             <div className="py-16 px-4">
               <div className="max-w-lg mx-auto lg:max-w-none">
-                <form 
-                  onSubmit={handleSubmit} 
-                  method="POST" 
-                  className="grid grid-cols-1 gap-y-6"
-                >
-                  <div>
-                    <label className="sr-only">Full name</label>
-                    <input 
-                      type="text" 
-                      name="name" 
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
-                      placeholder="Full name"/> 
-                  </div>
-                  <div>
-                    <label className="sr-only">Email</label>
-                    <input 
-                      type="email" 
-                      autoComplete="email" 
-                      value={emailAddress}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
-                      placeholder="Email"
-                    />
-                  </div>
-                  <div>
-                    <label className="sr-only">Phone</label>
-                    <input 
-                      type="text" 
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
-                      placeholder="Phone"
-                    />
-                  </div>
-                  <div>
-                    <label className="sr-only">Message</label>
-                    <textarea 
-                      id="message" 
-                      name="message" 
-                      rows="4" 
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
-                      placeholder="Message"
-                    ></textarea>
-                  </div>
-                  <div>
-                    <button type="submit" className="hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all">
-                      Submit
+                <Formik
+                  initialValues={contactForm}
+                  validationSchema={contactSchema}
+                  onSubmit={ async (values, { setSubmitting }) => {
+                    try {
+                      const response = await fetch('/api/contact', {
+                        method: 'post',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(values)
+                      })
+                      
+                      if(response?.status === 201){
+                        toast('Saved contact form details', {
+                          type: toast.TYPE.SUCCESS,
+                        })
+                        setSubmitting(false)
+                      }
+                      
+                    } catch (error) {
+                      setSubmitting(false)
+                      toast('Save failed', {
+                        type: toast.TYPE.ERROR,
+                      })
+                    }               
+                  }}
+                >                  
+                  {({ isSubmitting, errors }) => (
+                    <Form className="grid grid-cols-1 gap-y-6">
+                      <Field 
+                        as="input"
+                        name="name"  
+                        placeholder="Full Name"
+                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
+                      />
+                      <ErrorMessage name="name" className="text-red-700" component="div" />
+
+                      <Field
+                        as="input"
+                        name="emailAddress"
+                        placeholder="Email Address"
+                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
+                      />
+                      <ErrorMessage name="emailAddress" className="text-red-700" component="div" />
+
+                      <Field
+                        as="input"
+                        name="phoneNumber"
+                        placeholder="Phone Number"
+                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
+                      />
+                      <ErrorMessage name="phoneNumber" className="text-red-700" component="div"/>
+                      
+                      <Field
+                        as="textarea"
+                        name="message"
+                        placeholder="Message"
+                        rows="4"
+                        className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-gray-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                      />
+                      <ErrorMessage name="message" className="text-red-700" component="div"/>
+
+                      <button 
+                        type="submit" 
+                        className={`hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all
+                          isSubmitting ? 'opacity-25' : 
+                        }`}
+                        disabled={isSubmitting}
+                      >
+                        Submit
                     </button>
-                  </div>
-                </form>
+                    </Form>
+                  )}
+                </Formik>
               </div>
             </div>
           </div>

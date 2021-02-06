@@ -3,6 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import Obfuscate from "react-obfuscate";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Layout = ({ children, title, heroImage, heroContent = "" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -124,6 +126,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
         {heroContent}
       </div>
       <div className="bg-black relative z-10 px-4">
+        <ToastContainer/>
         <main className="container mx-auto">{children}</main>
         <footer className="text-center lg:text-left pt-12">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
