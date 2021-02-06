@@ -20,7 +20,7 @@ export default function Home() {
               <h2 className="font-bold text-3xl uppercase">Aerial Cinema</h2>
               <p className="py-4">The tougher and more technical the shot, the better.</p>
               <p className="py-4">We offer a variety of platforms for any aerial need or budget. We have a well-oiled team with the experience and taste to get you the shot you want or better. Ready to travel anywhere in the world for production, but local to the beautiful vistas of Utah. See some of the options we provide:</p>
-              <ul className="">
+              <ul className="list-none">
                 <li>HEAVY LIFT DRONE PLATFORM - FREEFLY ALTA X</li>
                 <li>MID-SIZE DRONE PLATFORM - FREEFLY ASTRO</li>
                 <li>SMALL DRONE PLATFORM - DJI MAVIC 2 PRO</li>
@@ -42,7 +42,7 @@ export default function Home() {
               <h2 className="font-bold text-3xl uppercase">PURSUIT TRACKING</h2>
               <p className="py-4">Laying it all on the line, in the pursuit of glory.</p>
               <p className="py-4">We offer a variety of platforms for any pursuit need or budget. We have a well-oiled team with the experience and taste to get you the shot you want or better. Ready to travel anywhere in the world for production, but local to the beautiful vistas of Utah. See some of the options we provide:</p>
-              <ul className="">
+              <ul className="list-none">
                 <li>AWD STREET & OFF-ROAD TRACKING - LAND ROVER RIG</li>
                 <li>RUGGED/NARROW OFF-ROAD TRACKING - CAN-AM 4X4</li>
                 <li>RUSSIAN ARM TRACKING - COMING SOON</li>
