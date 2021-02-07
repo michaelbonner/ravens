@@ -93,7 +93,7 @@ export default function Home() {
 
                       <button 
                         type="submit" 
-                        className={`hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all
+                        className={`inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all
                           isSubmitting ? 'opacity-25' : 
                         }`}
                         disabled={isSubmitting}

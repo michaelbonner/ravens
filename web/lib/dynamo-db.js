@@ -2,11 +2,11 @@
 import aws from 'aws-sdk';
 
 const client = new aws.DynamoDB.DocumentClient({
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
-  region: process.env.REGION,
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  region: process.env.AWS_REGION,
   params: {
-    TableName: process.env.TABLE_NAME
+    TableName: process.env.AWS_TABLE_NAME
   }
 });
 
