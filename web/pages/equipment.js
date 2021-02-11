@@ -59,6 +59,92 @@ export default function Home() {
                   </tr>
                 </tbody>
               </table>
+
+              <table className="min-w-full mt-8 ">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-sm pb-4 text-left">CAMERA</th>
+                    <th className="text-sm pb-4">Weight</th>
+                    <th className="text-sm pb-4">REM Payload <br/>(w/ MOVI PRO)</th>
+                    <th className="text-sm pb-4">EXT Payload <br/>(w/ MOVI PRO)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">ARRI MINI LF</td>
+                    <td  className="pb-4 pt-4 text-xs">5.7 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">5.07 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">13.07 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">RED HELIUM 8K</td>
+                    <td  className="pb-4 pt-4 text-xs">7.5 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">3.27 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">11.27 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">PHANTOM VEO 4K</td>
+                    <td  className="pb-4 pt-4 text-xs">5.5 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">5.27 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">13.27 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">SONY VENICE</td>
+                    <td  className="pb-4 pt-4 text-xs">8.6 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">2.17 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">10.17 lbs</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table className="min-w-full mt-8 ">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-sm pb-4 text-left">LENSES</th>
+                    <th className="text-sm pb-4">Weight</th>
+                    <th className="text-sm pb-4">REM Payload <br/>(w/ ARRI MINI LF)</th>
+                    <th className="text-sm pb-4">EXT Payload <br/>(w/ ARRI MINI LF)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">COOKE S4 PRIMES</td>
+                    <td  className="pb-4 pt-4 text-xs">3.3 - 10.6 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">1.77 to -5.53 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">9.77 to 3.53 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">ZEISS MASTER PRIMES</td>
+                    <td  className="pb-4 pt-4 text-xs">4.8 - 9 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">0.27 to -3.93 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">8.27 to 5.93 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">KOWA ANAMORPHICS</td>
+                    <td  className="pb-4 pt-4 text-xs">3.31 - 4 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">1.76 to 1.07 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">9.76 to 9.07 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">HAWK V-LITE VINTAGE ANAMORPHICS</td>
+                    <td  className="pb-4 pt-4 text-xs">4.2 - 6.6 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">0.87 to -1.53 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">8.87 to 7.53 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">PANAVISION PRIMO PRIMES</td>
+                    <td  className="pb-4 pt-4 text-xs">3.3 - 6.7 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">1.77 to -1.63 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">9.77 to 7.63 lbs</td>
+                  </tr>
+                  <tr>
+                    <td  className="pb-4 pt-4 text-xs text-left">ARRI SIGNATURE PRIMES</td>
+                    <td  className="pb-4 pt-4 text-xs">4 - 9.48 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">1.07 to -4.41 lbs</td>
+                    <td  className="pb-4 pt-4 text-xs">9.07 to 4.41 lbs</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <div className="md:px-28 lg:px-60">
