@@ -21,51 +21,43 @@ export default function Home() {
               <p className="py-4 text-sm">Check out the more specific payload specs below:</p>
             </header>
           
-            <div className="flex flex-col">
-              <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="overflow-hidden">
-                    <table className="min-w-full table-auto md:table-fixed mb-8">
-                      <thead>
-                        <tr className="border-b">
-                          <th className="text-sm pb-4 text-left">Platform</th>
-                          <th className="text-sm pb-4">Weight</th>
-                          <th className="text-sm pb-4">REM Payload <br/>(55 lb Limit)</th>
-                          <th className="text-sm pb-4">EXT Payload <br/>(63 lb)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td  className="pb-4 pt-4 text-xs text-left">ALTA X W/ Batteries</td>
-                          <td  className="pb-4 pt-4 text-xs">38.39 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">16.61 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">24.61 lbs</td>
-                        </tr>
-                        <tr>
-                          <td  className="pb-4 pt-4 text-xs text-left">MOVI PRO GIMBAL</td>
-                          <td  className="pb-4 pt-4 text-xs">5.84 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">10.77 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">18.77 lbs</td>
-                        </tr>
-                        <tr>
-                          <td  className="pb-4 pt-4 text-xs text-left">RONIN 2 GIMBAL</td>
-                          <td  className="pb-4 pt-4 text-xs">11 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">5.61 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">13.61 lbs</td>
-                        </tr>
-                        <tr>
-                          <td  className="pb-4 pt-4 text-xs text-left">ALTA X W/ Batteries</td>
-                          <td  className="pb-4 pt-4 text-xs">38.39 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">16.61 lbs</td>
-                          <td  className="pb-4 pt-4 text-xs">24.61 lbs</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <table className="min-w-full divide-y mb-8">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-sm pb-4 text-left">Platform</th>
+                  <th className="text-sm pb-4">Weight</th>
+                  <th className="text-sm pb-4">REM Payload <br/>(55 lb Limit)</th>
+                  <th className="text-sm pb-4">EXT Payload <br/>(63 lb)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td  className="pb-4 pt-4 text-xs text-left">ALTA X W/ Batteries</td>
+                  <td  className="pb-4 pt-4 text-xs">38.39 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">16.61 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">24.61 lbs</td>
+                </tr>
+                <tr>
+                  <td  className="pb-4 pt-4 text-xs text-left">MOVI PRO GIMBAL</td>
+                  <td  className="pb-4 pt-4 text-xs">5.84 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">10.77 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">18.77 lbs</td>
+                </tr>
+                <tr>
+                  <td  className="pb-4 pt-4 text-xs text-left">RONIN 2 GIMBAL</td>
+                  <td  className="pb-4 pt-4 text-xs">11 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">5.61 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">13.61 lbs</td>
+                </tr>
+                <tr>
+                  <td  className="pb-4 pt-4 text-xs text-left">ALTA X W/ Batteries</td>
+                  <td  className="pb-4 pt-4 text-xs">38.39 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">16.61 lbs</td>
+                  <td  className="pb-4 pt-4 text-xs">24.61 lbs</td>
+                </tr>
+              </tbody>
+            </table>
+          
             <div className="md:px-28">
               <p className="text-left text-sm pb-6"><span className="font-bold">REM PAYLOAD:</span> The remaining available payload for additional equipment (lenses, media, FIZ’s, etc) within FAA guidelines.</p>
               <p className="text-left text-sm"><span className="font-bold">EXT PAYLOAD:</span> The remaining available payload for additional equipment (lenses, media, FIZ’s, etc) based on platform capability during Summer days in the SLC valley (90 F | 5000 ft elevation).</p>
