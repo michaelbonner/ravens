@@ -9,7 +9,7 @@ export default function Home() {
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">Services</h1>
 
           <section className="pt-8 mt-12">
-            <header class="relative h-screen mb-12">
+            <header class="relative h-60 md:h-96 lg:h-screen mb-12">
               <Image 
                 src="/images/services-aerial.jpg"
                 alt="Aerial Cinema"
@@ -31,7 +31,7 @@ export default function Home() {
           </section>
 
           <section className="pt-8 mt-12">
-            <header class="relative h-screen mb-12">
+            <header class="relative h-60 md:h-96 lg:h-screen mb-12">
               <Image 
                 src="/images/services-pursuit-tracking.jpg"
                 alt="Aerial Cinema"
