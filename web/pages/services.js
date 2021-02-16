@@ -51,7 +51,7 @@ export default function Home() {
           </section>
 
           <section className="pt-8 mt-12">
-            <header class="relative h-screen mb-12">
+            <header class="relative h-60 md:h-96 lg:h-screen mb-12">
               <Image 
                 src="/images/services-super-slow-motion.jpg"
                 alt="Aerial Cinema"
