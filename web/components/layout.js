@@ -128,7 +128,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
       <div className="bg-black relative z-10 px-4">
         <ToastContainer/>
         <main className="container mx-auto">{children}</main>
-        <footer className="text-center lg:text-left pt-12">
+        <footer className="text-center lg:text-left">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
             Contact Us
           </h2>
