@@ -166,8 +166,32 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
               </p>
             </div>
           </div>
-          <div className="prose lg:mt-24 max-w-5xl mx-auto">
-            <p className="py-12">
+          
+          <nav className="flex justify-between max-w-2xl mx-auto pt-12">
+            <Link href="/work">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
+                Work
+              </a>
+            </Link>
+            <Link href="/equipment">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
+                Equipment
+              </a>
+            </Link>
+            <Link href="/services">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
+                Services
+              </a>
+            </Link>
+            <Link href="/contact">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold`}>
+                Contact
+              </a>
+            </Link>
+          </nav>
+          
+          <div className="prose lg:mt-20 max-w-5xl mx-auto text-center">
+            <p className="py-10">
               &copy; RAVENS FILM WORKS {new Date().getFullYear()}
             </p>
           </div>
