@@ -97,13 +97,6 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
                     Work
                   </a>
                 </Link>
-                <Link href="/equipment">
-                  <a
-                    className={`block transform py-6 uppercase text-bold text-xl`}
-                  >
-                    Equipment
-                  </a>
-                </Link>
                 <Link href="/services">
                   <a
                     className={`block transform py-6 uppercase text-bold text-xl`}
@@ -171,11 +164,6 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
             <Link href="/work">
               <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
                 Work
-              </a>
-            </Link>
-            <Link href="/equipment">
-              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
-                Equipment
               </a>
             </Link>
             <Link href="/services">
