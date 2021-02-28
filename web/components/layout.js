@@ -111,6 +111,13 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
                     Contact
                   </a>
                 </Link>
+                <Link href="/about">
+                  <a
+                    className={`block transform py-6 uppercase text-bold text-xl`}
+                  >
+                    About
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -174,6 +181,11 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
             <Link href="/contact">
               <a className={`px-4 outline-none transform py-6 uppercase text-bold`}>
                 Contact
+              </a>
+            </Link>
+            <Link href="/about">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold`}>
+                About
               </a>
             </Link>
           </nav>
