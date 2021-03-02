@@ -3,7 +3,6 @@ import Layout from "../../components/layout";
 import client from "../../lib/client";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import BlockContent from '@sanity/block-content-to-react'
-// const BlockContent = require('@sanity/block-content-to-react')
 
 const Service = (props) => {
   const {

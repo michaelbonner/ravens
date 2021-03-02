@@ -4,10 +4,11 @@ import groq from "groq";
 import urlForSanitySource from "../lib/urlForSanitySource";
 import Link from "next/link";
 import Image from "next/image";
+import BlockContent from '@sanity/block-content-to-react'
 
 const Services = (props) => {
   const { services = [] } = props;
-  console.log(services)
+
   return (
     <Layout title="Services | RAVENS">
       <div className="prose text-center mx-auto pt-12">
@@ -24,9 +25,8 @@ const Services = (props) => {
                   />
                 </div>
                 <div  className="mb-12">
-                  <h2 className="font-bold text-3xl uppercase">{service.title}</h2>
-                  {/* {...service.summary} */}
-                  {/* <div dangerouslySetInnerHTML={{ __html: service.summary }} ></div> */}
+                  <h2 className="font-bold text-3xl uppercase mb-6">{service.title}</h2>
+                  <BlockContent blocks={service.summary} />
                 </div>
                 <div>
                   <Link className="pt-12 mt-12" href={`/service/${service.slug.current}`}>
