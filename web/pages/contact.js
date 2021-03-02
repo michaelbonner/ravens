@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <Layout title="Contact | RAVENS">
-      <div className="prose text-center max-w-5xl mx-auto pt-12">
+      <div className="prose text-center max-w-5xl mx-auto">
         <div className="py-12">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-white border-b-2 border-white uppercase">Contact</h1>
           <div className="relative mx-auto">
