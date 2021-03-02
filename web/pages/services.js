@@ -49,7 +49,7 @@ const Services = (props) => {
 
 Services.getInitialProps = async () => ({
   services: await client.fetch(groq`
-    *[_type == "services"]
+    *[_type == "services"]|order(_createdAt desc)
   `),
 });
 
