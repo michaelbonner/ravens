@@ -97,13 +97,6 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
                     Work
                   </a>
                 </Link>
-                <Link href="/equipment">
-                  <a
-                    className={`block transform py-6 uppercase text-bold text-xl`}
-                  >
-                    Equipment
-                  </a>
-                </Link>
                 <Link href="/services">
                   <a
                     className={`block transform py-6 uppercase text-bold text-xl`}
@@ -118,6 +111,13 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
                     Contact
                   </a>
                 </Link>
+                <Link href="/about">
+                  <a
+                    className={`block transform py-6 uppercase text-bold text-xl`}
+                  >
+                    About
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
       <div className="bg-black relative z-10 px-4">
         <ToastContainer/>
         <main className="container mx-auto">{children}</main>
-        <footer className="text-center lg:text-left pt-12">
+        <footer className="text-center lg:text-left">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
             Contact Us
           </h2>
@@ -166,8 +166,32 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
               </p>
             </div>
           </div>
-          <div className="prose lg:mt-24 max-w-5xl mx-auto">
-            <p className="py-12">
+          
+          <nav className="flex justify-between max-w-2xl mx-auto pt-12">
+            <Link href="/work">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
+                Work
+              </a>
+            </Link>
+            <Link href="/services">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
+                Services
+              </a>
+            </Link>
+            <Link href="/contact">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold`}>
+                Contact
+              </a>
+            </Link>
+            <Link href="/about">
+              <a className={`px-4 outline-none transform py-6 uppercase text-bold`}>
+                About
+              </a>
+            </Link>
+          </nav>
+          
+          <div className="prose lg:mt-20 max-w-5xl mx-auto text-center">
+            <p className="py-10">
               &copy; RAVENS FILM WORKS {new Date().getFullYear()}
             </p>
           </div>

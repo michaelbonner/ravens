@@ -5,8 +5,13 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // We import object and document schemas
 import blockContent from "./blockContent";
+import platformPayloadTable from "./platformPayloadTable";
+import cameraPayloadTable from "./cameraPayloadTable";
+import lensesPayloadTable from "./lensesPayloadTable";
+
 import project from "./project";
 import equipment from "./equipment";
+import service from "./service";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,8 +24,12 @@ export default createSchema({
     // in the studio.
     project,
     equipment,
+    service,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
+    platformPayloadTable,
+    cameraPayloadTable,
+    lensesPayloadTable,
   ]),
 });

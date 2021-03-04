@@ -22,9 +22,9 @@ export default function Home() {
 
   return (
     <Layout title="Contact | RAVENS">
-      <div className="prose text-center max-w-5xl mx-auto pt-12">
+      <div className="prose text-center max-w-5xl mx-auto">
         <div className="py-12">
-          <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">Contact</h1>
+          <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-white border-b-2 border-white uppercase">Contact</h1>
           <div className="relative mx-auto">
             <div className="py-16 px-4">
               <div className="max-w-lg mx-auto lg:max-w-none">
@@ -62,7 +62,7 @@ export default function Home() {
                         as="input"
                         name="name"  
                         placeholder="Full Name"
-                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
+                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
                       />
                       <ErrorMessage name="name" className="text-red-700" component="div" />
 
@@ -70,7 +70,7 @@ export default function Home() {
                         as="input"
                         name="emailAddress"
                         placeholder="Email Address"
-                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
+                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
                       />
                       <ErrorMessage name="emailAddress" className="text-red-700" component="div" />
 
@@ -78,7 +78,7 @@ export default function Home() {
                         as="input"
                         name="phoneNumber"
                         placeholder="Phone Number"
-                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-gray-500  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
+                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" 
                       />
                       <ErrorMessage name="phoneNumber" className="text-red-700" component="div"/>
                       
@@ -87,7 +87,7 @@ export default function Home() {
                         name="message"
                         placeholder="Message"
                         rows="4"
-                        className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-gray-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md"
                       />
                       <ErrorMessage name="message" className="text-red-700" component="div"/>
 
@@ -107,7 +107,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <hr className="border-2 border-gold my-8" />
       </div>
     </Layout>
   );
