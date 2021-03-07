@@ -6,7 +6,7 @@ import Obfuscate from "react-obfuscate";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const Layout = ({ children, title, heroImage, heroContent = "" }) => {
+const Layout = ({ children, title, heroImage, heroContent = "", backgroundClass = 'bg-black' }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -125,7 +125,7 @@ const Layout = ({ children, title, heroImage, heroContent = "" }) => {
 
         {heroContent}
       </div>
-      <div className="bg-black relative z-10 px-4">
+      <div className={ `${backgroundClass} relative z-10 px-4` }>
         <ToastContainer/>
         <main className="container mx-auto">{children}</main>
         <footer className="text-center lg:text-left">

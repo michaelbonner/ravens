@@ -270,6 +270,13 @@ body {
   @apply text-white;
 }
 
+body.contact {
+  @apply bg-white;
+  background-image: url('./../public/images/contact-bg.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
 p {
   font-family: "GothamPro";
   font-weight: 300;
