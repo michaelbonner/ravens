@@ -271,8 +271,8 @@ body {
 }
 
 body.contact {
-  @apply bg-white;
-  background-image: url('./../public/images/contact-bg.jpg');
+  @apply bg-gray-800;
+  background-image: url("/images/contact-bg.jpg");
   background-position: center;
   background-size: cover;
 }
