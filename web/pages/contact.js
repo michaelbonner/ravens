@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
@@ -12,7 +12,7 @@ const contactSchema = Yup.object().shape({
   message: Yup.string().min(2, 'Too short').required('Message is Required'),
 })
 
-export default function Home() {
+export default function Contact() {
   const [contactForm, setContactForm] = useState({
     name: '',
     emailAddress: '',
@@ -20,8 +20,13 @@ export default function Home() {
     message: ''
   })
 
+  useEffect( () => { document.querySelector("body").classList.add("contact") } );
+
   return (
-    <Layout title="Contact | RAVENS">
+    <Layout 
+      title="Contact | RAVENS"
+      backgroundClass=""
+    >
       <div className="prose text-center max-w-5xl mx-auto">
         <div className="py-12">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-white border-b-2 border-white uppercase">Contact</h1>
