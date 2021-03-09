@@ -30,7 +30,7 @@ const Home = (props) => {
     <Layout
       title="RAVENS | Special Film Tactics"
       heroContent={heroContent()}
-      heroImage="/images/home-hero.jpg"
+      heroImage={urlForSanitySource(home.poster).url()}
     >
       <div className="prose text-center max-w-3xl mx-auto pt-12">
         <div>
