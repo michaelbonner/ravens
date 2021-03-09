@@ -5,8 +5,11 @@ import groq from "groq";
 import Image from "next/image";
 import Link from "next/link";
 
+import BlockContent from "@sanity/block-content-to-react";
+
 const About = (props) => {
-  const { about = [] } = props;
+  const { about = {} } = props;
+console.log(about)
   return (
     <Layout title="About | RAVENS">
       <div className="prose text-center ">
@@ -14,20 +17,14 @@ const About = (props) => {
 					<div  className="relative h-60 md:h-96 lg:h-screen mb-12">
 						<Image
 							className="w-full"
-							src="/images/about-bg.jpg"
+  						src={urlForSanitySource(about.poster).url()}
 							layout="fill"
 						/>
 					</div>
 
 					<div className="max-w-5xl mx-auto">
 						<section className="md:px-32 mb-20">
-							<h2 className="font-bold mt-12 mb-3 text-2xl uppercase">Who Are The Ravens?</h2>
-							<p className="py-4 text-sm">With nearly 3 decades of combined experience, the RAVENS team is used to creating cinema magic on land, air, and sea. We hold ourselves to the highest standards of professionalism, dependability, subject knowledge, and skill. We are here to assist you in bringing your vision to life and maybe add a little special something along the way.</p>
-						</section>
-
-						<section className="md:px-32 mb-20">
-							<h2 className="font-bold mt-12 mb-3 text-2xl uppercase">OFFICES IN SLC & KAUAI</h2>
-							<p className="py-4 text-sm">es, you read that correctly. With our home base in Salt Lake City we have vast experience and connections in our local market. With a deep working knowledge of the island of Kauai, we have scouts and crew ready to capture some of the world’s most iconic locations. Of course, we’ve traveled the globe and aren’t afraid to explore new frontiers either.</p>
+              <BlockContent blocks={about.text} />
 						</section>
 
 						<Link href="/contact">
@@ -42,10 +39,10 @@ const About = (props) => {
   );
 }
 
-// Equipment.getInitialProps = async () => ({
-//   equipment: await client.fetch(groq`
-//     *[_type == "equipment"][0]
-//   `),
-// });
+About.getInitialProps = async () => ({
+  about: await client.fetch(groq`
+    *[_type == "about"][0]
+  `),
+});
 
 export default About
