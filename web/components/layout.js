@@ -37,12 +37,12 @@ const Layout = ({
           <Image src={`${heroImage}`} layout="fill" />
         </div>
       )}
-      <div className="relative container mx-auto z-20">
+      <div className="relative mx-auto z-20">
         <Head>
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header className="flex justify-between items-center py-12">
+        <header className="container mx-auto flex justify-between items-center py-12">
           <Link href="/">
             <a className="w-64">
               <Image
@@ -133,7 +133,7 @@ const Layout = ({
       </div>
       <div className={`${backgroundClass} relative z-10 px-4`}>
         <ToastContainer />
-        <main className="container mx-auto">{children}</main>
+        <main>{children}</main>
         <footer className="text-center lg:text-left">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
             Contact Us
