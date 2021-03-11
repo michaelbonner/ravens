@@ -29,6 +29,10 @@ export default function Contact() {
 
   useEffect(() => {
     document.querySelector("body").classList.add("contact");
+
+    return () => {
+      document.querySelector("body").classList.remove("contact");
+    };
   });
 
   return (
