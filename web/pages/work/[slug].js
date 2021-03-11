@@ -59,9 +59,7 @@ const Project = (props) => {
           })}
         </div>
 
-        <h2 className="font-bold text-3xl text-center my-12 uppercase">
-          BTS
-        </h2>
+        <h2 className="font-bold text-3xl text-center my-12 uppercase">BTS</h2>
         <div className="lg:grid grid-cols-2 gap-12">
           {behindTheScenes.map((image) => {
             return (
