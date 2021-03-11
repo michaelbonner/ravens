@@ -14,6 +14,7 @@ const contactSchema = Yup.object().shape({
     .email("Invalid email")
     .required("Email address is required"),
   phoneNumber: Yup.string()
+    .label("Phone number")
     .phone("Invalid phone")
     .required("Valid Phone number is Required"),
   message: Yup.string().min(2, "Too short").required("Message is Required"),
@@ -72,61 +73,69 @@ export default function Contact() {
                     }
                   }}
                 >
-                  {({ isSubmitting, errors }) => (
+                  {({ isSubmitting, isValid }) => (
                     <Form className="grid grid-cols-1 gap-y-6">
-                      <Field
-                        as="input"
-                        name="name"
-                        placeholder="Full Name"
-                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                      />
-                      <ErrorMessage
-                        name="name"
-                        className="text-red-700"
-                        component="div"
-                      />
+                      <div className="border-gray-300 rounded-md bg-white relative">
+                        <Field
+                          as="input"
+                          name="name"
+                          placeholder="Full Name"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                        />
+                        <ErrorMessage
+                          name="name"
+                          className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                          component="div"
+                        />
+                      </div>
 
-                      <Field
-                        as="input"
-                        name="emailAddress"
-                        placeholder="Email Address"
-                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                      />
-                      <ErrorMessage
-                        name="emailAddress"
-                        className="text-red-700"
-                        component="div"
-                      />
+                      <div className="border-gray-300 rounded-md bg-white relative">
+                        <Field
+                          as="input"
+                          name="emailAddress"
+                          placeholder="Email Address"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                        />
+                        <ErrorMessage
+                          name="emailAddress"
+                          className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                          component="div"
+                        />
+                      </div>
 
-                      <Field
-                        as="input"
-                        name="phoneNumber"
-                        placeholder="Phone Number"
-                        className="block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black  focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                      />
-                      <ErrorMessage
-                        name="phoneNumber"
-                        className="text-red-700"
-                        component="div"
-                      />
+                      <div className="border-gray-300 rounded-md bg-white relative">
+                        <Field
+                          as="input"
+                          name="phoneNumber"
+                          placeholder="Phone Number"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                        />
+                        <ErrorMessage
+                          name="phoneNumber"
+                          className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                          component="div"
+                        />
+                      </div>
 
-                      <Field
-                        as="textarea"
-                        name="message"
-                        placeholder="Message"
-                        rows="4"
-                        className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md"
-                      />
-                      <ErrorMessage
-                        name="message"
-                        className="text-red-700"
-                        component="div"
-                      />
+                      <div className="border-gray-300 rounded-md bg-white relative">
+                        <Field
+                          as="textarea"
+                          name="message"
+                          placeholder="Message"
+                          rows="4"
+                          className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md"
+                        />
+                        <ErrorMessage
+                          name="message"
+                          className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                          component="div"
+                        />
+                      </div>
 
                       <button
                         type="submit"
                         className={`inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all
-                          isSubmitting ? 'opacity-25' : 
+                          ${isSubmitting || !isValid ? "opacity-50" : ""}
                         }`}
                         disabled={isSubmitting}
                       >
