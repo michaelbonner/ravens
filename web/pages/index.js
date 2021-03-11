@@ -26,7 +26,7 @@ export default function Home() {
       heroImage="/images/home-hero.jpg"
     >
       <div className="prose text-center max-w-2xl mx-auto pt-12">
-        <div>
+        <div className="py-12">
           <h2 className="font-bold text-3xl">SPECIALTY PRODUCTION UNIT</h2>
           <p className="pt-8 mt-8">
             As skilled technicians with a unique sensibility for storytelling,
@@ -39,7 +39,7 @@ export default function Home() {
             If your production calls for specialty services we’d love to explore
             possibilities.
           </p>
-          <p className="py-12">
+          <p className="pt-12">
             <Link href="/contact">
               <a className="rounded-full font-bold uppercase tracking-wider border border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
                 Get in Touch
