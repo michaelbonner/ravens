@@ -16,7 +16,7 @@ const Project = (props) => {
 
   return (
     <Layout title={`${fullTitle} | RAVENS Special Film Tactics`}>
-      <article>
+      <article className="container mx-auto">
         <div className="flex justify-center">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold">
             {fullTitle}
@@ -42,37 +42,42 @@ const Project = (props) => {
         })}
         <hr className="border-t-2 w-96 mx-auto border-gold mt-12" />
 
-        <h2 className="font-bold text-3xl text-center my-12 uppercase">
-          Frames
-        </h2>
-        <div className="lg:grid grid-cols-2 gap-12">
-          {frames.map((image) => {
-            return (
-              <Image
-                className="w-full overflow-hidden"
-                key={image._key}
-                width="717"
-                height="300"
-                src={urlForSanitySource(image).width(717).height(300).url()}
-              />
-            );
-          })}
+        <div className="max-w-7xl mx-auto">
+          <h2 className="font-bold text-3xl text-center my-12 uppercase">
+            Frames
+          </h2>
+          <div className="lg:grid grid-cols-2 gap-12">
+            {frames.map((image) => {
+              return (
+                <Image
+                  className="w-full overflow-hidden"
+                  key={image._key}
+                  width="717"
+                  height="300"
+                  src={urlForSanitySource(image).width(717).height(300).url()}
+                />
+              );
+            })}
+          </div>
+
+          <h2 className="font-bold text-3xl text-center my-12 uppercase">
+            BTS
+          </h2>
+          <div className="lg:grid grid-cols-2 gap-12">
+            {behindTheScenes.map((image) => {
+              return (
+                <Image
+                  className="w-full overflow-hidden"
+                  key={image._key}
+                  width="717"
+                  height="300"
+                  src={urlForSanitySource(image).width(717).height(300).url()}
+                />
+              );
+            })}
+          </div>
         </div>
 
-        <h2 className="font-bold text-3xl text-center my-12 uppercase">BTS</h2>
-        <div className="lg:grid grid-cols-2 gap-12">
-          {behindTheScenes.map((image) => {
-            return (
-              <Image
-                className="w-full overflow-hidden"
-                key={image._key}
-                width="717"
-                height="300"
-                src={urlForSanitySource(image).width(717).height(300).url()}
-              />
-            );
-          })}
-        </div>
         <hr className="border-t-2 w-96 mx-auto border-gold mt-20" />
       </article>
     </Layout>
