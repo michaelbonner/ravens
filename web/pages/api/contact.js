@@ -1,8 +1,8 @@
-import * as uuid from 'uuid';
-import dynamoDb from '../../lib/dynamo-db';
+import * as uuid from "uuid";
+import dynamoDb from "../../lib/dynamo-db";
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     const contact = {
       id: uuid.v4(),
       createdAt: Date.now(),
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     };
 
     await dynamoDb.put({
-      Item: contact
+      Item: contact,
     });
 
     res.status(201).json(contact);

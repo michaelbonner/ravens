@@ -48,13 +48,13 @@ const Home = (props) => {
         <hr className="border-2 border-gold my-6" />
 
         <div className="lg:grid grid-cols-3 gap-4">
-          {services.map(service => {
+          {services.map((service) => {
             return (
               <div key={service._id} className="py-12">
                 <h3 className="text-2xl font-bold">{service.title}</h3>
                 <div className="flex items-center my-8">
                   <div className="h-38 w-3/4 mx-auto">
-                    <Image 
+                    <Image
                       src={urlForSanitySource(service.thumb).width(400).url()}
                       layout="intrinsic"
                       width="400"
@@ -64,7 +64,7 @@ const Home = (props) => {
                 </div>
                 <BlockContent blocks={service.homeSummary} />
               </div>
-            )
+            );
           })}
         </div>
 
@@ -80,7 +80,7 @@ const Home = (props) => {
       </div>
     </Layout>
   );
-}
+};
 
 Home.getInitialProps = async () => ({
   services: await client.fetch(groq`
@@ -88,8 +88,7 @@ Home.getInitialProps = async () => ({
   `),
   home: await client.fetch(groq`
     *[_type == "home"][0]
-  `)
+  `),
 });
 
-
-export default Home
+export default Home;

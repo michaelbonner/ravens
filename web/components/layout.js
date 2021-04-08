@@ -3,10 +3,16 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import Obfuscate from "react-obfuscate";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
-const Layout = ({ children, title, heroImage, heroContent = "", backgroundClass = 'bg-black' }) => {
+const Layout = ({
+  children,
+  title,
+  heroImage,
+  heroContent = "",
+  backgroundClass = "bg-black",
+}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -31,12 +37,12 @@ const Layout = ({ children, title, heroImage, heroContent = "", backgroundClass 
           <Image src={`${heroImage}`} layout="fill" />
         </div>
       )}
-      <div className="relative container mx-auto z-20">
+      <div className="relative mx-auto z-20">
         <Head>
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header className="flex justify-between items-center py-12">
+        <header className="container mx-auto flex justify-between items-center py-12">
           <Link href="/">
             <a className="w-64">
               <Image
@@ -125,9 +131,9 @@ const Layout = ({ children, title, heroImage, heroContent = "", backgroundClass 
 
         {heroContent}
       </div>
-      <div className={ `${backgroundClass} relative z-10 px-4` }>
-        <ToastContainer/>
-        <main className="container mx-auto">{children}</main>
+      <div className={`${backgroundClass} relative z-10 px-4`}>
+        <ToastContainer />
+        <main>{children}</main>
         <footer className="text-center lg:text-left">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
             Contact Us
@@ -166,30 +172,38 @@ const Layout = ({ children, title, heroImage, heroContent = "", backgroundClass 
               </p>
             </div>
           </div>
-          
+
           <nav className="flex justify-between max-w-2xl mx-auto pt-12">
             <Link href="/work">
-              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
+              <a
+                className={`px-4 outline-none transform py-6 uppercase text-bold `}
+              >
                 Work
               </a>
             </Link>
             <Link href="/services">
-              <a className={`px-4 outline-none transform py-6 uppercase text-bold `}>
+              <a
+                className={`px-4 outline-none transform py-6 uppercase text-bold `}
+              >
                 Services
               </a>
             </Link>
             <Link href="/contact">
-              <a className={`px-4 outline-none transform py-6 uppercase text-bold`}>
+              <a
+                className={`px-4 outline-none transform py-6 uppercase text-bold`}
+              >
                 Contact
               </a>
             </Link>
             <Link href="/about">
-              <a className={`px-4 outline-none transform py-6 uppercase text-bold`}>
+              <a
+                className={`px-4 outline-none transform py-6 uppercase text-bold`}
+              >
                 About
               </a>
             </Link>
           </nav>
-          
+
           <div className="prose lg:mt-20 max-w-5xl mx-auto text-center">
             <p className="py-10">
               &copy; RAVENS FILM WORKS {new Date().getFullYear()}
