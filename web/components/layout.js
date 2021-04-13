@@ -160,7 +160,7 @@ const Layout = ({
       <div className={`${backgroundClass} relative z-10 px-4`}>
         <ToastContainer />
         <main>{children}</main>
-        <footer className="text-center lg:text-left">
+        <footer className="text-center lg:text-left mt-16">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
             Contact Us
           </h2>
@@ -199,7 +199,7 @@ const Layout = ({
             </div>
           </div>
 
-          <nav className="flex justify-between max-w-2xl mx-auto pt-12">
+          <nav className="flex justify-between max-w-3xl mx-auto pt-12">
             {navLinks.map((navLink) => {
               return (
                 <Link key={navLink.path} href={navLink.path}>
@@ -217,7 +217,7 @@ const Layout = ({
             })}
           </nav>
 
-          <div className="prose lg:mt-20 max-w-5xl mx-auto text-center">
+          <div className="prose lg:mt-12 max-w-5xl mx-auto text-center">
             <p className="py-10">
               &copy; RAVENS FILM WORKS {new Date().getFullYear()}
             </p>
