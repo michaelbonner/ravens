@@ -33,8 +33,8 @@ const Home = (props) => {
       heroImage={urlForSanitySource(home.poster).url()}
     >
       <div className="prose text-center max-w-3xl mx-auto pt-12">
-        <div>
-          <h2 className="font-bold text-3xl">{home.heading}</h2>
+        <div className="pt-12">
+          <h2 className="font-bold text-3xl mb-8">{home.heading}</h2>
           <BlockContent blocks={home.text} />
           <p className="py-12">
             <Link href="/contact">
