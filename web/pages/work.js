@@ -5,7 +5,7 @@ import groq from "groq";
 import Link from "next/link";
 import urlForSanitySource from "../lib/urlForSanitySource";
 
-const Home = (props) => {
+const Work = (props) => {
   const { projects = [] } = props;
   return (
     <Layout title="Contact | RAVENS">
@@ -41,10 +41,10 @@ const Home = (props) => {
   );
 };
 
-Home.getInitialProps = async () => ({
+Work.getInitialProps = async () => ({
   projects: await client.fetch(groq`
     *[_type == "project"]|order(date desc)
   `),
 });
 
-export default Home;
+export default Work;

@@ -5,53 +5,26 @@ import groq from "groq";
 import Image from "next/image";
 import Link from "next/link";
 
+import BlockContent from "@sanity/block-content-to-react";
+
 const About = (props) => {
-  const { about = [] } = props;
+  const { about = {} } = props;
   return (
     <Layout title="About | RAVENS">
       <div className="prose text-center ">
         <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase mb-12">
           About
         </h1>
-      </div>
-      <div>
-        <div className="relative mb-12 text-center">
-          <Image
-            className="w-full mx-auto"
-            src="/images/about-bg-2.jpg"
-            width="1600"
-            height="517"
+        <div className="relative mb-12 w-full">
+          <img
+            className="w-full"
+            src={urlForSanitySource(about.poster).url()}
           />
         </div>
-      </div>
-      <div className="prose text-center container mx-auto">
-        <div className="max-w-5xl mx-auto">
-          <section className="md:px-32 mb-20">
-            <h2 className="font-bold mt-12 mb-3 text-3xl uppercase">
-              Who Are The Ravens?
-            </h2>
-            <p className="py-4 leading-9">
-              With nearly 3 decades of combined experience, the RAVENS team is
-              used to creating cinema magic on land, air, and sea. We hold
-              ourselves to the highest standards of professionalism,
-              dependability, subject knowledge, and skill. We are here to assist
-              you in bringing your vision to life and maybe add a little special
-              something along the way.
-            </p>
-          </section>
 
-          <section className="md:px-32 mb-20">
-            <h2 className="font-bold mt-12 mb-3 text-3xl uppercase">
-              OFFICES IN SLC & KAUAI
-            </h2>
-            <p className="py-4 leading-9">
-              es, you read that correctly. With our home base in Salt Lake City
-              we have vast experience and connections in our local market. With
-              a deep working knowledge of the island of Kauai, we have scouts
-              and crew ready to capture some of the world’s most iconic
-              locations. Of course, we’ve traveled the globe and aren’t afraid
-              to explore new frontiers either.
-            </p>
+        <div className="max-w-5xl mx-auto mt-16">
+          <section className="md:px-32 mb-20 user-text">
+            <BlockContent blocks={about.text} />
           </section>
 
           <Link href="/contact">
@@ -66,10 +39,10 @@ const About = (props) => {
   );
 };
 
-// Equipment.getInitialProps = async () => ({
-//   equipment: await client.fetch(groq`
-//     *[_type == "equipment"][0]
-//   `),
-// });
+About.getInitialProps = async () => ({
+  about: await client.fetch(groq`
+    *[_type == "about"][0]
+  `),
+});
 
 export default About;

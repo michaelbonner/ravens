@@ -31,6 +31,21 @@ export default {
         hotspot: true,
       },
     },
+
+    {
+      name: "homeSummary",
+      title: "Home Summary",
+      type: "blockContent",
+    },
+    {
+      name: "thumb",
+      title: "Home Thumbnail Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    },
+    
     {
         name: 'pageSections',
         type: 'array',
