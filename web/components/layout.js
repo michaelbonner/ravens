@@ -73,11 +73,11 @@ const Layout = ({
         </Head>
         <header className="container mx-4 lg:mx-auto flex justify-between items-center py-12">
           <Link href="/">
-            <a className="w-64">
+            <a className="w-72">
               <Image
-                width="2578"
-                height="1052"
-                src="/images/ravens-logo-white.svg"
+                width="300"
+                height="100"
+                src="/images/ravens-logo-white-gold.svg"
                 alt="Ravens Logo"
               />
             </a>

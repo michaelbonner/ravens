@@ -11,7 +11,7 @@ const Services = (props) => {
 
   return (
     <Layout title="Services | RAVENS">
-      <div className="text-center mx-auto pt-12">
+      <div className="text-center pt-12 container mx-auto">
         <div className="">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">
             Services
