@@ -177,7 +177,7 @@ const Service = (props) => {
 
   return (
     <Layout title={`${title} | RAVENS Special Film Tactics`}>
-      <article>
+      <article className="container mx-auto">
         <div className="flex justify-center mb-12">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold">
             {title}

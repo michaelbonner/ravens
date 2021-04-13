@@ -56,19 +56,27 @@ const Layout = ({
     }
   };
 
+  const heroStyles = heroImage
+    ? {
+        background: `url(${heroImage}) center center no-repeat`,
+        backgroundSize: `cover`,
+        minHeight: `70vh`,
+      }
+    : {};
+
   return (
     <>
-      {heroImage && (
+      {/* {heroImage && (
         <div className="fixed h-screen w-screen overflow-hidden z-0">
-          <Image src={`${heroImage}`} layout="fill" />
+          <Image src={`${c}`} layout="cover" />
         </div>
-      )}
-      <div className="relative mx-auto z-20">
+      )} */}
+      <div className="relative mx-auto z-20" style={heroStyles}>
         <Head>
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header className="container mx-auto flex justify-between items-center py-12">
+        <header className="container mx-4 lg:mx-auto flex justify-between items-center py-12">
           <Link href="/">
             <a className="w-64">
               <Image
@@ -79,13 +87,13 @@ const Layout = ({
               />
             </a>
           </Link>
-          <div className="flex justify-end items-center">
+          <div className="relative flex justify-end items-center right-8 lg:right-0">
             <Link href="/contact">
               <a className="hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 text-sm hover:bg-gold hover:text-black transition-all">
                 Get in Touch
               </a>
             </Link>
-            <div className="relative ml-8 mr-4 lg:mr-0">
+            <div className="relative lg:ml-8 lg:mr-0">
               <button
                 className="w-12 h-8 focus:outline-none relative"
                 onClick={() => toggleMenu(!menuOpen)}

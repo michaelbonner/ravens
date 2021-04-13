@@ -11,7 +11,7 @@ const Services = (props) => {
 
   return (
     <Layout title="Services | RAVENS">
-      <div className="prose text-center mx-auto pt-12">
+      <div className="text-center mx-auto pt-12">
         <div className="">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">
             Services
@@ -24,11 +24,11 @@ const Services = (props) => {
                     <a>
                       <Image
                         src={urlForSanitySource(service.poster)
-                          .width(1200)
+                          .width(1536)
                           .height(400)
                           .url()}
                         height="400"
-                        width="1200"
+                        width="1536"
                       />
                     </a>
                   </Link>

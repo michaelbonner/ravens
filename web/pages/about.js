@@ -11,7 +11,7 @@ const About = (props) => {
   const { about = {} } = props;
   return (
     <Layout title="About | RAVENS">
-      <div className="prose text-center ">
+      <div className="container mx-auto text-center">
         <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase mb-12">
           About
         </h1>
