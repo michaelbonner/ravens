@@ -32,7 +32,7 @@ const Home = (props) => {
       heroContent={heroContent()}
       heroImage={urlForSanitySource(home.poster).url()}
     >
-      <div className="prose text-center max-w-3xl mx-auto pt-12">
+      <div className="prose text-center max-w-5xl mx-auto pt-12">
         <div className="pt-12">
           <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
           <BlockContent blocks={home.text} />

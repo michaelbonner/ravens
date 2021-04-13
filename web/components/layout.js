@@ -4,7 +4,32 @@ import Link from "next/link";
 import Image from "next/image";
 import Obfuscate from "react-obfuscate";
 import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/router";
+
 import "react-toastify/dist/ReactToastify.min.css";
+
+const navLinks = [
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "Work",
+    path: "/work",
+  },
+  {
+    title: "Services",
+    path: "/services",
+  },
+  {
+    title: "Contact",
+    path: "/contact",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+];
 
 const Layout = ({
   children,
@@ -15,6 +40,7 @@ const Layout = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -174,34 +200,21 @@ const Layout = ({
           </div>
 
           <nav className="flex justify-between max-w-2xl mx-auto pt-12">
-            <Link href="/work">
-              <a
-                className={`px-4 outline-none transform py-6 uppercase text-bold `}
-              >
-                Work
-              </a>
-            </Link>
-            <Link href="/services">
-              <a
-                className={`px-4 outline-none transform py-6 uppercase text-bold `}
-              >
-                Services
-              </a>
-            </Link>
-            <Link href="/contact">
-              <a
-                className={`px-4 outline-none transform py-6 uppercase text-bold`}
-              >
-                Contact
-              </a>
-            </Link>
-            <Link href="/about">
-              <a
-                className={`px-4 outline-none transform py-6 uppercase text-bold`}
-              >
-                About
-              </a>
-            </Link>
+            {navLinks.map((navLink) => {
+              return (
+                <Link key={navLink.path} href={navLink.path}>
+                  <a
+                    className={
+                      router.pathname === navLink.path
+                        ? `text-gold px-4 outline-none transform py-6 uppercase text-bold`
+                        : `px-4 outline-none transform py-6 uppercase text-bold`
+                    }
+                  >
+                    {navLink.title}
+                  </a>
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="prose lg:mt-20 max-w-5xl mx-auto text-center">
