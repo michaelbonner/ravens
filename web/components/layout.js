@@ -66,11 +66,6 @@ const Layout = ({
 
   return (
     <>
-      {/* {heroImage && (
-        <div className="fixed h-screen w-screen overflow-hidden z-0">
-          <Image src={`${c}`} layout="cover" />
-        </div>
-      )} */}
       <div className="relative mx-auto z-20" style={heroStyles}>
         <Head>
           <title>{title}</title>
