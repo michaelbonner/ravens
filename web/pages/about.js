@@ -9,23 +9,21 @@ import BlockContent from "@sanity/block-content-to-react";
 
 const About = (props) => {
   const { about = {} } = props;
-  console.log(about);
   return (
     <Layout title="About | RAVENS">
       <div className="prose text-center ">
         <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase mb-12">
           About
         </h1>
-        <div className="relative h-60 md:h-96 lg:h-screen mb-12">
-          <Image
+        <div className="relative mb-12 w-full">
+          <img
             className="w-full"
             src={urlForSanitySource(about.poster).url()}
-            layout="fill"
           />
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <section className="md:px-32 mb-20">
+        <div className="max-w-5xl mx-auto mt-16">
+          <section className="md:px-32 mb-20 user-text">
             <BlockContent blocks={about.text} />
           </section>
 

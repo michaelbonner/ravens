@@ -281,3 +281,11 @@ p {
   font-family: "GothamPro";
   font-weight: 300;
 }
+
+.user-text h2 {
+  @apply font-bold mt-12 mb-3 text-3xl uppercase;
+}
+
+.user-text p {
+  @apply py-4 leading-9;
+}
