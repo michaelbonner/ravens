@@ -48,29 +48,29 @@ const Layout = ({
               <Image
                 width="2578"
                 height="1052"
-                src="/images/ravens-logo-white.png"
+                src="/images/ravens-logo-white.svg"
                 alt="Ravens Logo"
               />
             </a>
           </Link>
           <div className="flex justify-end items-center">
             <Link href="/contact">
-              <a className="hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all">
+              <a className="hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 text-sm hover:bg-gold hover:text-black transition-all">
                 Get in Touch
               </a>
             </Link>
             <div className="relative ml-8 mr-4 lg:mr-0">
               <button
-                className="w-16 h-10 focus:outline-none relative"
+                className="w-12 h-8 focus:outline-none relative"
                 onClick={() => toggleMenu(!menuOpen)}
               >
                 <span
                   className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
                     menuVisible ? "absolute" : "hidden"
-                  } top-0 right-0 w-16 h-10 transform transition-all ease-in duration-300`}
+                  } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
                 >
                   <Image
-                    className={`w-16 h-10 fill-current text-white stroke-2 stroke-current`}
+                    className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
                     src={`/images/menu-close.svg`}
                     layout="fill"
                   />
@@ -78,10 +78,10 @@ const Layout = ({
                 <span
                   className={`${!menuOpen ? "opacity-100" : "opacity-0"} ${
                     !menuVisible ? "absolute" : "hidden"
-                  } top-0 right-0 w-16 h-10 transform transition-all ease-in duration-300`}
+                  } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
                 >
                   <Image
-                    className={`w-16 h-10 fill-current text-white stroke-2 stroke-current`}
+                    className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
                     src={`/images/menu.svg`}
                     layout="fill"
                   />
