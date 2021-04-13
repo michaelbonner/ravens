@@ -56,7 +56,7 @@ const Services = (props) => {
           })}
         </div>
 
-        <hr className="border-t-2 w-96 mx-auto border-gold my-16" />
+        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
       </div>
     </Layout>
   );

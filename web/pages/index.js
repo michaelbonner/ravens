@@ -9,7 +9,7 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 const heroContent = () => {
   return (
     <h1 className="flex justify-center items-center h-80 mt-12 mb-48">
-      <span className="w-96">
+      <span className="w-full lg:w-96">
         <Image
           alt="SLC X KAUAI"
           height="346"

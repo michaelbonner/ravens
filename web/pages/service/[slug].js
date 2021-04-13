@@ -39,7 +39,7 @@ const Service = (props) => {
             {section.heading}
           </h2>
           <BlockContent blocks={section.text} />
-          <hr className="border-t-2 w-96 mx-auto border-gold my-16" />
+          <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
         </div>
       </div>
     );

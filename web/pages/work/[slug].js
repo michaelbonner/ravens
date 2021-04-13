@@ -40,7 +40,7 @@ const Project = (props) => {
             </div>
           );
         })}
-        <hr className="border-t-2 w-96 mx-auto border-gold mt-12" />
+        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold mt-12" />
 
         <div className="max-w-7xl mx-auto">
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
@@ -78,7 +78,7 @@ const Project = (props) => {
           </div>
         </div>
 
-        <hr className="border-t-2 w-96 mx-auto border-gold mt-20" />
+        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold mt-20" />
       </article>
     </Layout>
   );
