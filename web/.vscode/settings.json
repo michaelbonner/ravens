@@ -35,6 +35,7 @@
         "squirty",
         "taleggio",
         "toastify",
-        "truetype"
+        "truetype",
+        "uuidv"
       ]
 }
