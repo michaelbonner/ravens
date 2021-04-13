@@ -71,9 +71,9 @@ const Layout = ({
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header className="container mx-4 lg:mx-auto flex justify-between items-center py-12">
+        <header className="lg:container mx-4 lg:mx-auto flex justify-between items-center py-12">
           <Link href="/">
-            <a className="w-72">
+            <a className="w-2/3 lg:w-72">
               <Image
                 width="300"
                 height="100"
@@ -82,7 +82,7 @@ const Layout = ({
               />
             </a>
           </Link>
-          <div className="relative flex justify-end items-center right-8 lg:right-0">
+          <div className="relative flex justify-end items-center">
             <Link href="/contact">
               <a className="hidden lg:inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 text-sm hover:bg-gold hover:text-black transition-all">
                 Get in Touch
@@ -202,7 +202,7 @@ const Layout = ({
             </div>
           </div>
 
-          <nav className="flex justify-between max-w-3xl mx-auto pt-12">
+          <nav className="flex flex-wrap justify-center lg:justify-between max-w-3xl mx-auto pt-12">
             {navLinks.map((navLink) => {
               return (
                 <Link key={navLink.path} href={navLink.path}>
