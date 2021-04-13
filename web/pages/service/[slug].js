@@ -48,16 +48,20 @@ const Service = (props) => {
   const PlatformTable = (section, index) => {
     return (
       <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
-        <table className="min-w-full mt-8 ">
+        <table className="min-w-full mt-8">
           <thead>
             <tr className="border-b">
-              <th className="text-sm pb-4 text-left">Platform</th>
-              <th className="text-sm pb-4">Weight</th>
-              <th className="text-sm pb-4">
+              <th className="text-sm pb-4 text-left" width="40%">
+                Platform
+              </th>
+              <th className="text-sm pb-4" width="20%">
+                Weight
+              </th>
+              <th className="text-sm pb-4" width="20%">
                 REM Payload <br />
                 (55 lb Limit)
               </th>
-              <th className="text-sm pb-4">
+              <th className="text-sm pb-4" width="20%">
                 EXT Payload <br />
                 (63 lb)
               </th>
@@ -67,12 +71,18 @@ const Service = (props) => {
             {section.platformTableRows.map((row) => {
               return (
                 <tr key={row._key}>
-                  <td className="pb-3 pt-3 text-xs text-left">
+                  <td className="pb-3 pt-3 text-xs text-left" width="40%">
                     {row.platform}
                   </td>
-                  <td className="pb-3 pt-3 text-xs">{row.weight}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.remPayload}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.extPayload}</td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.weight}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.remPayload}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.extPayload}
+                  </td>
                 </tr>
               );
             })}
@@ -85,7 +95,7 @@ const Service = (props) => {
   const CameraTable = (section, index) => {
     return (
       <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
-        <table className="min-w-full mt-8 ">
+        <table className="min-w-full mt-8">
           <thead>
             <tr className="border-b">
               <th className="text-sm pb-4 text-left">CAMERA</th>
@@ -104,10 +114,18 @@ const Service = (props) => {
             {section.cameraTableRows.map((row) => {
               return (
                 <tr key={row._key}>
-                  <td className="pb-3 pt-3 text-xs text-left">{row.camera}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.weight}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.remPayload}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.extPayload}</td>
+                  <td className="pb-3 pt-3 text-xs text-left" width="40%">
+                    {row.camera}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.weight}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.remPayload}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.extPayload}
+                  </td>
                 </tr>
               );
             })}
@@ -120,7 +138,7 @@ const Service = (props) => {
   const LensesTable = (section, index) => {
     return (
       <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
-        <table className="min-w-full mt-8 ">
+        <table className="min-w-full mt-8">
           <thead>
             <tr className="border-b">
               <th className="text-sm pb-4 text-left">LENSES</th>
@@ -139,10 +157,18 @@ const Service = (props) => {
             {section.lensesTableRows.map((row) => {
               return (
                 <tr key={row._key}>
-                  <td className="pb-3 pt-3 text-xs text-left">{row.lense}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.weight}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.remPayload}</td>
-                  <td className="pb-3 pt-3 text-xs">{row.extPayload}</td>
+                  <td className="pb-3 pt-3 text-xs text-left" width="40%">
+                    {row.lense}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.weight}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.remPayload}
+                  </td>
+                  <td className="pb-3 pt-3 text-xs" width="20%">
+                    {row.extPayload}
+                  </td>
                 </tr>
               );
             })}
