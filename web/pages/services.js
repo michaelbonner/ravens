@@ -18,7 +18,7 @@ const Services = (props) => {
           </h1>
           {services.map((service) => {
             return (
-              <section key={service._id} className="pt-8 mt-12">
+              <section key={service._id} className="pt-8 mt-12 user-text">
                 <div className="relative mb-12">
                   <Link href={`/service/${service.slug.current}`}>
                     <a>
@@ -33,7 +33,7 @@ const Services = (props) => {
                     </a>
                   </Link>
                 </div>
-                <div className="mb-12">
+                <div className="mb-12 max-w-5xl mx-auto">
                   <h2 className="font-bold text-3xl uppercase mb-6">
                     <Link href={`/service/${service.slug.current}`}>
                       <a>{service.title}</a>
@@ -41,7 +41,7 @@ const Services = (props) => {
                   </h2>
                   <BlockContent blocks={service.summary} />
                 </div>
-                <div>
+                <div className="mb-12">
                   <Link
                     className="pt-12 mt-12"
                     href={`/service/${service.slug.current}`}

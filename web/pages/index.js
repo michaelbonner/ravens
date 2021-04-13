@@ -9,7 +9,7 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 const heroContent = () => {
   return (
     <h1 className="flex justify-center items-center h-80 mt-12 mb-48">
-      <span className="w-full lg:w-96">
+      <span className="w-full lg:w-96 mx-4 lg:mx-0">
         <Image
           alt="SLC X KAUAI"
           height="346"
@@ -33,7 +33,7 @@ const Home = (props) => {
       heroImage={urlForSanitySource(home.poster).url()}
     >
       <div className="prose text-center max-w-5xl mx-auto pt-12">
-        <div className="pt-12">
+        <div className="lg:pt-12">
           <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
           <BlockContent blocks={home.text} />
           <p className="py-12">

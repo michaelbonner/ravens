@@ -210,7 +210,7 @@ const Service = (props) => {
           </h1>
         </div>
 
-        <div className="mx-auto">
+        <div className="mx-auto user-text">
           {pageSections.map((section, index) => {
             return Blocks[section._type](section, index);
           })}
