@@ -12,6 +12,7 @@ module.exports = {
       gray: colors.trueGray,
       indigo: colors.indigo,
       red: colors.rose,
+      blue: colors.blueGray,
       yellow: colors.amber,
       gold: {
         DEFAULT: "#967738",
