@@ -294,14 +294,14 @@ p {
   @apply leading-9;
 }
 
-@media (min-aspect-ratio: 16/9) {
+@media (min-aspect-ratio: 4/3) {
   .bpd-hero-video-foreground {
     height: 300%;
     top: -100%;
   }
 }
 
-@media (max-aspect-ratio: 16/9) {
+@media (max-aspect-ratio: 4/3) {
   .bpd-hero-video-foreground {
     width: 300%;
     left: -100%;
