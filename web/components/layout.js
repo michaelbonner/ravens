@@ -61,25 +61,26 @@ const Layout = ({
   useEffect(() => {
     if (heroVideoUrl) {
       setHeroStyles({
-        position: "relative",
         top: 0,
         right: 0,
         bottom: 0,
         left: 0,
+        height: "100%",
       });
     } else if (heroImage) {
       setHeroStyles({
         background: `url(${heroImage}) center center no-repeat`,
         backgroundSize: `cover`,
-        minHeight: `70vh`,
       });
+    } else {
+      setHeroStyles({});
     }
   }, [heroImage, heroVideoUrl]);
 
   return (
     <>
       <div
-        className="relative mx-auto z-20 overflow-x-hidden"
+        className="bpd-hero relative mx-auto z-20 overflow-y-visible overflow-x-hidden lg:overflow-x-visible"
         style={heroStyles}
       >
         <Head>
@@ -87,7 +88,7 @@ const Layout = ({
           <link rel="icon" href="/favicon.ico" />
         </Head>
         {heroVideoUrl && (
-          <div className="bpd-hero-video-foreground absolute z-0 inset-0 h-full w-full">
+          <div className="bpd-hero-video-foreground">
             <iframe
               src={heroVideoUrl}
               frameBorder="0"
@@ -105,7 +106,7 @@ const Layout = ({
             ></iframe>
           </div>
         )}
-        <header className="relative z-10 lg:container mx-4 lg:mx-auto flex justify-between items-center py-12">
+        <header className="relative z-10 lg:container mx-4 lg:mx-auto flex justify-between items-center py-12 overflow-visible">
           <Link href="/">
             <a className="w-2/3 lg:w-72">
               <Image

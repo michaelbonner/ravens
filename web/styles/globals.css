@@ -294,16 +294,39 @@ p {
   @apply leading-9;
 }
 
+.bpd-hero {
+  overflow-y: hidden;
+}
+@media (max-width: 767px) {
+  .bpd-hero {
+    min-height: 50vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .bpd-hero {
+    min-height: 70vh;
+  }
+}
+
+.bpd-hero-video-foreground {
+  @apply absolute;
+  @apply z-0;
+  @apply h-full;
+  @apply w-full;
+  @apply inset-0;
+}
+
 @media (min-aspect-ratio: 4/3) {
   .bpd-hero-video-foreground {
     height: 300%;
-    top: -100%;
+    transform: translate3d(0, -33%, 0);
   }
 }
 
 @media (max-aspect-ratio: 4/3) {
   .bpd-hero-video-foreground {
     width: 300%;
-    left: -100%;
+    transform: translate3d(-33%, 0, 0);
   }
 }
