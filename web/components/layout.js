@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,11 +36,13 @@ const Layout = ({
   title,
   heroImage,
   heroContent = "",
+  heroVideoUrl = "",
   backgroundClass = "bg-black",
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const router = useRouter();
+  const [heroStyles, setHeroStyles] = useState({});
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -56,22 +58,48 @@ const Layout = ({
     }
   };
 
-  const heroStyles = heroImage
-    ? {
+  useEffect(() => {
+    if (heroVideoUrl) {
+      setHeroStyles({
+        position: "relative",
+        width: "100%",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      });
+    } else if (heroImage) {
+      setHeroStyles({
         background: `url(${heroImage}) center center no-repeat`,
         backgroundSize: `cover`,
         minHeight: `70vh`,
-      }
-    : {};
+      });
+    }
+  }, [heroImage, heroVideoUrl]);
 
   return (
     <>
-      <div className="relative mx-auto z-20" style={heroStyles}>
+      <div
+        className="relative mx-auto z-20 overflow-x-hidden"
+        style={heroStyles}
+      >
         <Head>
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header className="lg:container mx-4 lg:mx-auto flex justify-between items-center py-12">
+        {heroVideoUrl && (
+          <div className="bpd-hero-video-foreground absolute z-0 inset-0 h-full w-full">
+            <iframe
+              src={heroVideoUrl}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen={true}
+              title="Ravens Film Works"
+              className="absolute inset-0 w-full h-full"
+            ></iframe>
+          </div>
+        )}
+        <header className="relative z-10 lg:container mx-4 lg:mx-auto flex justify-between items-center py-12">
           <Link href="/">
             <a className="w-2/3 lg:w-72">
               <Image

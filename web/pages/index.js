@@ -8,7 +8,7 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 
 const heroContent = () => {
   return (
-    <h1 className="flex justify-center items-center h-80 mt-12 mb-48">
+    <h1 className="flex justify-center items-center lg:h-80 mt-12 mb-48">
       <span className="w-full lg:w-96 mx-4 lg:mx-0">
         <Image
           alt="SLC X KAUAI"
@@ -31,6 +31,7 @@ const Home = (props) => {
       title="RAVENS | Special Film Tactics"
       heroContent={heroContent()}
       heroImage={urlForSanitySource(home.poster).url()}
+      heroVideoUrl={`https://player.vimeo.com/video/536021758?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
     >
       <div className="prose text-center max-w-5xl mx-auto pt-12">
         <div className="lg:pt-12">
