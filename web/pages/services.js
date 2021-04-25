@@ -62,10 +62,14 @@ const Services = (props) => {
   );
 };
 
-Services.getInitialProps = async () => ({
-  services: await client.fetch(groq`
-    *[_type == "services"]|order(_createdAt desc)
-  `),
-});
+export async function getStaticProps() {
+  return {
+    props: {
+      services: await client.fetch(groq`
+        *[_type == "services"]|order(_createdAt desc)
+      `),
+    },
+  };
+}
 
 export default Services;

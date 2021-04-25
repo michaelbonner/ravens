@@ -83,13 +83,17 @@ const Home = (props) => {
   );
 };
 
-Home.getInitialProps = async () => ({
-  services: await client.fetch(groq`
-    *[_type == "services"][0...3]|order(_createdAt desc)
-  `),
-  home: await client.fetch(groq`
-    *[_type == "home"][0]
-  `),
-});
+export async function getStaticProps(context) {
+  return {
+    props: {
+      services: await client.fetch(groq`
+        *[_type == "services"][0...3]|order(_createdAt desc)
+      `),
+      home: await client.fetch(groq`
+        *[_type == "home"][0]
+      `),
+    },
+  };
+}
 
 export default Home;

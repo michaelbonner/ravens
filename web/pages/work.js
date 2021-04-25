@@ -41,10 +41,14 @@ const Work = (props) => {
   );
 };
 
-Work.getInitialProps = async () => ({
-  projects: await client.fetch(groq`
-    *[_type == "project"]|order(date desc)
-  `),
-});
+export async function getStaticProps() {
+  return {
+    props: {
+      projects: await client.fetch(groq`
+        *[_type == "project"]|order(date desc)
+      `),
+    },
+  };
+}
 
 export default Work;

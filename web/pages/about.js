@@ -39,10 +39,14 @@ const About = (props) => {
   );
 };
 
-About.getInitialProps = async () => ({
-  about: await client.fetch(groq`
-    *[_type == "about"][0]
-  `),
-});
+export async function getStaticProps() {
+  return {
+    props: {
+      about: await client.fetch(groq`
+        *[_type == "about"][0]
+      `),
+    },
+  };
+}
 
 export default About;
