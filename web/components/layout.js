@@ -160,32 +160,32 @@ const Layout = ({
                     : "translate-x-4 opacity-0"
                 } ${
                   menuVisible ? "absolute" : "hidden"
-                } bg-black bg-opacity-25 px-4 transform transition-all ease-in duration-300 z-40 right-0 top-14 text-right`}
+                } bg-black bg-opacity-25 transform transition-all ease-in duration-300 z-40 right-0 top-14 text-right`}
               >
                 <Link href="/work">
                   <a
-                    className={`block transform py-5 uppercase text-bold text-xl`}
+                    className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
                   >
                     Work
                   </a>
                 </Link>
                 <Link href="/services">
                   <a
-                    className={`block transform py-5 uppercase text-bold text-xl`}
+                    className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
                   >
                     Services
                   </a>
                 </Link>
                 <Link href="/contact">
                   <a
-                    className={`block transform py-5 uppercase text-bold text-xl`}
+                    className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
                   >
                     Contact
                   </a>
                 </Link>
                 <Link href="/about">
                   <a
-                    className={`block transform py-5 uppercase text-bold text-xl`}
+                    className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
                   >
                     About
                   </a>
