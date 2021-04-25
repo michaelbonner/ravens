@@ -31,6 +31,6 @@ export default {
     },
   ],
   preview: {
-    select: {title: 'name', media: 'image'},
+    select: { title: 'name', media: 'image' },
   },
 }

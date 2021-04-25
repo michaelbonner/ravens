@@ -1,84 +1,84 @@
-import { MdLocalMovies as icon, MdTagFaces } from "react-icons/md";
+import { MdLocalMovies as icon, MdTagFaces } from 'react-icons/md'
 
 export default {
-  name: "project",
-  title: "Work",
-  type: "document",
+  name: 'project',
+  title: 'Work',
+  type: 'document',
   icon,
   fields: [
     {
-      name: "clientName",
-      title: "Client Name",
-      type: "string",
+      name: 'clientName',
+      title: 'Client Name',
+      type: 'string',
     },
     {
-      name: "title",
-      title: "Title",
-      type: "string",
+      name: 'title',
+      title: 'Title',
+      type: 'string',
     },
     {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
       options: {
-        source: "title",
+        source: 'title',
         maxLength: 100,
       },
     },
     {
-      name: "date",
-      title: "Date",
-      type: "datetime",
+      name: 'date',
+      title: 'Date',
+      type: 'datetime',
     },
     {
-      name: "overview",
-      title: "Overview",
-      type: "blockContent",
+      name: 'overview',
+      title: 'Overview',
+      type: 'blockContent',
     },
     {
-      name: "poster",
-      title: "Poster Image",
-      type: "image",
+      name: 'poster',
+      title: 'Poster Image',
+      type: 'image',
       options: {
         hotspot: true,
       },
     },
     {
-      name: "credits",
-      title: "Credits",
-      type: "array",
+      name: 'credits',
+      title: 'Credits',
+      type: 'array',
       of: [
         {
-          title: "Credit",
-          type: "object",
+          title: 'Credit',
+          type: 'object',
           fields: [
             {
-              title: "Role",
-              name: "role",
-              type: "string",
+              title: 'Role',
+              name: 'role',
+              type: 'string',
             },
             {
-              title: "Value",
-              name: "value",
-              type: "string",
+              title: 'Value',
+              name: 'value',
+              type: 'string',
             },
           ],
         },
       ],
       options: {
         sortable: true,
-        editModal: "popover",
+        editModal: 'popover',
       },
     },
     {
-      name: "frames",
-      title: "Frames",
-      type: "array",
+      name: 'frames',
+      title: 'Frames',
+      type: 'array',
       of: [
         {
-          name: "frame",
-          title: "Frame",
-          type: "image",
+          name: 'frame',
+          title: 'Frame',
+          type: 'image',
           options: {
             hotspot: true,
           },
@@ -86,18 +86,18 @@ export default {
       ],
       options: {
         sortable: true,
-        editModal: "popover",
+        editModal: 'popover',
       },
     },
     {
-      name: "behindTheScenes",
-      title: "Behind The Scenes",
-      type: "array",
+      name: 'behindTheScenes',
+      title: 'Behind The Scenes',
+      type: 'array',
       of: [
         {
-          name: "image",
-          title: "Image",
-          type: "image",
+          name: 'image',
+          title: 'Image',
+          type: 'image',
           options: {
             hotspot: true,
           },
@@ -105,16 +105,16 @@ export default {
       ],
       options: {
         sortable: true,
-        editModal: "popover",
+        editModal: 'popover',
       },
     },
   ],
   preview: {
     select: {
-      clientName: "clientName",
-      title: "title",
-      date: "date",
-      media: "poster",
+      clientName: 'clientName',
+      title: 'title',
+      date: 'date',
+      media: 'poster',
     },
     prepare(selection) {
       return {
@@ -122,7 +122,7 @@ export default {
         date: selection.date,
         subtitle: selection.date,
         media: selection.media,
-      };
+      }
     },
   },
-};
+}
