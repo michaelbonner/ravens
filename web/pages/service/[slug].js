@@ -228,15 +228,37 @@ const Service = (props) => {
   );
 };
 
-Service.getInitialProps = async function (context) {
+export async function getStaticPaths() {
+  const paths = await client.fetch(
+    `
+    *[_type == "services"]{slug}
+  `
+  );
+
+  return {
+    paths: paths
+      .filter((path) => {
+        return path;
+      })
+      .map((path) => {
+        return { params: { slug: path.slug.current } };
+      }),
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
-  const { slug = "" } = context.query;
-  return await client.fetch(
+  const { slug = "" } = context.params;
+  const cmsData = await client.fetch(
     `
     *[_type == "services" && slug.current == $slug][0]{summary, pageSections, title}
   `,
     { slug }
   );
-};
+  return {
+    props: cmsData,
+  };
+}
 
 export default Service;

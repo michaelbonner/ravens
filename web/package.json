@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@aws-cdk/aws-dynamodb": "^1.100.0",
@@ -30,5 +31,8 @@
     "uuid": "^8.3.2",
     "yup": "^0.32.9",
     "yup-phone": "^1.2.19"
+  },
+  "devDependencies": {
+    "next-sitemap": "^1.6.25"
   }
 }

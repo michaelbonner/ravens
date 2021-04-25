@@ -35,7 +35,7 @@ const Project = (props) => {
           >
             <iframe
               src={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-              frameborder="0"
+              frameBorder="0"
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen={true}
               title="RAVENS // Web Loop"
@@ -105,15 +105,37 @@ const Project = (props) => {
   );
 };
 
-Project.getInitialProps = async function (context) {
+export async function getStaticPaths() {
+  const paths = await client.fetch(
+    `
+    *[_type == "project"]{slug}
+  `
+  );
+
+  return {
+    paths: paths
+      .filter((path) => {
+        return path;
+      })
+      .map((path) => {
+        return { params: { slug: path.slug.current } };
+      }),
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
-  const { slug = "" } = context.query;
-  return await client.fetch(
+  const { slug = "" } = context.params;
+  const cmsData = await client.fetch(
     `
     *[_type == "project" && slug.current == $slug][0]{behindTheScenes, clientName, credits, frames, poster, title, video_id}
   `,
     { slug }
   );
-};
+  return {
+    props: cmsData,
+  };
+}
 
 export default Project;
