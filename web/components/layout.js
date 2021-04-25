@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import Obfuscate from "react-obfuscate";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 
 import "react-toastify/dist/ReactToastify.min.css";
@@ -80,7 +80,9 @@ const Layout = ({
   return (
     <>
       <div
-        className="bpd-hero relative mx-auto z-20 overflow-y-visible overflow-x-hidden lg:overflow-x-visible"
+        className={`${
+          heroContent || heroVideoUrl ? `bpd-hero ` : ``
+        }relative mx-auto z-20 overflow-y-visible overflow-x-hidden lg:overflow-x-visible`}
         style={heroStyles}
       >
         <Head>
@@ -158,32 +160,32 @@ const Layout = ({
                     : "translate-x-4 opacity-0"
                 } ${
                   menuVisible ? "absolute" : "hidden"
-                } transform transition-all ease-in duration-300 z-40 right-0 top-14 text-right`}
+                } bg-black bg-opacity-25 px-4 transform transition-all ease-in duration-300 z-40 right-0 top-14 text-right`}
               >
                 <Link href="/work">
                   <a
-                    className={`block transform py-6 uppercase text-bold text-xl`}
+                    className={`block transform py-5 uppercase text-bold text-xl`}
                   >
                     Work
                   </a>
                 </Link>
                 <Link href="/services">
                   <a
-                    className={`block transform py-6 uppercase text-bold text-xl`}
+                    className={`block transform py-5 uppercase text-bold text-xl`}
                   >
                     Services
                   </a>
                 </Link>
                 <Link href="/contact">
                   <a
-                    className={`block transform py-6 uppercase text-bold text-xl`}
+                    className={`block transform py-5 uppercase text-bold text-xl`}
                   >
                     Contact
                   </a>
                 </Link>
                 <Link href="/about">
                   <a
-                    className={`block transform py-6 uppercase text-bold text-xl`}
+                    className={`block transform py-5 uppercase text-bold text-xl`}
                   >
                     About
                   </a>
