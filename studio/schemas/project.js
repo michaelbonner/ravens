@@ -1,4 +1,4 @@
-import { MdLocalMovies as icon, MdTagFaces } from 'react-icons/md'
+import { MdCameraRoll as icon } from 'react-icons/md'
 
 export default {
   name: 'project',

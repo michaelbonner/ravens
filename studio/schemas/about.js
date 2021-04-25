@@ -1,7 +1,10 @@
+import { MdPerson as icon } from 'react-icons/md'
+
 export default {
   name: 'about',
   title: 'About',
   type: 'document',
+  icon,
   fields: [
     {
       title: 'Title',

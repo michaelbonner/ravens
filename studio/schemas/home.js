@@ -1,7 +1,10 @@
+import { MdHome as icon } from 'react-icons/md'
+
 export default {
   name: 'home',
   title: 'Home',
   type: 'document',
+  icon,
   fields: [
     {
       title: 'Title',

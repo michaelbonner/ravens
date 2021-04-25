@@ -1,7 +1,10 @@
+import { MdLocalMovies as icon } from 'react-icons/md'
+
 export default {
   name: 'services',
   title: 'Services',
   type: 'document',
+  icon,
   fields: [
     {
       name: 'title',
