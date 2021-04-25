@@ -12,7 +12,7 @@ const Equipment = (props) => {
 
   return (
     <Layout title="Equipment | RAVENS">
-      <div className="prose text-center max-w-5xl mx-auto">
+      <div className="text-center max-w-5xl mx-auto">
         <div>
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">
             Equipment

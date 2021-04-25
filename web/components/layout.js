@@ -257,7 +257,7 @@ const Layout = ({
             })}
           </nav>
 
-          <div className="prose lg:mt-12 max-w-5xl mx-auto text-center">
+          <div className="lg:mt-12 max-w-5xl mx-auto text-center">
             <p className="py-10">
               &copy; RAVENS FILM WORKS {new Date().getFullYear()}
             </p>

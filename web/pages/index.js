@@ -33,7 +33,7 @@ const Home = (props) => {
       heroImage={urlForSanitySource(home.poster).url()}
       heroVideoUrl={`https://player.vimeo.com/video/536021758?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
     >
-      <div className="prose text-center max-w-5xl mx-auto pt-12">
+      <div className="text-center max-w-5xl mx-auto pt-12">
         <div className="lg:pt-12">
           <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
           <BlockContent blocks={home.text} />

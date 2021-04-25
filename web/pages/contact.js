@@ -50,7 +50,7 @@ export default function Contact() {
 
   return (
     <Layout title="Contact | RAVENS" backgroundClass="">
-      <div className="prose text-center max-w-5xl mx-auto">
+      <div className="text-center max-w-5xl mx-auto">
         <div className="py-12">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-white border-b-2 border-white uppercase">
             Contact
