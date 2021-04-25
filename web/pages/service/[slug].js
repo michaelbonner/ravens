@@ -9,7 +9,7 @@ const Service = (props) => {
 
   const BannerBlocks = (section, index) => {
     return (
-      <div key={index}>
+      <div>
         <div className="relative mb-12">
           <img
             className="w-full"
@@ -17,16 +17,22 @@ const Service = (props) => {
           />
         </div>
 
-        <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
+        <div className="text-center max-w-5xl mx-auto mb-12">
           <BlockContent blocks={section.text} />
         </div>
       </div>
     );
   };
 
+  const GoldBarBlocks = (section, index) => {
+    return (
+      <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
+    );
+  };
+
   const HighlightBlocks = (section, index) => {
     return (
-      <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
+      <div className="text-center max-w-5xl mx-auto mb-12">
         <div className="relative mb-6">
           <img
             src={urlForSanitySource(section.image).width(500).url()}
@@ -39,7 +45,6 @@ const Service = (props) => {
             {section.heading}
           </h2>
           <BlockContent blocks={section.text} />
-          <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
         </div>
       </div>
     );
@@ -47,7 +52,7 @@ const Service = (props) => {
 
   const PlatformTable = (section, index) => {
     return (
-      <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
+      <div className="text-center max-w-5xl mx-auto mb-12">
         <table className="min-w-full mt-8">
           <thead>
             <tr className="border-b">
@@ -94,7 +99,7 @@ const Service = (props) => {
 
   const CameraTable = (section, index) => {
     return (
-      <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
+      <div className="text-center max-w-5xl mx-auto mb-12">
         <table className="min-w-full mt-8">
           <thead>
             <tr className="border-b">
@@ -137,7 +142,7 @@ const Service = (props) => {
 
   const LensesTable = (section, index) => {
     return (
-      <div className="text-center max-w-5xl mx-auto mb-12" key={index}>
+      <div className="text-center max-w-5xl mx-auto mb-12">
         <table className="min-w-full mt-8">
           <thead>
             <tr className="border-b">
@@ -180,7 +185,7 @@ const Service = (props) => {
 
   const RemExtPayloadContent = (section, index) => {
     return (
-      <div className="mx-auto lg:w-1/2" key={index}>
+      <div className="mx-auto lg:w-1/2">
         <p className="text-left text-sm pb-6">
           <span className="font-bold">REM PAYLOAD:</span> {section.remContent}
         </p>
@@ -194,6 +199,7 @@ const Service = (props) => {
   const Blocks = {
     banner: (section, index) => BannerBlocks(section, index),
     content: (section, index) => ContentBlocks(section, index),
+    goldBar: (section, index) => GoldBarBlocks(section, index),
     highlight: (section, index) => HighlightBlocks(section, index),
     platformPayloadTable: (section, index) => PlatformTable(section, index),
     cameraPayloadTable: (section, index) => CameraTable(section, index),
@@ -212,7 +218,9 @@ const Service = (props) => {
 
         <div className="mx-auto user-text">
           {pageSections.map((section, index) => {
-            return Blocks[section._type](section, index);
+            return (
+              <div key={index}>{Blocks[section._type](section, index)}</div>
+            );
           })}
         </div>
       </article>

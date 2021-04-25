@@ -53,6 +53,7 @@ export default {
       type: 'array',
       title: 'Page sections',
       of: [
+        { type: 'goldBar' },
         { type: 'platformPayloadTable' },
         { type: 'cameraPayloadTable' },
         { type: 'lensesPayloadTable' },
