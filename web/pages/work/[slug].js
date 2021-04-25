@@ -25,7 +25,7 @@ const Project = (props) => {
         </div>
         {video_id ? (
           <div
-            class="aspect-w-16 aspect-h-9"
+            className="aspect-w-16 aspect-h-9"
             style={{
               background: `url('${urlForSanitySource(poster)
                 .width(1200)
@@ -37,7 +37,7 @@ const Project = (props) => {
               src={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
               frameborder="0"
               allow="autoplay; fullscreen; picture-in-picture"
-              allowfullscreen
+              allowFullScreen={true}
               title="RAVENS // Web Loop"
             ></iframe>
           </div>
