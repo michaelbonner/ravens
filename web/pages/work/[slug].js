@@ -11,6 +11,7 @@ const Project = (props) => {
     frames = [],
     title = "",
     poster = "",
+    video_id = null,
   } = props;
   const fullTitle = clientName ? `${clientName} | ${title}` : title;
 
@@ -22,10 +23,30 @@ const Project = (props) => {
             {fullTitle}
           </h1>
         </div>
-        <img
-          className="w-full mt-14"
-          src={urlForSanitySource(poster).width(1200).url()}
-        />
+        {video_id ? (
+          <div
+            class="aspect-w-16 aspect-h-9"
+            style={{
+              background: `url('${urlForSanitySource(poster)
+                .width(1200)
+                .url()}') center center no-repeat`,
+              backgroundSize: "cover",
+            }}
+          >
+            <iframe
+              src={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              title="RAVENS // Web Loop"
+            ></iframe>
+          </div>
+        ) : (
+          <img
+            className="w-full mt-14"
+            src={urlForSanitySource(poster).width(1200).url()}
+          />
+        )}
         <h2 className="font-bold text-3xl text-center my-12 uppercase">
           Credits
         </h2>
@@ -89,7 +110,7 @@ Project.getInitialProps = async function (context) {
   const { slug = "" } = context.query;
   return await client.fetch(
     `
-    *[_type == "project" && slug.current == $slug][0]{behindTheScenes, clientName, credits, frames, poster, title}
+    *[_type == "project" && slug.current == $slug][0]{behindTheScenes, clientName, credits, frames, poster, title, video_id}
   `,
     { slug }
   );
