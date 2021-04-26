@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import { getClient, usePreviewSubscription } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
+import FourOhFour from "../404";
 
 const projectQuery = groq`
 *[_type == "project" && slug.current == $slug][0]{
@@ -20,8 +21,8 @@ const projectQuery = groq`
 
 const Project = (data, preview) => {
   const router = useRouter();
-  if (!router.isFallback && !data.slug?.current) {
-    return <div>404</div>;
+  if (!router.isFallback && !data.title) {
+    return <FourOhFour />;
   }
 
   const { data: project } = usePreviewSubscription(projectQuery, {
@@ -153,10 +154,21 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params;
-  const cmsData = await getClient().fetch(projectQuery, { slug });
-  return {
-    props: cmsData,
-  };
+  try {
+    const cmsData = await getClient().fetch(projectQuery, { slug });
+    if (!cmsData) {
+      return {
+        props: {},
+      };
+    }
+    return {
+      props: cmsData,
+    };
+  } catch (error) {
+    return {
+      props: {},
+    };
+  }
 }
 
 export default Project;
