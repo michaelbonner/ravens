@@ -229,49 +229,41 @@ const Service = ({ services, service }) => {
       </article>
       <div>
         <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
-        <div className="lg:flex space-x-4 items-stretch justify-center text-center">
+        <div className="lg:flex space-x-4 items-stretch justify-center text-center mt-6">
           {services
             .filter((otherService) => service._id !== otherService._id)
             .map((otherService) => {
               return (
-                <div
+                <Link
                   key={otherService._id}
-                  className="py-12 flex flex-col justify-between max-w-xs"
+                  href={`/service/${otherService.slug?.current}`}
                 >
-                  <h3 className="text-2xl font-bold">
-                    <Link href={`/service/${otherService.slug?.current}`}>
-                      <a className="hover:text-gold">{otherService.title}</a>
-                    </Link>
-                  </h3>
-                  <div className="flex items-center my-8">
-                    <div className="h-38 w-3/4 mx-auto">
-                      <Link href={`/service/${otherService.slug?.current}`}>
-                        <a>
-                          <Image
-                            src={urlForSanitySource(otherService.thumb)
-                              .width(otherService.thumbWidth || 450)
-                              .url()}
-                            layout="intrinsic"
-                            width={otherService.thumbWidth || 450}
-                            height={otherService.thumbHeight || 300}
-                          />
-                        </a>
-                      </Link>
+                  <a className="py-12 flex flex-col justify-between max-w-xs rounded-lg border border-gray-800 hover:border-gray-500 transition-all duration-300">
+                    <h3 className="text-2xl font-bold">{otherService.title}</h3>
+                    <div className="flex items-center my-8">
+                      <div className="h-38 w-3/4 mx-auto">
+                        <Image
+                          src={urlForSanitySource(otherService.thumb)
+                            .width(otherService.thumbWidth || 450)
+                            .url()}
+                          layout="intrinsic"
+                          width={otherService.thumbWidth || 450}
+                          height={otherService.thumbHeight || 300}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <BlockContent blocks={otherService.homeSummary} />
-                    <div className="mt-6">
-                      <p>
-                        <Link href={`/service/${otherService.slug?.current}`}>
-                          <a className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
+                    <div>
+                      <BlockContent blocks={otherService.homeSummary} />
+                      <div className="mt-6">
+                        <p>
+                          <p className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
                             View Details
-                          </a>
-                        </Link>
-                      </p>
+                          </p>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </a>
+                </Link>
               );
             })}
         </div>
