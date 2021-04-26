@@ -5,8 +5,12 @@ import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
 import Link from "next/link";
 import Image from "next/image";
+import FourOhFour from "../404";
 
 const Service = ({ services, service }) => {
+  if (!router.isFallback && !service) {
+    return <FourOhFour />;
+  }
   const { pageSections, title } = service;
   const BannerBlocks = (section, index) => {
     return (
