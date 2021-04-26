@@ -8,9 +8,10 @@ import {
 } from "next-sanity";
 
 const config = {
-  projectId: "nnjdfopi", // you can find this in sanity.json
-  dataset: "production", // or the name you chose in step 1
-  useCdn: true, // `false` if you want to ensure fresh data
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  useCdn: process.env.NODE_ENV === "production",
+  token: process.env.SANITY_API_TOKEN,
   apiVersion: "2021-03-25",
 };
 
