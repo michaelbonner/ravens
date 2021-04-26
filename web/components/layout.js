@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -43,6 +43,7 @@ const Layout = ({
   const [menuVisible, setMenuVisible] = useState(false);
   const router = useRouter();
   const [heroStyles, setHeroStyles] = useState({});
+  const [loadVideo, setLoadVideo] = useState(false);
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -75,6 +76,10 @@ const Layout = ({
     setHeroStyles(styles);
   }, [heroImage, heroVideoUrl]);
 
+  useLayoutEffect(() => {
+    setLoadVideo(true);
+  }, []);
+
   return (
     <>
       <div
@@ -87,7 +92,7 @@ const Layout = ({
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {heroVideoUrl && (
+        {loadVideo && heroVideoUrl && (
           <div className="bpd-hero-video-foreground">
             <iframe
               src={heroVideoUrl}
