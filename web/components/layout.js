@@ -59,22 +59,20 @@ const Layout = ({
   };
 
   useEffect(() => {
+    const styles = {};
     if (heroVideoUrl) {
-      setHeroStyles({
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        height: "100%",
-      });
-    } else if (heroImage) {
-      setHeroStyles({
-        background: `url(${heroImage}) center center no-repeat`,
-        backgroundSize: `cover`,
-      });
-    } else {
-      setHeroStyles({});
+      styles.top = 0;
+      styles.right = 0;
+      styles.bottom = 0;
+      styles.left = 0;
+      styles.height = "100%";
     }
+    if (heroImage) {
+      styles.background = `url(${heroImage}) center center no-repeat`;
+      styles.backgroundSize = `cover`;
+    }
+
+    setHeroStyles(styles);
   }, [heroImage, heroVideoUrl]);
 
   return (
