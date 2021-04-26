@@ -5,6 +5,7 @@ import Image from "next/image";
 import Obfuscate from "react-obfuscate";
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
+import ReactPlayer from "react-player/lazy";
 
 import "react-toastify/dist/ReactToastify.min.css";
 
@@ -94,21 +95,25 @@ const Layout = ({
         </Head>
         {loadVideo && heroVideoUrl && (
           <div className="bpd-hero-video-foreground">
-            <iframe
-              src={heroVideoUrl}
-              frameBorder="0"
+            <ReactPlayer
               allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen={true}
-              title="Ravens Film Works"
+              controls={false}
+              frameBorder="0"
+              height={`100%`}
+              loop={true}
+              muted={true}
+              playing={true}
+              playsinline={true}
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
-                width: "100%",
-                height: "100%",
                 pointerEvents: "none",
               }}
-            ></iframe>
+              title="Ravens Film Works"
+              url={heroVideoUrl}
+              width={`100%`}
+            />
           </div>
         )}
         <header className="relative z-10 lg:container mx-4 lg:mx-auto flex justify-between items-center py-12 overflow-visible">
