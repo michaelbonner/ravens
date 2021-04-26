@@ -151,13 +151,14 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
-  const { slug = "" } = context.params;
+  const { slug = "" } = params;
   try {
-    const cmsData = await getClient().fetch(projectQuery, { slug });
+    const cmsData = await getClient(preview).fetch(projectQuery, { slug });
     if (!cmsData) {
       return {
+        preview,
         props: {},
       };
     }
