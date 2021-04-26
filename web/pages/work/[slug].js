@@ -1,10 +1,15 @@
 import groq from "groq";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import ReactPlayer from "react-player";
 import Layout from "../../components/layout";
 import { getClient, usePreviewSubscription } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
+
+const BackgroundFallback = ({ image }) => {
+  return <img src={image} />;
+};
 
 const projectQuery = groq`
 *[_type == "project" && slug.current == $slug][0]{
@@ -51,22 +56,24 @@ const Project = (data, preview) => {
           </h1>
         </div>
         {video_id ? (
-          <div
-            className="aspect-w-16 aspect-h-9"
-            style={{
-              background: `url('${urlForSanitySource(poster)
-                .width(1200)
-                .url()}') center center no-repeat`,
-              backgroundSize: "cover",
-            }}
-          >
-            <iframe
-              src={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-              frameBorder="0"
+          <div className="aspect-w-16 aspect-h-9">
+            <ReactPlayer
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen={true}
-              title="RAVENS // Web Loop"
-            ></iframe>
+              controls={true}
+              frameBorder="0"
+              height={`100%`}
+              title="RAVENS"
+              url={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+              width={`100%`}
+              fallback={
+                <BackgroundFallback
+                  image={`url('${urlForSanitySource(poster)
+                    .width(1200)
+                    .url()}') center center no-repeat`}
+                />
+              }
+            ></ReactPlayer>
           </div>
         ) : (
           <img
