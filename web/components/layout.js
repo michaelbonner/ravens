@@ -80,7 +80,7 @@ const Layout = ({
       <div
         className={`${
           heroContent || heroVideoUrl ? `bpd-hero ` : ``
-        }relative mx-auto z-20 overflow-y-visible overflow-x-hidden lg:overflow-x-visible`}
+        }relative mx-auto z-20 overflow-visible`}
         style={heroStyles}
       >
         <Head>
