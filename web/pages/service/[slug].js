@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Layout from "../../components/layout";
-import client from "../../lib/client";
+import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import BlockContent from "@sanity/block-content-to-react";
 
@@ -229,7 +228,7 @@ const Service = (props) => {
 };
 
 export async function getStaticPaths() {
-  const paths = await client.fetch(
+  const paths = await getClient().fetch(
     `
     *[_type == "services"]{slug}
   `
@@ -250,7 +249,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params;
-  const cmsData = await client.fetch(
+  const cmsData = await getClient().fetch(
     `
     *[_type == "services" && slug.current == $slug][0]{summary, pageSections, title}
   `,

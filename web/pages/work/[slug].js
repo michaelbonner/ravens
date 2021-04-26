@@ -1,9 +1,35 @@
+import groq from "groq";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Layout from "../../components/layout";
-import client from "../../lib/client";
+import { getClient, usePreviewSubscription } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 
-const Project = (props) => {
+const projectQuery = groq`
+*[_type == "project" && slug.current == $slug][0]{
+  behindTheScenes,
+  clientName,
+  credits,
+  frames,
+  poster,
+  slug,
+  title,
+  video_id
+}
+`;
+
+const Project = (data, preview) => {
+  const router = useRouter();
+  if (!router.isFallback && !data.slug?.current) {
+    return <div>404</div>;
+  }
+
+  const { data: project } = usePreviewSubscription(projectQuery, {
+    params: { slug: data.slug?.current },
+    initialData: data,
+    enabled: preview,
+  });
+
   const {
     behindTheScenes = [],
     clientName = "",
@@ -12,7 +38,7 @@ const Project = (props) => {
     title = "",
     poster = "",
     video_id = null,
-  } = props;
+  } = data;
   const fullTitle = clientName ? `${clientName} | ${title}` : title;
 
   return (
@@ -106,7 +132,7 @@ const Project = (props) => {
 };
 
 export async function getStaticPaths() {
-  const paths = await client.fetch(
+  const paths = await getClient().fetch(
     `
     *[_type == "project"]{slug}
   `
@@ -127,12 +153,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params;
-  const cmsData = await client.fetch(
-    `
-    *[_type == "project" && slug.current == $slug][0]{behindTheScenes, clientName, credits, frames, poster, title, video_id}
-  `,
-    { slug }
-  );
+  const cmsData = await getClient().fetch(projectQuery, { slug });
   return {
     props: cmsData,
   };

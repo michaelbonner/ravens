@@ -1,6 +1,5 @@
 import Layout from "../components/layout";
-import Image from "next/image";
-import client from "../lib/client";
+import { getClient } from "../lib/sanity";
 import groq from "groq";
 import Link from "next/link";
 import urlForSanitySource from "../lib/urlForSanitySource";
@@ -44,7 +43,7 @@ const Work = (props) => {
 export async function getStaticProps() {
   return {
     props: {
-      projects: await client.fetch(groq`
+      projects: await getClient().fetch(groq`
         *[_type == "project"]|order(date desc)
       `),
     },

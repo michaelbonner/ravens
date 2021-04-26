@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import client from "../lib/client";
+import { getClient } from "../lib/sanity";
 import groq from "groq";
 import urlForSanitySource from "../lib/urlForSanitySource";
 import Link from "next/link";
@@ -65,7 +65,7 @@ const Services = (props) => {
 export async function getStaticProps() {
   return {
     props: {
-      services: await client.fetch(groq`
+      services: await getClient().fetch(groq`
         *[_type == "services"]|order(_createdAt desc)
       `),
     },

@@ -1,7 +1,7 @@
 import Layout from "../components/layout";
 import Image from "next/image";
 import Link from "next/link";
-import client from "../lib/client";
+import { getClient } from "../lib/sanity";
 import groq from "groq";
 import BlockContent from "@sanity/block-content-to-react";
 import urlForSanitySource from "../lib/urlForSanitySource";
@@ -86,10 +86,10 @@ const Home = (props) => {
 export async function getStaticProps(context) {
   return {
     props: {
-      services: await client.fetch(groq`
+      services: await getClient().fetch(groq`
         *[_type == "services"][0...3]|order(_createdAt desc)
       `),
-      home: await client.fetch(groq`
+      home: await getClient().fetch(groq`
         *[_type == "home"][0]
       `),
     },
