@@ -47,7 +47,16 @@ export default {
         hotspot: true,
       },
     },
-
+    {
+      name: 'thumbWidth',
+      title: 'Thumb Width (px)',
+      type: 'number',
+    },
+    {
+      name: 'thumbHeight',
+      title: 'Thumb Height (px)',
+      type: 'number',
+    },
     {
       name: 'pageSections',
       type: 'array',

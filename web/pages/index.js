@@ -51,16 +51,25 @@ const Home = (props) => {
         <div className="lg:grid grid-cols-3 gap-4">
           {services.map((service) => {
             return (
-              <div key={service._id} className="py-12">
+              <div
+                key={service._id}
+                className="py-12 flex flex-col justify-between"
+              >
                 <h3 className="text-2xl font-bold">{service.title}</h3>
-                <div className="flex items-center my-8">
+                <div className="flex flex-1 items-center my-8">
                   <div className="h-38 w-3/4 mx-auto">
-                    <Image
-                      src={urlForSanitySource(service.thumb).width(400).url()}
-                      layout="intrinsic"
-                      width="400"
-                      height="300"
-                    />
+                    <Link href={`/service/${service.slug?.current}`}>
+                      <a>
+                        <Image
+                          src={urlForSanitySource(service.thumb)
+                            .width(service.thumbWidth || 450)
+                            .url()}
+                          layout="intrinsic"
+                          width={service.thumbWidth || 450}
+                          height={service.thumbHeight || 300}
+                        />
+                      </a>
+                    </Link>
                   </div>
                 </div>
                 <BlockContent blocks={service.homeSummary} />
