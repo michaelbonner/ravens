@@ -2,10 +2,12 @@ import Layout from "../../components/layout";
 import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import BlockContent from "@sanity/block-content-to-react";
+import groq from "groq";
+import Link from "next/link";
+import Image from "next/image";
 
-const Service = (props) => {
-  const { pageSections = [], title = "" } = props;
-
+const Service = ({ services, service }) => {
+  const { pageSections, title } = service;
   const BannerBlocks = (section, index) => {
     return (
       <div>
@@ -223,6 +225,56 @@ const Service = (props) => {
           })}
         </div>
       </article>
+      <div>
+        <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
+        <div className="lg:flex space-x-4 items-stretch justify-center text-center">
+          {services
+            .filter((otherService) => service._id !== otherService._id)
+            .map((otherService) => {
+              return (
+                <div
+                  key={otherService._id}
+                  className="py-12 flex flex-col justify-between max-w-xs"
+                >
+                  <h3 className="text-2xl font-bold">
+                    <Link href={`/service/${otherService.slug?.current}`}>
+                      <a className="hover:text-gold">{otherService.title}</a>
+                    </Link>
+                  </h3>
+                  <div className="flex items-center my-8">
+                    <div className="h-38 w-3/4 mx-auto">
+                      <Link href={`/service/${otherService.slug?.current}`}>
+                        <a>
+                          <Image
+                            src={urlForSanitySource(otherService.thumb)
+                              .width(otherService.thumbWidth || 450)
+                              .url()}
+                            layout="intrinsic"
+                            width={otherService.thumbWidth || 450}
+                            height={otherService.thumbHeight || 300}
+                          />
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                  <div>
+                    <BlockContent blocks={otherService.homeSummary} />
+                    <div className="mt-6">
+                      <p>
+                        <Link href={`/service/${otherService.slug?.current}`}>
+                          <a className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
+                            View Details
+                          </a>
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
+      </div>
     </Layout>
   );
 };
@@ -249,14 +301,19 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params;
-  const cmsData = await getClient().fetch(
-    `
-    *[_type == "services" && slug.current == $slug][0]{summary, pageSections, title}
-  `,
-    { slug }
-  );
+
   return {
-    props: cmsData,
+    props: {
+      services: await getClient().fetch(groq`
+        *[_type == "services"]|order(_createdAt desc)
+      `),
+      service: await getClient().fetch(
+        groq`
+        *[_type == "services" && slug.current == $slug][0]{_id, pageSections, slug, summary, thumb, thumbWidth, thumbHeight, title}
+        `,
+        { slug }
+      ),
+    },
   };
 }
 

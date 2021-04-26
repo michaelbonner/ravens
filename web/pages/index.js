@@ -55,7 +55,11 @@ const Home = (props) => {
                 key={service._id}
                 className="py-12 flex flex-col justify-between"
               >
-                <h3 className="text-2xl font-bold">{service.title}</h3>
+                <h3 className="text-2xl font-bold">
+                  <Link href={`/service/${service.slug?.current}`}>
+                    <a className="hover:text-gold">{service.title}</a>
+                  </Link>
+                </h3>
                 <div className="flex flex-1 items-center my-8">
                   <div className="h-38 w-3/4 mx-auto">
                     <Link href={`/service/${service.slug?.current}`}>
