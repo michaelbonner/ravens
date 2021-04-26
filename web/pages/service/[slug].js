@@ -6,7 +6,6 @@ import groq from "groq";
 import Link from "next/link";
 import Image from "next/image";
 import FourOhFour from "../404";
-import { useRouter } from "next/router";
 
 const BannerBlocks = (section, index) => {
   return (
@@ -205,7 +204,6 @@ const Blocks = {
 };
 
 const Service = ({ services, service }) => {
-  const router = useRouter();
   if (!service) {
     return <FourOhFour />;
   }
