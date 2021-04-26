@@ -6,211 +6,211 @@ import groq from "groq";
 import Link from "next/link";
 import Image from "next/image";
 import FourOhFour from "../404";
+import { useRouter } from "next/router";
+
+const BannerBlocks = (section, index) => {
+  return (
+    <div>
+      <div className="relative mb-12">
+        <img
+          className="w-full"
+          src={urlForSanitySource(section.image).height(600).url()}
+        />
+      </div>
+
+      <div className="text-center max-w-5xl mx-auto mb-12">
+        <BlockContent blocks={section.text} />
+      </div>
+    </div>
+  );
+};
+
+const GoldBarBlocks = (section, index) => {
+  return <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />;
+};
+
+const HighlightBlocks = (section, index) => {
+  return (
+    <div className="text-center max-w-5xl mx-auto mb-12">
+      <div className="relative mb-6">
+        <img
+          src={urlForSanitySource(section.image).width(500).url()}
+          className="mx-auto"
+        />
+      </div>
+
+      <div className="text-center">
+        <h2 className="font-bold text-2xl uppercase mb-8">{section.heading}</h2>
+        <BlockContent blocks={section.text} />
+      </div>
+    </div>
+  );
+};
+
+const PlatformTable = (section, index) => {
+  return (
+    <div className="text-center max-w-5xl mx-auto mb-12">
+      <table className="min-w-full mt-8">
+        <thead>
+          <tr className="border-b">
+            <th className="text-sm pb-4 text-left" width="40%">
+              Platform
+            </th>
+            <th className="text-sm pb-4" width="20%">
+              Weight
+            </th>
+            <th className="text-sm pb-4" width="20%">
+              REM Payload <br />
+              (55 lb Limit)
+            </th>
+            <th className="text-sm pb-4" width="20%">
+              EXT Payload <br />
+              (63 lb)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.platformTableRows.map((row) => {
+            return (
+              <tr key={row._key}>
+                <td className="pb-3 pt-3 text-xs text-left" width="40%">
+                  {row.platform}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.weight}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.remPayload}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.extPayload}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const CameraTable = (section, index) => {
+  return (
+    <div className="text-center max-w-5xl mx-auto mb-12">
+      <table className="min-w-full mt-8">
+        <thead>
+          <tr className="border-b">
+            <th className="text-sm pb-4 text-left">CAMERA</th>
+            <th className="text-sm pb-4">Weight</th>
+            <th className="text-sm pb-4">
+              REM Payload <br />
+              (w/ MOVI PRO)
+            </th>
+            <th className="text-sm pb-4">
+              EXT Payload <br />
+              (w/ MOVI PRO)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.cameraTableRows.map((row) => {
+            return (
+              <tr key={row._key}>
+                <td className="pb-3 pt-3 text-xs text-left" width="40%">
+                  {row.camera}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.weight}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.remPayload}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.extPayload}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const LensesTable = (section, index) => {
+  return (
+    <div className="text-center max-w-5xl mx-auto mb-12">
+      <table className="min-w-full mt-8">
+        <thead>
+          <tr className="border-b">
+            <th className="text-sm pb-4 text-left">LENSES</th>
+            <th className="text-sm pb-4">Weight</th>
+            <th className="text-sm pb-4">
+              REM Payload <br />
+              (w/ ARRI MINI LF)
+            </th>
+            <th className="text-sm pb-4">
+              EXT Payload <br />
+              (w/ ARRI MINI LF)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.lensesTableRows.map((row) => {
+            return (
+              <tr key={row._key}>
+                <td className="pb-3 pt-3 text-xs text-left" width="40%">
+                  {row.lense}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.weight}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.remPayload}
+                </td>
+                <td className="pb-3 pt-3 text-xs" width="20%">
+                  {row.extPayload}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const RemExtPayloadContent = (section, index) => {
+  return (
+    <div className="mx-auto lg:w-1/2">
+      <p className="text-left text-sm pb-6">
+        <span className="font-bold">REM PAYLOAD:</span> {section.remContent}
+      </p>
+      <p className="text-left text-sm">
+        <span className="font-bold">EXT PAYLOAD:</span> {section.extContent}
+      </p>
+    </div>
+  );
+};
+
+const Blocks = {
+  banner: (section, index) => BannerBlocks(section, index),
+  content: (section, index) => ContentBlocks(section, index),
+  goldBar: (section, index) => GoldBarBlocks(section, index),
+  highlight: (section, index) => HighlightBlocks(section, index),
+  platformPayloadTable: (section, index) => PlatformTable(section, index),
+  cameraPayloadTable: (section, index) => CameraTable(section, index),
+  lensesPayloadTable: (section, index) => LensesTable(section, index),
+  payloadContent: (section, index) => RemExtPayloadContent(section, index),
+};
 
 const Service = ({ services, service }) => {
-  if (!router.isFallback && !service) {
+  const router = useRouter();
+  if (!service) {
     return <FourOhFour />;
   }
+
   const { pageSections, title } = service;
-  const BannerBlocks = (section, index) => {
-    return (
-      <div>
-        <div className="relative mb-12">
-          <img
-            className="w-full"
-            src={urlForSanitySource(section.image).height(600).url()}
-          />
-        </div>
-
-        <div className="text-center max-w-5xl mx-auto mb-12">
-          <BlockContent blocks={section.text} />
-        </div>
-      </div>
-    );
-  };
-
-  const GoldBarBlocks = (section, index) => {
-    return (
-      <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
-    );
-  };
-
-  const HighlightBlocks = (section, index) => {
-    return (
-      <div className="text-center max-w-5xl mx-auto mb-12">
-        <div className="relative mb-6">
-          <img
-            src={urlForSanitySource(section.image).width(500).url()}
-            className="mx-auto"
-          />
-        </div>
-
-        <div className="text-center">
-          <h2 className="font-bold text-2xl uppercase mb-8">
-            {section.heading}
-          </h2>
-          <BlockContent blocks={section.text} />
-        </div>
-      </div>
-    );
-  };
-
-  const PlatformTable = (section, index) => {
-    return (
-      <div className="text-center max-w-5xl mx-auto mb-12">
-        <table className="min-w-full mt-8">
-          <thead>
-            <tr className="border-b">
-              <th className="text-sm pb-4 text-left" width="40%">
-                Platform
-              </th>
-              <th className="text-sm pb-4" width="20%">
-                Weight
-              </th>
-              <th className="text-sm pb-4" width="20%">
-                REM Payload <br />
-                (55 lb Limit)
-              </th>
-              <th className="text-sm pb-4" width="20%">
-                EXT Payload <br />
-                (63 lb)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {section.platformTableRows.map((row) => {
-              return (
-                <tr key={row._key}>
-                  <td className="pb-3 pt-3 text-xs text-left" width="40%">
-                    {row.platform}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.weight}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.remPayload}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.extPayload}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
-
-  const CameraTable = (section, index) => {
-    return (
-      <div className="text-center max-w-5xl mx-auto mb-12">
-        <table className="min-w-full mt-8">
-          <thead>
-            <tr className="border-b">
-              <th className="text-sm pb-4 text-left">CAMERA</th>
-              <th className="text-sm pb-4">Weight</th>
-              <th className="text-sm pb-4">
-                REM Payload <br />
-                (w/ MOVI PRO)
-              </th>
-              <th className="text-sm pb-4">
-                EXT Payload <br />
-                (w/ MOVI PRO)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {section.cameraTableRows.map((row) => {
-              return (
-                <tr key={row._key}>
-                  <td className="pb-3 pt-3 text-xs text-left" width="40%">
-                    {row.camera}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.weight}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.remPayload}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.extPayload}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
-
-  const LensesTable = (section, index) => {
-    return (
-      <div className="text-center max-w-5xl mx-auto mb-12">
-        <table className="min-w-full mt-8">
-          <thead>
-            <tr className="border-b">
-              <th className="text-sm pb-4 text-left">LENSES</th>
-              <th className="text-sm pb-4">Weight</th>
-              <th className="text-sm pb-4">
-                REM Payload <br />
-                (w/ ARRI MINI LF)
-              </th>
-              <th className="text-sm pb-4">
-                EXT Payload <br />
-                (w/ ARRI MINI LF)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {section.lensesTableRows.map((row) => {
-              return (
-                <tr key={row._key}>
-                  <td className="pb-3 pt-3 text-xs text-left" width="40%">
-                    {row.lense}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.weight}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.remPayload}
-                  </td>
-                  <td className="pb-3 pt-3 text-xs" width="20%">
-                    {row.extPayload}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
-
-  const RemExtPayloadContent = (section, index) => {
-    return (
-      <div className="mx-auto lg:w-1/2">
-        <p className="text-left text-sm pb-6">
-          <span className="font-bold">REM PAYLOAD:</span> {section.remContent}
-        </p>
-        <p className="text-left text-sm">
-          <span className="font-bold">EXT PAYLOAD:</span> {section.extContent}
-        </p>
-      </div>
-    );
-  };
-
-  const Blocks = {
-    banner: (section, index) => BannerBlocks(section, index),
-    content: (section, index) => ContentBlocks(section, index),
-    goldBar: (section, index) => GoldBarBlocks(section, index),
-    highlight: (section, index) => HighlightBlocks(section, index),
-    platformPayloadTable: (section, index) => PlatformTable(section, index),
-    cameraPayloadTable: (section, index) => CameraTable(section, index),
-    lensesPayloadTable: (section, index) => LensesTable(section, index),
-    payloadContent: (section, index) => RemExtPayloadContent(section, index),
-  };
 
   return (
     <Layout title={`${title} | RAVENS Special Film Tactics`}>
