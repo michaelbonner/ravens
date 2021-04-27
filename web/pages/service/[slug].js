@@ -229,7 +229,7 @@ const Service = ({ services, service }) => {
       </article>
       <div>
         <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
-        <div className="lg:flex space-x-4 items-stretch justify-center text-center mt-6">
+        <div className="lg:flex lg:space-x-4 items-stretch justify-center text-center mt-6">
           {services
             .filter((otherService) => service._id !== otherService._id)
             .map((otherService) => {
@@ -238,7 +238,7 @@ const Service = ({ services, service }) => {
                   key={otherService._id}
                   href={`/service/${otherService.slug?.current}`}
                 >
-                  <a className="py-12 flex flex-col justify-between max-w-xs rounded-lg border border-gray-800 hover:border-gray-500 transition-all duration-300">
+                  <a className="mx-auto lg:mx-0 my-2 py-12 flex flex-col justify-between max-w-xs rounded-lg border border-gray-800 hover:border-gray-500 transition-all duration-300">
                     <h3 className="text-2xl font-bold">{otherService.title}</h3>
                     <div className="flex items-center my-8">
                       <div className="h-38 w-3/4 mx-auto">
