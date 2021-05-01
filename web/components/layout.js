@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -45,6 +45,7 @@ const Layout = ({
   const router = useRouter();
   const [heroStyles, setHeroStyles] = useState({});
   const [loadVideo, setLoadVideo] = useState(false);
+  const heroRef = useRef(null);
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -81,6 +82,10 @@ const Layout = ({
     setLoadVideo(true);
   }, []);
 
+  const onVideoStart = () => {
+    heroRef.current.style.background = "";
+  };
+
   return (
     <>
       <div
@@ -88,6 +93,7 @@ const Layout = ({
           heroContent || heroVideoUrl ? `bpd-hero ` : ``
         }relative mx-auto z-20 overflow-visible`}
         style={heroStyles}
+        ref={heroRef}
       >
         <Head>
           <title>{title}</title>
@@ -113,6 +119,7 @@ const Layout = ({
               title="Ravens Film Works"
               url={heroVideoUrl}
               width={`100%`}
+              onStart={onVideoStart}
             />
           </div>
         )}
