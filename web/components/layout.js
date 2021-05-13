@@ -40,6 +40,7 @@ const Layout = ({
   heroVideoUrl = "",
   backgroundClass = "bg-black",
 }) => {
+  const [siteLoaded, setSiteLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const router = useRouter();
@@ -80,6 +81,19 @@ const Layout = ({
 
   useLayoutEffect(() => {
     setLoadVideo(true);
+    setTimeout(() => {
+      setSiteLoaded(true);
+    }, 500);
+  }, []);
+
+  useEffect(() => {
+    // const handleRouteChange = () => {
+    //   setSiteLoaded(false);
+    // };
+    // router.events.on("routeChangeStart", handleRouteChange);
+    // return () => {
+    //   router.events.off("routeChangeStart", handleRouteChange);
+    // };
   }, []);
 
   const onVideoStart = () => {
@@ -87,7 +101,11 @@ const Layout = ({
   };
 
   return (
-    <>
+    <div
+      className={`${
+        siteLoaded ? `opacity-100` : `opacity-0`
+      } transition-opacity ease-in delay-300 duration-1000`}
+    >
       <div
         className={`${
           heroContent || heroVideoUrl ? `bpd-hero ` : ``
@@ -291,7 +309,7 @@ const Layout = ({
           </div>
         </footer>
       </div>
-    </>
+    </div>
   );
 };
 export default Layout;
