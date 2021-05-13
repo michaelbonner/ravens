@@ -138,7 +138,7 @@ const Layout = ({
         )}
         <header className="relative z-10 lg:container mx-4 lg:mx-auto flex justify-between items-center py-12 overflow-visible">
           <Link href="/">
-            <a className="w-2/3 lg:w-72">
+            <a className="w-3/5 lg:w-72">
               <Image
                 width="300"
                 height="100"

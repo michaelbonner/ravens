@@ -34,39 +34,37 @@ const Home = (props) => {
       heroVideoUrl={`https://player.vimeo.com/video/536021758?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
       fadeIn={true}
     >
-      <div className="text-center max-w-5xl mx-auto pt-12 mt-6">
+      <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {services.map((service) => {
+          {services.map((service, index) => {
             return (
-              <div
-                key={service._id}
-                className="py-12 flex flex-col justify-between border-2 border-gold"
-              >
-                <h3 className="text-3xl font-bold lg:px-10">
-                  <Link href={`/service/${service.slug?.current}`}>
-                    <a className="hover:text-gold">{service.title}</a>
-                  </Link>
-                </h3>
-                <div className="flex flex-1 items-center my-8">
-                  <div className="h-38 w-3/4 mx-auto">
-                    <Link href={`/service/${service.slug?.current}`}>
-                      <a>
-                        <Image
-                          src={urlForSanitySource(service.thumb)
-                            .width(service.thumbWidth || 450)
-                            .url()}
-                          layout="intrinsic"
-                          width={service.thumbWidth || 450}
-                          height={service.thumbHeight || 300}
-                        />
-                      </a>
-                    </Link>
+              <Link href={`/service/${service.slug?.current}`}>
+                <a
+                  key={service._id}
+                  className={`py-12 flex flex-col justify-between ${
+                    index + 1 !== services.length ? `border-b-2` : ``
+                  } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-opacity-50 bg-gradient-to-t from-transparent to-transparent hover:to-gray-900`}
+                >
+                  <h3 className="text-3xl font-bold lg:px-10">
+                    {service.title}
+                  </h3>
+                  <div className="flex flex-1 items-center my-8">
+                    <div className="h-38 w-3/4 mx-auto">
+                      <Image
+                        src={urlForSanitySource(service.thumb)
+                          .width(service.thumbWidth || 450)
+                          .url()}
+                        layout="intrinsic"
+                        width={service.thumbWidth || 450}
+                        height={service.thumbHeight || 300}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="leading-8">
-                  <BlockContent blocks={service.homeSummary} />
-                </div>
-              </div>
+                  <div className="leading-8">
+                    <BlockContent blocks={service.homeSummary} />
+                  </div>
+                </a>
+              </Link>
             );
           })}
         </div>
