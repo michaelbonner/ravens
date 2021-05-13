@@ -32,6 +32,7 @@ const Home = (props) => {
       heroContent={heroContent()}
       heroImage={urlForSanitySource(home.poster).url()}
       heroVideoUrl={`https://player.vimeo.com/video/536021758?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
+      fadeIn={true}
     >
       <div className="text-center max-w-5xl mx-auto pt-12 mt-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

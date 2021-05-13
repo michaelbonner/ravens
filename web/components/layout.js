@@ -39,6 +39,7 @@ const Layout = ({
   heroContent = "",
   heroVideoUrl = "",
   backgroundClass = "bg-black",
+  fadeIn = false,
 }) => {
   const [siteLoaded, setSiteLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -86,25 +87,19 @@ const Layout = ({
     }, 500);
   }, []);
 
-  useEffect(() => {
-    // const handleRouteChange = () => {
-    //   setSiteLoaded(false);
-    // };
-    // router.events.on("routeChangeStart", handleRouteChange);
-    // return () => {
-    //   router.events.off("routeChangeStart", handleRouteChange);
-    // };
-  }, []);
-
   const onVideoStart = () => {
     heroRef.current.style.background = "";
   };
 
   return (
     <div
-      className={`${
-        siteLoaded ? `opacity-100` : `opacity-0`
-      } transition-opacity ease-in delay-300 duration-1000`}
+      className={
+        fadeIn
+          ? `${
+              siteLoaded ? `opacity-100` : `opacity-0`
+            } transition-opacity ease-in delay-300 duration-1000`
+          : ``
+      }
     >
       <div
         className={`${
