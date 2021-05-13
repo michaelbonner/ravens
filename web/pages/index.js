@@ -9,7 +9,7 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 const heroContent = () => {
   return (
     <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="w-72 lg:w-96 mx-4 lg:mx-0 mt-24 lg:mt-0">
+      <span className="w-80 lg:w-96 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
         <Image
           alt="SLC X KAUAI"
           height="346"
@@ -33,29 +33,15 @@ const Home = (props) => {
       heroImage={urlForSanitySource(home.poster).url()}
       heroVideoUrl={`https://player.vimeo.com/video/536021758?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
     >
-      <div className="text-center max-w-5xl mx-auto pt-12">
-        <div className="lg:pt-12">
-          <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
-          <BlockContent blocks={home.text} />
-          <p className="py-12">
-            <Link href="/contact">
-              <a className="rounded-full font-bold uppercase tracking-wider border border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
-                Get in Touch
-              </a>
-            </Link>
-          </p>
-        </div>
-
-        <hr className="border-2 border-gold my-6" />
-
-        <div className="lg:grid grid-cols-3 gap-4">
+      <div className="text-center max-w-5xl mx-auto pt-12 mt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {services.map((service) => {
             return (
               <div
                 key={service._id}
-                className="py-12 flex flex-col justify-between"
+                className="py-12 flex flex-col justify-between border-2 border-gold"
               >
-                <h3 className="text-2xl font-bold">
+                <h3 className="text-3xl font-bold lg:px-10">
                   <Link href={`/service/${service.slug?.current}`}>
                     <a className="hover:text-gold">{service.title}</a>
                   </Link>
@@ -76,21 +62,39 @@ const Home = (props) => {
                     </Link>
                   </div>
                 </div>
-                <BlockContent blocks={service.homeSummary} />
+                <div className="leading-8">
+                  <BlockContent blocks={service.homeSummary} />
+                </div>
               </div>
             );
           })}
         </div>
 
-        <div className="py-6">
+        <div className="py-8 mt-8">
           <Link href="/services">
-            <a className="rounded-full font-bold uppercase tracking-wider border border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
+            <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
               All Options
             </a>
           </Link>
         </div>
 
-        <hr className="border-2 border-gold my-8" />
+        <div className="max-w-4xl mx-auto">
+          <hr className="border border-gold my-8" />
+
+          <div className="lg:pt-12">
+            <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
+            <BlockContent blocks={home.text} />
+            <p className="py-12">
+              <Link href="/contact">
+                <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
+                  Learn More
+                </a>
+              </Link>
+            </p>
+          </div>
+
+          <hr className="border border-gold my-8" />
+        </div>
       </div>
     </Layout>
   );

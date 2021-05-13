@@ -19,16 +19,16 @@ const navLinks = [
     path: "/work",
   },
   {
+    title: "About",
+    path: "/about",
+  },
+  {
     title: "Services",
     path: "/services",
   },
   {
     title: "Contact",
     path: "/contact",
-  },
-  {
-    title: "About",
-    path: "/about",
   },
 ];
 
@@ -129,7 +129,7 @@ const Layout = ({
               <Image
                 width="300"
                 height="100"
-                src="/images/ravens-logo-white-gold.svg"
+                src="/images/ravens-logo-white.svg"
                 alt="Ravens Logo"
               />
             </a>
@@ -184,6 +184,13 @@ const Layout = ({
                     Work
                   </a>
                 </Link>
+                <Link href="/about">
+                  <a
+                    className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
+                  >
+                    About
+                  </a>
+                </Link>
                 <Link href="/services">
                   <a
                     className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
@@ -196,13 +203,6 @@ const Layout = ({
                     className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
                   >
                     Contact
-                  </a>
-                </Link>
-                <Link href="/about">
-                  <a
-                    className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
-                  >
-                    About
                   </a>
                 </Link>
               </div>
@@ -219,18 +219,18 @@ const Layout = ({
           <h2 className="font-bold text-3xl text-center my-12 uppercase">
             Contact Us
           </h2>
-          <div className="lg:flex justify-center">
-            <div className="lg:pr-8 lg:border-r-2 border-gold leading-9 tracking-wider lg:text-right">
+          <div className="lg:flex justify-center text-gray-300">
+            <div className="lg:px-12 lg:border-r-2 border-gray-400 leading-9 tracking-wider lg:text-right">
               <p>
-                RAVENS FILM WORKS
+                RAVENS HQ
                 <br />
                 <a href="https://goo.gl/maps/cBx6BL7eAkibPu9X9">
-                  1569 W 2225 S<br />
+                  1569 W 2225 S SUITE A<br />
                   Woods Cross, UT 84087
                 </a>
               </p>
             </div>
-            <div className="lg:pl-8 pt-12 lg:pt-0 leading-9 tracking-wider">
+            <div className="lg:px-12 my-8 lg:my-0 lg:border-r-2 border-gray-400 leading-9 tracking-wider lg:text-left">
               <p>
                 <span className="mr-2">P:</span>
                 <Obfuscate tel="801-971-4683" />
@@ -252,9 +252,21 @@ const Layout = ({
                 </a>
               </p>
             </div>
+            <div className="lg:px-12 my-8 lg:my-0 leading-9 tracking-wider lg:text-left">
+              <p>KAUAI OFFICE</p>
+              <p>7000 Olohena Road</p>
+              <p>Kapa’a, HI 96746</p>
+            </div>
           </div>
 
-          <nav className="flex flex-wrap justify-center lg:justify-between max-w-3xl mx-auto pt-12">
+          <div className="max-w-3xl mt-12 mx-auto flex items-center justify-center space-x-16">
+            <p className="text-gray-300 tracking-wider">AFFILIATE STUDIO:</p>
+            <div className="w-32">
+              <Image src="/images/jme_logo_box.png" width="433" height="274" />
+            </div>
+          </div>
+
+          <nav className="flex flex-wrap justify-center lg:justify-between max-w-3xl mx-auto pt-4">
             {navLinks.map((navLink) => {
               return (
                 <Link key={navLink.path} href={navLink.path}>
@@ -272,8 +284,8 @@ const Layout = ({
             })}
           </nav>
 
-          <div className="lg:mt-12 max-w-5xl mx-auto text-center">
-            <p className="py-10">
+          <div className="max-w-5xl mx-auto text-center text-gray-300">
+            <p className="py-8">
               &copy; RAVENS FILM WORKS {new Date().getFullYear()}
             </p>
           </div>
