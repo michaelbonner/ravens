@@ -261,9 +261,9 @@ const Layout = ({
 
           <div className="max-w-3xl mt-12 mx-auto flex items-center justify-center space-x-16">
             <p className="text-gray-300 tracking-wider">AFFILIATE STUDIO:</p>
-            <div className="w-32">
+            <a href="https://www.jmillsent.com/" className="w-32">
               <Image src="/images/jme_logo_box.png" width="433" height="274" />
-            </div>
+            </a>
           </div>
 
           <nav className="flex flex-wrap justify-center lg:justify-between max-w-3xl mx-auto pt-4">
