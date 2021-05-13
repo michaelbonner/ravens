@@ -9,13 +9,13 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 const heroContent = () => {
   return (
     <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="w-80 lg:w-96 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
-        <Image
+      <span className="w-80 lg:w-1/3 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
+        <img
           alt="SLC X KAUAI"
-          height="346"
-          src="/images/slc-x-kauai.png"
+          height="300"
+          src="/images/slc-x-kauai.svg"
           title="SLC X Kauai"
-          width="1896"
+          width="1600"
         />
       </span>
     </h1>
