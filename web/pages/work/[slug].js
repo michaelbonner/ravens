@@ -1,6 +1,7 @@
 import groq from "groq";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import ReactPlayer from "react-player";
 import Layout from "../../components/layout";
 import { getClient, usePreviewSubscription } from "../../lib/sanity";
@@ -8,7 +9,7 @@ import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
 
 const BackgroundFallback = ({ image }) => {
-  return <img src={image} />;
+  return <img className="w-full" src={image} />;
 };
 
 const projectQuery = groq`
@@ -25,6 +26,7 @@ const projectQuery = groq`
 `;
 
 const Project = (data, preview) => {
+  const [showVideo, setShowVideo] = useState(false);
   const router = useRouter();
   if (!router.isFallback && !data.title) {
     return <FourOhFour />;
@@ -56,7 +58,11 @@ const Project = (data, preview) => {
           </h1>
         </div>
         {video_id ? (
-          <div className="aspect-w-16 aspect-h-9">
+          <div
+            className={`aspect-w-16 aspect-h-9 transition-all duration-700 ${
+              showVideo ? `opacity-100` : `opacity-0`
+            }`}
+          >
             <ReactPlayer
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen={true}
@@ -68,11 +74,14 @@ const Project = (data, preview) => {
               width={`100%`}
               fallback={
                 <BackgroundFallback
-                  image={`url('${urlForSanitySource(poster)
-                    .width(1200)
-                    .url()}') center center no-repeat`}
+                  image={urlForSanitySource(poster).width(1200).url()}
                 />
               }
+              onReady={() => {
+                setTimeout(() => {
+                  setShowVideo(true);
+                }, [100]);
+              }}
             ></ReactPlayer>
           </div>
         ) : (
