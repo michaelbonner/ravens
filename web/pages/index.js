@@ -84,7 +84,7 @@ const Home = (props) => {
             <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
             <BlockContent blocks={home.text} />
             <p className="py-12">
-              <Link href="/contact">
+              <Link href="/about">
                 <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
                   Learn More
                 </a>
