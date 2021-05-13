@@ -6,11 +6,11 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 import { useState } from "react";
 
 const WorkItem = ({ project }) => {
-  const [hovered, setHovered] = useState(true);
+  const [hovered, setHovered] = useState(false);
   return (
     <Link href={`/work/${project.slug.current}`}>
       <a
-        className="relative w-full text-right flex justify-end items-end mt-8 transition-all duration-300"
+        className="relative w-full text-right flex justify-end items-end mt-8 transition-all duration-500"
         style={{
           height: "20vw",
           background: `url(${urlForSanitySource(project.poster)
@@ -23,11 +23,11 @@ const WorkItem = ({ project }) => {
       >
         <div
           className={`bg-transparent hover:bg-black absolute py-2 px-4 ease-out ${
-            hovered ? `block` : `hidden`
-          } inset-0 transition-all duration-200`}
+            hovered ? `opacity-90` : `opacity-0`
+          } inset-0 transition-all duration-300`}
         >
           <h2
-            className={`absolute inset-8 lg:inset-16 border-2 border-black hover:border-gold flex items-center justify-center text-3xl uppercase transition-all duration-700`}
+            className={`absolute inset-y-4 inset-x-8 lg:inset-y-10 lg:inset-x-16 border-2 border-black hover:border-gold flex items-center justify-center text-3xl uppercase transition-all duration-500`}
           >
             <span>
               {project.clientName ? `${project.clientName} // ` : ""}
