@@ -17,10 +17,10 @@ const heroContent = () => {
 };
 
 const Services = (props) => {
-  const { services = [] } = props;    
+  const { services = [] } = props;
 
   return (
-    <Layout 
+    <Layout
       title="Services | RAVENS"
       heroContent={heroContent()}
       heroImage="/images/services-bg.png"
@@ -29,90 +29,45 @@ const Services = (props) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             return (
-              <article 
-                className={`py-5 flex flex-col justify-between px-5 ${
-                index + 1 !== services.length ? `border-b-2` : ``
-              } lg:border-2 border-gold`}
+              <Link
+                href={`/service/${service.slug?.current}`}
                 key={service._id}
               >
-                <h3 className="text-3xl font-bold lg:px-10">
-                  {service.title}
-                </h3>
-                <div className="flex flex-1 items-center my-8">
-                  <div className="h-38 w-3/4 mx-auto">
-                    <Image
-                      src={urlForSanitySource(service.thumb)
-                        .width(service.thumbWidth || 450)
-                        .url()}
-                      layout="intrinsic"
-                      width={service.thumbWidth || 450}
-                      height={service.thumbHeight || 300}
-                    />
-                  </div>
-                </div>
-                <div className="leading-8 text-sm mb-5">
-                  <BlockContent blocks={service.summary} />
-                </div>
-
-                <Link
-                  className="pt-12 mt-12"
-                  href={`/service/${service.slug?.current}`}
+                <a
+                  className={`py-5 flex flex-col justify-between px-5 ${
+                    index + 1 !== services.length ? `border-b-2` : ``
+                  } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-opacity-50 bg-gradient-to-t from-transparent to-transparent hover:to-gray-900`}
                 >
-                  <a className="rounded-full font-bold uppercase border border-white py-3 px-6 hover:bg-gold hover:text-black transition-all">
+                  <h3 className="text-3xl font-bold lg:px-10">
+                    {service.title}
+                  </h3>
+                  <div className="flex flex-1 items-center my-8">
+                    <div className="h-38 w-3/4 mx-auto">
+                      <Image
+                        src={urlForSanitySource(service.thumb)
+                          .width(service.thumbWidth || 450)
+                          .url()}
+                        layout="intrinsic"
+                        width={service.thumbWidth || 450}
+                        height={service.thumbHeight || 300}
+                      />
+                    </div>
+                  </div>
+                  <div className="leading-8 text-sm mb-5">
+                    <BlockContent blocks={service.summary} />
+                  </div>
+
+                  <button className="rounded-full font-bold uppercase border border-white py-3 px-6 hover:bg-gold hover:text-black transition-all">
                     All Options
-                  </a>
-                </Link>
-              </article>
+                  </button>
+                </a>
+              </Link>
             );
           })}
         </div>
 
         <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
       </div>
-      {/* <div className="text-center pt-12 container mx-auto">
-        <div className="">
-          {services.map((service) => {
-            return (
-              <section key={service._id} className="pt-8 mt-12 user-text">
-                <div className="relative mb-12">
-                  <Link href={`/service/${service.slug.current}`}>
-                    <a>
-                      <Image
-                        src={urlForSanitySource(service.poster)
-                          .width(1536)
-                          .height(400)
-                          .url()}
-                        height="400"
-                        width="1536"
-                      />
-                    </a>
-                  </Link>
-                </div>
-                <div className="mb-12 max-w-5xl mx-auto">
-                  <h2 className="font-bold text-3xl uppercase mb-6">
-                    <Link href={`/service/${service.slug.current}`}>
-                      <a>{service.title}</a>
-                    </Link>
-                  </h2>
-                  <BlockContent blocks={service.summary} />
-                </div>
-                <div className="mb-12">
-                  <Link
-                    className="pt-12 mt-12"
-                    href={`/service/${service.slug.current}`}
-                  >
-                    <a className="rounded-full font-bold uppercase tracking-wider border border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
-                      Full Details
-                    </a>
-                  </Link>
-                </div>
-              </section>
-            );
-          })}
-        </div>
-
-        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
-      </div> */}
     </Layout>
   );
 };
