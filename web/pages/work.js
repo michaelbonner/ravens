@@ -5,6 +5,17 @@ import Link from "next/link";
 import urlForSanitySource from "../lib/urlForSanitySource";
 import { useState } from "react";
 
+const heroContent = () => {
+  return (
+    <h1 className="absolute inset-0 flex justify-center items-center">
+      <span className="text-4xl text-center text-white  uppercase w-80 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
+        Work
+      </span>
+    </h1>
+  );
+};
+
+
 const WorkItem = ({ project }) => {
   const [hovered, setHovered] = useState(false);
   return (
@@ -43,13 +54,12 @@ const WorkItem = ({ project }) => {
 const Work = (props) => {
   const { projects = [] } = props;
   return (
-    <Layout title="Contact | RAVENS">
+    <Layout 
+      title="Contact | RAVENS"
+      heroContent={heroContent()}
+      heroImage="/images/work-bg.png"
+    >
       <div className="container mx-auto">
-        <div className="flex justify-center">
-          <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">
-            Work
-          </h1>
-        </div>
         {projects.map((project) => {
           return <WorkItem project={project} key={project._id} />;
         })}
