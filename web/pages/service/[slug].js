@@ -220,11 +220,10 @@ const Service = ({ services, service }) => {
   const { pageSections, title, poster } = service;
 
   return (
-    <Layout 
+    <Layout
       title={`${title} | RAVENS Special Film Tactics`}
       heroContent={heroContent(title)}
-      heroImage={urlForSanitySource(poster).url()}
-      // heroImage="/images/about-bg-2.jpg"
+      heroImage={urlForSanitySource(poster).width(1600).url()}
     >
       <article className="container mx-auto">
         <div className="mx-auto user-text">
@@ -263,10 +262,8 @@ const Service = ({ services, service }) => {
                     <div>
                       <BlockContent blocks={otherService.homeSummary} />
                       <div className="mt-6">
-                        <p>
-                          <p className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
-                            View Details
-                          </p>
+                        <p className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
+                          View Details
                         </p>
                       </div>
                     </div>
