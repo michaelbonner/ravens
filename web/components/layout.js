@@ -41,7 +41,7 @@ const Layout = ({
   backgroundClass = "bg-black",
   fadeIn = false,
 }) => {
-  const [siteLoaded, setSiteLoaded] = useState(false);
+  const [siteLoaded, setSiteLoaded] = useState(!fadeIn);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const router = useRouter();
@@ -93,13 +93,9 @@ const Layout = ({
 
   return (
     <div
-      className={
-        fadeIn
-          ? `${
-              siteLoaded ? `opacity-100` : `opacity-0`
-            } transition-opacity ease-in delay-300 duration-1000`
-          : ``
-      }
+      className={`${
+        siteLoaded ? `opacity-100` : `opacity-0`
+      } transition-opacity ease-in delay-300 duration-1000`}
     >
       <div
         className={`${
