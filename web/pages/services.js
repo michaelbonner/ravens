@@ -6,16 +6,27 @@ import Link from "next/link";
 import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
 
+const heroContent = () => {
+  return (
+    <h1 className="absolute inset-0 flex justify-center items-center">
+      <span className="text-4xl text-center text-white  uppercase w-80 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
+        Services
+      </span>
+    </h1>
+  );
+};
+
 const Services = (props) => {
-  const { services = [] } = props;
+  const { services = [] } = props;    
 
   return (
-    <Layout title="Services | RAVENS">
+    <Layout 
+      title="Services | RAVENS"
+      heroContent={heroContent()}
+      heroImage="/images/services-bg.png"
+    >
       <div className="text-center pt-12 container mx-auto">
         <div className="">
-          <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase">
-            Services
-          </h1>
           {services.map((service) => {
             return (
               <section key={service._id} className="pt-8 mt-12 user-text">

@@ -7,6 +7,16 @@ import Link from "next/link";
 import Image from "next/image";
 import FourOhFour from "../404";
 
+const heroContent = (title) => {
+  return (
+    <h1 className="absolute inset-0 flex justify-center items-center">
+      <span className="text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
+        {title}
+      </span>
+    </h1>
+  );
+};
+
 const BannerBlocks = (section, index) => {
   return (
     <div>
@@ -207,18 +217,16 @@ const Service = ({ services, service }) => {
   if (!service) {
     return <FourOhFour />;
   }
-
-  const { pageSections, title } = service;
+  const { pageSections, title, poster } = service;
 
   return (
-    <Layout title={`${title} | RAVENS Special Film Tactics`}>
+    <Layout 
+      title={`${title} | RAVENS Special Film Tactics`}
+      heroContent={heroContent(title)}
+      heroImage={urlForSanitySource(poster).url()}
+      // heroImage="/images/about-bg-2.jpg"
+    >
       <article className="container mx-auto">
-        <div className="flex justify-center mb-12">
-          <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold">
-            {title}
-          </h1>
-        </div>
-
         <div className="mx-auto user-text">
           {pageSections.map((section, index) => {
             return (
@@ -303,7 +311,7 @@ export async function getStaticProps(context) {
       `),
       service: await getClient().fetch(
         groq`
-        *[_type == "services" && slug.current == $slug][0]{_id, pageSections, slug, summary, thumb, thumbWidth, thumbHeight, title}
+        *[_type == "services" && slug.current == $slug][0]{_id, pageSections, slug, summary, thumb, thumbWidth, thumbHeight, title, poster}
         `,
         { slug }
       ),

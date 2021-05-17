@@ -3,24 +3,29 @@ import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
 import groq from "groq";
 import Link from "next/link";
-
 import BlockContent from "@sanity/block-content-to-react";
+
+const heroContent = () => {
+  return (
+    <h1 className="absolute inset-0 flex justify-center items-center">
+      <span className="text-4xl text-center text-white  uppercase w-80 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
+        About
+      </span>
+    </h1>
+  );
+};
 
 const About = (props) => {
   const { about = {} } = props;
+  
   return (
-    <Layout title="About | RAVENS">
+    <Layout 
+      title="About | RAVENS"
+      heroContent={heroContent()}
+      heroImage={urlForSanitySource(about.poster).url()}
+      // heroImage="/images/about-bg-2.jpg"
+    >
       <div className="container mx-auto text-center">
-        <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold uppercase mb-12">
-          About
-        </h1>
-        <div className="relative mb-12 w-full">
-          <img
-            className="w-full"
-            src={urlForSanitySource(about.poster).url()}
-          />
-        </div>
-
         <div className="max-w-5xl mx-auto mt-16">
           <section className="md:px-32 mb-20 user-text">
             <BlockContent blocks={about.text} />
