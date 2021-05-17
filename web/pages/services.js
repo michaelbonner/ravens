@@ -25,7 +25,51 @@ const Services = (props) => {
       heroContent={heroContent()}
       heroImage="/images/services-bg.png"
     >
-      <div className="text-center pt-12 container mx-auto">
+      <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => {
+            return (
+              <article 
+                className={`py-5 flex flex-col justify-between px-5 ${
+                index + 1 !== services.length ? `border-b-2` : ``
+              } lg:border-2 border-gold`}
+                key={service._id}
+              >
+                <h3 className="text-3xl font-bold lg:px-10">
+                  {service.title}
+                </h3>
+                <div className="flex flex-1 items-center my-8">
+                  <div className="h-38 w-3/4 mx-auto">
+                    <Image
+                      src={urlForSanitySource(service.thumb)
+                        .width(service.thumbWidth || 450)
+                        .url()}
+                      layout="intrinsic"
+                      width={service.thumbWidth || 450}
+                      height={service.thumbHeight || 300}
+                    />
+                  </div>
+                </div>
+                <div className="leading-8 text-sm mb-5">
+                  <BlockContent blocks={service.summary} />
+                </div>
+
+                <Link
+                  className="pt-12 mt-12"
+                  href={`/service/${service.slug?.current}`}
+                >
+                  <a className="rounded-full font-bold uppercase border border-white py-3 px-6 hover:bg-gold hover:text-black transition-all">
+                    All Options
+                  </a>
+                </Link>
+              </article>
+            );
+          })}
+        </div>
+
+        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
+      </div>
+      {/* <div className="text-center pt-12 container mx-auto">
         <div className="">
           {services.map((service) => {
             return (
@@ -68,7 +112,7 @@ const Services = (props) => {
         </div>
 
         <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
-      </div>
+      </div> */}
     </Layout>
   );
 };
