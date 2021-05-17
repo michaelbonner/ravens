@@ -38,9 +38,11 @@ const Home = (props) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             return (
-              <Link href={`/service/${service.slug?.current}`}>
+              <Link 
+                key={service._id}
+                href={`/service/${service.slug?.current}`}
+              >
                 <a
-                  key={service._id}
                   className={`py-12 flex flex-col justify-between ${
                     index + 1 !== services.length ? `border-b-2` : ``
                   } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-opacity-50 bg-gradient-to-t from-transparent to-transparent hover:to-gray-900`}
