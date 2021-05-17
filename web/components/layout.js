@@ -73,7 +73,9 @@ const Layout = ({
       styles.height = "100%";
     }
     if (heroImage) {
-      styles.background = `url(${heroImage}) center center no-repeat`;
+      styles.backgroundImage = `url(${heroImage})`;
+      styles.backgroundPosition = `center center`;
+      styles.backgroundRepeat = `no-repeat`;
       styles.backgroundSize = `cover`;
     }
 
