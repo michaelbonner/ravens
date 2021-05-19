@@ -1,8 +1,8 @@
 import UserIcon from 'part:@sanity/base/user-icon'
 
 export default {
-  name: 'person',
-  title: 'Person',
+  name: 'people',
+  title: 'People',
   type: 'document',
   icon: UserIcon,
   fields: [
@@ -11,6 +11,11 @@ export default {
       title: 'Name',
       type: 'string',
       description: 'Please use "Firstname Lastname" format',
+    },
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
     },
     {
       name: 'slug',
@@ -28,6 +33,11 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'text',
+      title: 'Text',
+      type: 'blockContent',
     },
   ],
   preview: {

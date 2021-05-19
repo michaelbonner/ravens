@@ -24,6 +24,24 @@ export default {
       title: 'Text',
       type: 'blockContent',
     },
+    {
+      name: 'locations',
+      title: 'Locations',
+      type: 'blockContent',
+    },
+    {
+      name: 'people',
+      title: 'People',
+      type: 'array',
+      of: [
+        { 
+          type: 'reference',
+          to: [
+            { type: 'people' },
+          ],
+        }
+      ],
+    },
   ],
   preview: {
     select: {

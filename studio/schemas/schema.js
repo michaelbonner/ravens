@@ -13,6 +13,7 @@ import lensesPayloadTable from './lensesPayloadTable'
 import project from './project'
 import home from './home'
 import about from './about'
+import person from './person'
 import service from './service'
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -28,6 +29,7 @@ export default createSchema({
     home,
     about,
     service,
+    person,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
