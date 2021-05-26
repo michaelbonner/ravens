@@ -86,12 +86,8 @@ const Layout = ({
     setLoadVideo(true);
     setTimeout(() => {
       setSiteLoaded(true);
-    }, 500);
+    }, 300);
   }, []);
-
-  const onVideoStart = () => {
-    heroRef.current.style.background = "";
-  };
 
   return (
     <div
@@ -130,7 +126,6 @@ const Layout = ({
               title="Ravens Film Works"
               url={heroVideoUrl}
               width={`100%`}
-              onStart={onVideoStart}
             />
           </div>
         )}
