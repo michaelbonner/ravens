@@ -5,6 +5,20 @@ import Link from "next/link";
 import urlForSanitySource from "../lib/urlForSanitySource";
 import { useState } from "react";
 
+const gridColumnCount = (itemCount) => {
+  if (itemCount > 6) {
+    return 4;
+  }
+  if (itemCount === 6 || itemCount === 5) {
+    return 3;
+  }
+  if (itemCount === 4) {
+    return 2;
+  }
+
+  return 1;
+};
+
 const heroContent = () => {
   return (
     <h1 className="absolute inset-0 flex justify-center items-center">
@@ -15,15 +29,19 @@ const heroContent = () => {
   );
 };
 
-
-const WorkItem = ({ project }) => {
+const WorkItem = ({ project, gridColumnsCount }) => {
   const [hovered, setHovered] = useState(false);
+  let aspectHeight = `lg:aspect-h-4`;
+  if (gridColumnsCount > 1) {
+    aspectHeight = `lg:aspect-h-6`;
+  } else if (gridColumnsCount) {
+    aspectHeight = `lg:aspect-h-4`;
+  }
   return (
     <Link href={`/work/${project.slug.current}`}>
       <a
-        className="relative w-full text-right flex justify-end items-end mt-8 transition-all duration-500"
+        className={`relative w-full text-right flex justify-end items-end transition-all duration-500 aspect-w-16 aspect-h-6 ${aspectHeight}`}
         style={{
-          height: "20vw",
           background: `url(${urlForSanitySource(project.poster)
             .width(1200)
             .url()}) center center no-repeat`,
@@ -34,13 +52,17 @@ const WorkItem = ({ project }) => {
       >
         <div
           className={`bg-transparent hover:bg-black absolute py-2 px-4 ease-out ${
-            hovered ? `opacity-90` : `opacity-0`
+            hovered ? `opacity-70` : `opacity-0`
           } inset-0 transition-all duration-300`}
         >
           <h2
-            className={`absolute inset-y-4 inset-x-8 lg:inset-y-10 lg:inset-x-16 border-2 border-black hover:border-gold flex items-center justify-center text-3xl uppercase transition-all duration-500`}
+            className={`absolute inset-y-4 inset-x-8 border-2 border-black hover:border-gold flex items-center justify-center text-3xl uppercase transition-all duration-500`}
           >
-            <span>
+            <span
+              className={`text-center px-4 py-2 ${
+                gridColumnsCount > 2 ? "lg:text-xl xl:text-2xl" : "text-2xl"
+              }`}
+            >
               {project.clientName ? `${project.clientName} // ` : ""}
               {project.title}
             </span>
@@ -53,16 +75,34 @@ const WorkItem = ({ project }) => {
 
 const Work = (props) => {
   const { projects = [] } = props;
+
+  // options - lg:grid-cols-4 | lg:grid-cols-3 | lg:grid-cols-2 | lg:grid-cols-1
+  const gridClassName = `lg:grid-cols-${gridColumnCount(projects.length)}`;
+  const containerClasses = `grid ${gridClassName}${
+    gridColumnCount(projects.length) < 2
+      ? " mt-12 container mx-auto gap-y-8"
+      : " gap-y-8 lg:gap-y-0"
+  }`;
+  const gridColumnsCount = gridColumnCount(projects.length);
+
   return (
-    <Layout 
+    <Layout
       title="Contact | RAVENS"
       heroContent={heroContent()}
       heroImage="/images/work-bg.png"
     >
-      <div className="container mx-auto">
+      <div className={containerClasses}>
         {projects.map((project) => {
-          return <WorkItem project={project} key={project._id} />;
+          return (
+            <WorkItem
+              gridColumnsCount={gridColumnsCount}
+              project={project}
+              key={project._id}
+            />
+          );
         })}
+      </div>
+      <div className="container mx-auto">
         <hr className="border border-gold mb-8 mt-12" />
       </div>
     </Layout>
