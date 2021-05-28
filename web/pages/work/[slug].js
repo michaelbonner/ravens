@@ -90,56 +90,74 @@ const Project = (data, preview) => {
             src={urlForSanitySource(poster).width(1200).url()}
           />
         )}
-        <h2 className="font-bold text-3xl text-center my-12 uppercase">
-          Credits
-        </h2>
-        {credits.map((credit, index) => {
-          if (credit.role === "space") {
-            return <div key={index} className="h-4" />;
-          }
-          return (
-            <div className="grid grid-cols-2 gap-12 font-bold" key={index}>
-              <div className="text-right">{credit.role}</div>
-              <div>{credit.value}</div>
-            </div>
-          );
-        })}
-        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold mt-12" />
+        {credits && credits.length > 0 && (
+          <>
+            <h2 className="font-bold text-3xl text-center my-12 uppercase">
+              Credits
+            </h2>
+            {credits.map((credit, index) => {
+              if (credit.role === "space") {
+                return <div key={index} className="h-4" />;
+              }
+              return (
+                <div className="grid grid-cols-2 gap-12 font-bold" key={index}>
+                  <div className="text-right">{credit.role}</div>
+                  <div>{credit.value}</div>
+                </div>
+              );
+            })}
+            <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold mt-12" />
+          </>
+        )}
 
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-bold text-3xl text-center my-12 uppercase">
-            Frames
-          </h2>
-          <div className="lg:grid grid-cols-2 gap-12">
-            {frames.map((image) => {
-              return (
-                <Image
-                  className="w-full overflow-hidden"
-                  key={image._key}
-                  width="717"
-                  height="300"
-                  src={urlForSanitySource(image).width(717).height(300).url()}
-                />
-              );
-            })}
-          </div>
+          {frames && frames.length > 0 && (
+            <>
+              <h2 className="font-bold text-3xl text-center my-12 uppercase">
+                Frames
+              </h2>
+              <div className="lg:grid grid-cols-2 gap-12">
+                {frames.map((image) => {
+                  return (
+                    <Image
+                      className="w-full overflow-hidden"
+                      key={image._key}
+                      width="717"
+                      height="300"
+                      src={urlForSanitySource(image)
+                        .width(717)
+                        .height(300)
+                        .url()}
+                    />
+                  );
+                })}
+              </div>
+            </>
+          )}
 
-          <h2 className="font-bold text-3xl text-center my-12 uppercase">
-            BTS
-          </h2>
-          <div className="lg:grid grid-cols-2 gap-12">
-            {behindTheScenes.map((image) => {
-              return (
-                <Image
-                  className="w-full overflow-hidden"
-                  key={image._key}
-                  width="717"
-                  height="300"
-                  src={urlForSanitySource(image).width(717).height(300).url()}
-                />
-              );
-            })}
-          </div>
+          {behindTheScenes && behindTheScenes.length && (
+            <>
+              <h2 className="font-bold text-3xl text-center my-12 uppercase">
+                BTS
+              </h2>
+              <div className="lg:grid grid-cols-2 gap-12">
+                {behindTheScenes.map((image) => {
+                  return (
+                    <Image
+                      className="w-full overflow-hidden"
+                      key={image._key}
+                      width="717"
+                      height="300"
+                      src={urlForSanitySource(image)
+                        .width(717)
+                        .height(300)
+                        .url()}
+                    />
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
 
         <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold mt-20" />
