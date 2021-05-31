@@ -83,10 +83,11 @@ const Layout = ({
   }, [heroImage, heroVideoUrl]);
 
   useLayoutEffect(() => {
-    setLoadVideo(true);
     setTimeout(() => {
+      setLoadVideo(true);
       setSiteLoaded(true);
     }, 300);
+
   }, []);
 
   return (
