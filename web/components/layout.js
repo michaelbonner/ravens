@@ -48,6 +48,7 @@ const Layout = ({
   const [heroStyles, setHeroStyles] = useState({});
   const [loadVideo, setLoadVideo] = useState(false);
   const heroRef = useRef(null);
+  const [videoPlaying, setVideoPlaying] = useState(false);
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -79,8 +80,12 @@ const Layout = ({
       styles.backgroundSize = `cover`;
     }
 
+    if (videoPlaying) {
+      styles.backgroundImage = "";
+    }
+
     setHeroStyles(styles);
-  }, [heroImage, heroVideoUrl]);
+  }, [heroImage, heroVideoUrl, videoPlaying]);
 
   useLayoutEffect(() => {
     setLoadVideo(true);
@@ -123,6 +128,7 @@ const Layout = ({
                 left: 0,
                 pointerEvents: "none",
               }}
+              onPlay={() => setVideoPlaying(true)}
               title="Ravens Film Works"
               url={heroVideoUrl}
               width={`100%`}
