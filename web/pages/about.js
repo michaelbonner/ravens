@@ -18,10 +18,9 @@ const heroContent = () => {
 
 const About = (props) => {
   const { about = {} } = props;
-  console.log(about)
-  
+
   return (
-    <Layout 
+    <Layout
       title="About | RAVENS"
       heroContent={heroContent()}
       heroImage={urlForSanitySource(about.poster).url()}
@@ -34,35 +33,35 @@ const About = (props) => {
 
           <section className="text-center max-w-5xl mb-20 mx-8 lg:mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {about?.people?.map((person, index) => {
-              return (
-                <article key={person._id}>
-                  <header>
-                    <Image
-                      src={urlForSanitySource(person.image).url()}
-                      layout="intrinsic"
-                      width="300"
-                      height="300"
-                    />
-                    <p className="uppercase text-gold tracking-wider font-bold mb-2">
-                      {person.name}
-                      <br/>
-                      {person.title}
-                    </p>
-                    <BlockContent blocks={person.text} />
-                  </header>
-                </article>
-              );
-            })}          
+              {about?.people?.map((person, index) => {
+                return (
+                  <article key={person._id}>
+                    <header>
+                      <Image
+                        src={urlForSanitySource(person.image).url()}
+                        layout="intrinsic"
+                        width="300"
+                        height="300"
+                      />
+                      <p className="uppercase text-gold tracking-wider font-bold mb-2">
+                        {person.name}
+                        <br />
+                        {person.title}
+                      </p>
+                      <BlockContent blocks={person.text} />
+                    </header>
+                  </article>
+                );
+              })}
             </div>
-          </section> 
-          
+          </section>
+
           <hr className="border-t-2 w-full  mx-auto border-gold my-16" />
-          
+
           <section className="md:px-32 mb-20 user-text">
             <BlockContent blocks={about.locations} />
           </section>
-          
+
           <hr className="border-t-2 w-full  mx-auto border-gold my-16" />
         </div>
       </div>

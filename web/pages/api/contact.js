@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         Message: ${req.body.message}`
       );
     } catch (error) {
-      console.log("error", error);
+      console.error("error", error);
     }
 
     res.status(201).json(contact);
