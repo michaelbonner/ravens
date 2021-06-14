@@ -9,20 +9,20 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@aws-cdk/aws-dynamodb": "^1.106.1",
-    "@aws-cdk/core": "^1.106.1",
-    "@sanity/block-content-to-react": "^2.0.7",
-    "@sanity/client": "^2.10.5",
+    "@aws-cdk/aws-dynamodb": "^1.108.1",
+    "@aws-cdk/core": "^1.108.1",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/client": "^2.11.0",
     "@sanity/image-url": "^0.140.22",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^10.2.6",
-    "aws-sdk": "^2.918.0",
-    "formik": "^2.2.8",
+    "aws-sdk": "^2.927.0",
+    "formik": "^2.2.9",
     "groq": "^2.2.6",
     "next": "^10.2.3",
-    "next-sanity": "^0.1.12",
-    "postcss": "^8.3.0",
+    "next-sanity": "^0.2.0",
+    "postcss": "^8.3.4",
     "react": "^17.0.2",
     "react-confetti": "^6.0.1",
     "react-dom": "^17.0.2",
@@ -30,12 +30,12 @@
     "react-obfuscate": "^3.6.8",
     "react-player": "^2.9.0",
     "react-toastify": "^7.0.4",
-    "tailwindcss": "^2.1.2",
+    "tailwindcss": "^2.1.4",
     "uuid": "^8.3.2",
     "yup": "^0.32.9",
     "yup-phone": "^1.2.19"
   },
   "devDependencies": {
-    "next-sitemap": "^1.6.95"
+    "next-sitemap": "^1.6.111"
   }
 }
