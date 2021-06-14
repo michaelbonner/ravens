@@ -124,7 +124,7 @@ export default {
     },
     prepare(selection) {
       return {
-        title: `${selection.clientName} | ${selection.title}`,
+        title: `${selection.clientName ? `${selection.clientName} | ` : ''}${selection.title || ''}`,
         date: selection.date,
         subtitle: selection.date,
         media: selection.media,
