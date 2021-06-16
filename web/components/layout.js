@@ -92,7 +92,6 @@ const Layout = ({
       setLoadVideo(true);
       setSiteLoaded(true);
     }, 300);
-
   }, []);
 
   return (
@@ -129,7 +128,11 @@ const Layout = ({
                 left: 0,
                 pointerEvents: "none",
               }}
-              onPlay={() => setVideoPlaying(true)}
+              onPlay={() => {
+                setTimeout(() => {
+                  setVideoPlaying(true);
+                }, 200);
+              }}
               title="Ravens Film Works"
               url={heroVideoUrl}
               width={`100%`}
