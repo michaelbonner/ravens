@@ -15,11 +15,14 @@
     "@sanity/desk-tool",
     "@sanity/google-maps-input",
     "dashboard-widget-vercel",
-    "@sanity/dashboard"
+    "@sanity/dashboard",
+    "order-documents"
   ],
   "env": {
     "development": {
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision"
+      ]
     }
   },
   "parts": [
