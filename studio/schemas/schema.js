@@ -11,10 +11,12 @@ import cameraPayloadTable from './cameraPayloadTable'
 import lensesPayloadTable from './lensesPayloadTable'
 
 import project from './project'
+import projects from './projects'
 import home from './home'
 import about from './about'
 import person from './person'
-import service from './service'
+import services from './services'
+import servicesPage from './services-page'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -26,9 +28,11 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     project,
+    projects,
     home,
     about,
-    service,
+    services,
+    servicesPage,
     person,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

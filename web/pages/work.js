@@ -75,24 +75,25 @@ const WorkItem = ({ project, gridColumnsCount }) => {
 
 const Work = (props) => {
   const { projects = [] } = props;
+  const projectsCount = projects?.work.length ?? 0
 
   // options - lg:grid-cols-4 | lg:grid-cols-3 | lg:grid-cols-2 | lg:grid-cols-1
-  const gridClassName = `lg:grid-cols-${gridColumnCount(projects.length)}`;
+  const gridClassName = `lg:grid-cols-${gridColumnCount(projectsCount)}`;
   const containerClasses = `grid ${gridClassName}${
-    gridColumnCount(projects.length) < 2
+    gridColumnCount(projectsCount) < 2
       ? " mt-12 container mx-auto gap-y-8"
       : " gap-y-8 lg:gap-y-0"
   }`;
-  const gridColumnsCount = gridColumnCount(projects.length);
+  const gridColumnsCount = gridColumnCount(projectsCount);
 
   return (
     <Layout
       title="Contact | RAVENS"
       heroContent={heroContent()}
-      heroImage="/images/work-bg.png"
+      heroImage={urlForSanitySource(projects.poster).url()}
     >
       <div className={containerClasses}>
-        {projects.map((project) => {
+        {projects.work.map((project) => {
           return (
             <WorkItem
               gridColumnsCount={gridColumnsCount}
@@ -113,7 +114,11 @@ export async function getStaticProps() {
   return {
     props: {
       projects: await getClient().fetch(groq`
-        *[_type == "project"]|order(date desc)
+        *[_type == "projects"][0]{
+          title,
+          poster,
+          work[]->
+        }
       `),
     },
   };

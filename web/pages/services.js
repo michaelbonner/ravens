@@ -23,11 +23,11 @@ const Services = (props) => {
     <Layout
       title="Services | RAVENS"
       heroContent={heroContent()}
-      heroImage="/images/services-bg.png"
+      heroImage={urlForSanitySource(services.poster).url()}
     >
       <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => {
+          {services.services.map((service, index) => {
             return (
               <Link
                 href={`/service/${service.slug?.current}`}
@@ -76,7 +76,11 @@ export async function getStaticProps() {
   return {
     props: {
       services: await getClient().fetch(groq`
-        *[_type == "services"]|order(_createdAt desc)
+        *[_type == "services-page"][0]{
+          title,
+          poster,
+          services[]->
+        }
       `),
     },
   };

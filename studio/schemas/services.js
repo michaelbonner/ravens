@@ -162,12 +162,6 @@ export default {
         editModal: 'fullscreen',
       },
     },
-    {
-      name: "order",
-      title: "Order",
-      type: "number",
-      hidden: true,
-    },
   ],
   preview: {
     select: {
