@@ -40,7 +40,7 @@ const About = (props) => {
                       <Image
                         src={urlForSanitySource(person.image).url()}
                         layout="intrinsic"
-                        width="300"
+                        width="250"
                         height="300"
                       />
                       <p className="uppercase text-gold tracking-wider font-bold mb-2">
