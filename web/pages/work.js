@@ -75,7 +75,8 @@ const WorkItem = ({ project, gridColumnsCount }) => {
 
 const Work = (props) => {
   const { projects = [] } = props;
-  const projectsCount = projects?.work.length ?? 0
+  const projectsCount = projects?.work.length ?? 0;
+  const work = projects?.work.sort((a, b) => (a.order > b.order ? 1 : -1));
 
   // options - lg:grid-cols-4 | lg:grid-cols-3 | lg:grid-cols-2 | lg:grid-cols-1
   const gridClassName = `lg:grid-cols-${gridColumnCount(projectsCount)}`;
@@ -93,7 +94,7 @@ const Work = (props) => {
       heroImage={urlForSanitySource(projects.poster).url()}
     >
       <div className={containerClasses}>
-        {projects.work.map((project) => {
+        {work.map((project) => {
           return (
             <WorkItem
               gridColumnsCount={gridColumnsCount}

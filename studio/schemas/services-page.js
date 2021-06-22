@@ -33,12 +33,10 @@ export default {
       title: 'Services',
       type: 'array',
       of: [
-        { 
+        {
           type: 'reference',
-          to: [
-            { type: 'services' },
-          ],
-        }
+          to: [{ type: 'services' }],
+        },
       ],
     },
   ],

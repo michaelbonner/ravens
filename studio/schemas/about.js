@@ -34,12 +34,10 @@ export default {
       title: 'People',
       type: 'array',
       of: [
-        { 
+        {
           type: 'reference',
-          to: [
-            { type: 'people' },
-          ],
-        }
+          to: [{ type: 'people' }],
+        },
       ],
     },
   ],
