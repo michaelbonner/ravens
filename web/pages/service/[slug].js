@@ -79,7 +79,7 @@ const PlatformTable = (section, index) => {
           </tr>
         </thead>
         <tbody>
-          {section.platformTableRows.map((row) => {
+          {section.platformTableRows?.map((row) => {
             return (
               <tr key={row._key}>
                 <td className="pb-3 pt-3 text-xs text-left" width="40%">
@@ -122,7 +122,7 @@ const CameraTable = (section, index) => {
           </tr>
         </thead>
         <tbody>
-          {section.cameraTableRows.map((row) => {
+          {section.cameraTableRows?.map((row) => {
             return (
               <tr key={row._key}>
                 <td className="pb-3 pt-3 text-xs text-left" width="40%">
@@ -165,7 +165,7 @@ const LensesTable = (section, index) => {
           </tr>
         </thead>
         <tbody>
-          {section.lensesTableRows.map((row) => {
+          {section.lensesTableRows?.map((row) => {
             return (
               <tr key={row._key}>
                 <td className="pb-3 pt-3 text-xs text-left" width="40%">
@@ -227,7 +227,7 @@ const Service = ({ services, service }) => {
     >
       <article className="container mx-auto">
         <div className="mx-auto user-text">
-          {pageSections.map((section, index) => {
+          {pageSections?.map((section, index) => {
             return (
               <div key={index}>{Blocks[section._type](section, index)}</div>
             );
