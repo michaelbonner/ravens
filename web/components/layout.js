@@ -110,6 +110,7 @@ const Layout = ({
         <Head>
           <title>{title}</title>
           <link rel="icon" href="/favicon.ico" />
+          <meta name="theme-color" content="#967738" />
         </Head>
         {loadVideo && heroVideoUrl && (
           <div className="bpd-hero-video-foreground">
