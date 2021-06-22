@@ -38,7 +38,7 @@ const Home = (props) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             return (
-              <Link 
+              <Link
                 key={service._id}
                 href={`/service/${service.slug?.current}`}
               >
