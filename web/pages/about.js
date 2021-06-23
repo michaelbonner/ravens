@@ -33,15 +33,13 @@ const About = (props) => {
 
           <section className="text-center max-w-5xl mb-20 mx-8 lg:mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-              {about?.people?.map((person, index) => {
+              {about?.people?.map((person) => {
                 return (
                   <article key={person._id}>
                     <header>
-                      <Image
+                      <img
+                        alt={person.name}
                         src={urlForSanitySource(person.image).url()}
-                        layout="intrinsic"
-                        width="250"
-                        height="300"
                       />
                       <p className="uppercase text-gold tracking-wider font-bold mb-2">
                         {person.name}
