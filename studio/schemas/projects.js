@@ -28,17 +28,6 @@ export default {
         hotspot: true,
       },
     },
-    {
-      name: 'work',
-      title: 'Work',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'project' }],
-        },
-      ],
-    },
   ],
   preview: {
     select: {

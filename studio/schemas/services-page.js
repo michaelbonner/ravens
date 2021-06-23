@@ -28,17 +28,6 @@ export default {
         hotspot: true,
       },
     },
-    {
-      name: 'services',
-      title: 'Services',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'services' }],
-        },
-      ],
-    },
   ],
   preview: {
     select: {

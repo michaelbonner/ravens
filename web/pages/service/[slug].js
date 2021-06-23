@@ -239,6 +239,7 @@ const Service = ({ services, service }) => {
         <div className="lg:flex lg:space-x-4 items-stretch justify-center text-center mt-6">
           {services
             .filter((otherService) => service._id !== otherService._id)
+            .filter((otherService, index) => index < 2)
             .map((otherService) => {
               return (
                 <Link
@@ -304,7 +305,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       services: await getClient().fetch(groq`
-        *[_type == "services"]|order(_createdAt desc)
+        *[_type == "services"]|order(order asc)
       `),
       service: await getClient().fetch(
         groq`

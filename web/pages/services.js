@@ -17,16 +17,14 @@ const heroContent = () => {
 };
 
 const Services = (props) => {
-  const { services = [] } = props;
-  const sortedServices = services?.services?.sort((a, b) =>
-    a.order > b.order ? 1 : -1
-  );
+  const { servicePage = {}, services = [] } = props;
+  const sortedServices = services?.sort((a, b) => (a.order > b.order ? 1 : -1));
 
   return (
     <Layout
       title="Services | RAVENS"
       heroContent={heroContent()}
-      heroImage={urlForSanitySource(services.poster).url()}
+      heroImage={urlForSanitySource(servicePage.poster).url()}
     >
       <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -76,15 +74,20 @@ const Services = (props) => {
 };
 
 export async function getStaticProps() {
+  const servicePage = await getClient().fetch(groq`
+  *[_type == "services-page"][0]{
+    title,
+    poster
+  }
+`);
+  const services = await getClient().fetch(groq`
+    *[_type == "services"]|order(order asc)
+  `);
+
   return {
     props: {
-      services: await getClient().fetch(groq`
-        *[_type == "services-page"][0]{
-          title,
-          poster,
-          services[]->
-        }
-      `),
+      servicePage,
+      services,
     },
   };
 }

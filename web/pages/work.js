@@ -74,9 +74,9 @@ const WorkItem = ({ project, gridColumnsCount }) => {
 };
 
 const Work = (props) => {
-  const { projects = [] } = props;
-  const projectsCount = projects?.work.length ?? 0;
-  const work = projects?.work.sort((a, b) => (a.order > b.order ? 1 : -1));
+  const { projectsPage = {}, projects = [] } = props;
+  const projectsCount = projects.length ?? 0;
+  const work = projects.sort((a, b) => (a.order > b.order ? 1 : -1));
 
   // options - lg:grid-cols-4 | lg:grid-cols-3 | lg:grid-cols-2 | lg:grid-cols-1
   const gridClassName = `lg:grid-cols-${gridColumnCount(projectsCount)}`;
@@ -91,7 +91,7 @@ const Work = (props) => {
     <Layout
       title="Contact | RAVENS"
       heroContent={heroContent()}
-      heroImage={urlForSanitySource(projects.poster).url()}
+      heroImage={urlForSanitySource(projectsPage.poster).url()}
     >
       <div className={containerClasses}>
         {work.map((project) => {
@@ -112,15 +112,19 @@ const Work = (props) => {
 };
 
 export async function getStaticProps() {
+  const projectsPage = await getClient().fetch(groq`
+    *[_type == "projects"][0]{
+      title,
+      poster,
+    }
+  `);
+  const projects = await getClient().fetch(groq`
+    *[_type == "project"]|order(order asc)
+  `);
   return {
     props: {
-      projects: await getClient().fetch(groq`
-        *[_type == "projects"][0]{
-          title,
-          poster,
-          work[]->
-        }
-      `),
+      projectsPage,
+      projects,
     },
   };
 }
