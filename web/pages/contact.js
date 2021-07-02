@@ -45,19 +45,31 @@ function Contact({ contact }) {
 
   useEffect(() => {
     const bgImage = urlForSanitySource(contact.poster);
-    document.body.style.backgroundImage = `url(${bgImage})`;
-    document.body.style.backgroundPosition = `center`;
-    document.body.style.backgroundSize = `cover`;
+    document.querySelector(
+      ".ui-header-and-content"
+    ).style.backgroundImage = `url(${bgImage})`;
+    document.querySelector(
+      ".ui-header-and-content"
+    ).style.backgroundPosition = `center`;
+    document.querySelector(
+      ".ui-header-and-content"
+    ).style.backgroundSize = `cover`;
 
     return () => {
-      document.body.style.backgroundImage = ``;
-      document.body.style.backgroundPosition = ``;
-      document.body.style.backgroundSize = ``;
+      document.querySelector(
+        ".ui-header-and-content"
+      ).style.backgroundImage = ``;
+      document.querySelector(
+        ".ui-header-and-content"
+      ).style.backgroundPosition = ``;
+      document.querySelector(
+        ".ui-header-and-content"
+      ).style.backgroundSize = ``;
     };
   }, []);
 
   return (
-    <Layout title="Contact | RAVENS" backgroundClass="">
+    <Layout title="Contact | RAVENS">
       <div className="text-center max-w-5xl mx-auto">
         <div className="py-12">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-white border-b-2 border-white uppercase">
