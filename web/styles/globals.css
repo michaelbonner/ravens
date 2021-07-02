@@ -269,13 +269,6 @@ body {
   @apply text-white;
 }
 
-body.contact {
-  @apply bg-gray-800;
-  background-image: url("/images/contact-bg.jpg");
-  background-position: center;
-  background-size: cover;
-}
-
 p {
   font-family: "GothamPro";
   font-weight: 300;
@@ -332,12 +325,12 @@ p {
 }
 
 @keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 body {

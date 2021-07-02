@@ -5,6 +5,9 @@ import * as Yup from "yup";
 import "yup-phone";
 import Layout from "../components/layout";
 import Confetti from "react-confetti";
+import { getClient } from "../lib/sanity";
+import groq from "groq";
+import urlForSanitySource from "../lib/urlForSanitySource";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,7 +24,7 @@ const contactSchema = Yup.object().shape({
   message: Yup.string().min(2, "Too short").required("Message is Required"),
 });
 
-export default function Contact() {
+function Contact({ contact }) {
   const [state, setState] = useState("initial");
   const [confettiWidth, setConfettiWidth] = useState(0);
   const [confettiHeight, setConfettiHeight] = useState(0);
@@ -41,10 +44,15 @@ export default function Contact() {
   }, [successContainer, state]);
 
   useEffect(() => {
-    document.querySelector("body").classList.add("contact");
+    const bgImage = urlForSanitySource(contact.poster);
+    document.body.style.backgroundImage = `url(${bgImage})`;
+    document.body.style.backgroundPosition = `center`;
+    document.body.style.backgroundSize = `cover`;
 
     return () => {
-      document.querySelector("body").classList.remove("contact");
+      document.body.style.backgroundImage = ``;
+      document.body.style.backgroundPosition = ``;
+      document.body.style.backgroundSize = ``;
     };
   }, []);
 
@@ -53,7 +61,7 @@ export default function Contact() {
       <div className="text-center max-w-5xl mx-auto">
         <div className="py-12">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-white border-b-2 border-white uppercase">
-            Contact
+            {contact.title || "Contact"}
           </h1>
           <div className="relative mx-auto">
             <div className="py-16 px-4">
@@ -190,3 +198,18 @@ export default function Contact() {
     </Layout>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {
+      contact: await getClient().fetch(groq`
+        *[_type == "contact"][0]{
+          title,
+          poster,
+        }
+      `),
+    },
+  };
+}
+
+export default Contact;
