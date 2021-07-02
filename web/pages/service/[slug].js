@@ -219,6 +219,15 @@ const Service = ({ services, service }) => {
   }
   const { pageSections, title, poster } = service;
 
+  const relatedServices = service.related_services || [];
+
+  const relatedServicesToDisplay =
+    relatedServices.length > 0
+      ? relatedServices
+      : services
+          .filter((otherService) => service._id !== otherService._id)
+          .filter((otherService, index) => index < 2);
+
   return (
     <Layout
       title={`${title} | RAVENS Special Film Tactics`}
@@ -237,41 +246,38 @@ const Service = ({ services, service }) => {
       <div>
         <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
         <div className="lg:flex lg:space-x-4 items-stretch justify-center text-center mt-6">
-          {services
-            .filter((otherService) => service._id !== otherService._id)
-            .filter((otherService, index) => index < 2)
-            .map((otherService) => {
-              return (
-                <Link
-                  key={otherService._id}
-                  href={`/service/${otherService.slug?.current}`}
-                >
-                  <a className="mx-auto lg:mx-0 my-2 py-12 flex flex-col justify-between max-w-xs rounded-lg border border-gray-800 hover:border-gray-500 transition-all duration-300">
-                    <h3 className="text-2xl font-bold">{otherService.title}</h3>
-                    <div className="flex items-center my-8">
-                      <div className="h-38 w-3/4 mx-auto">
-                        <Image
-                          src={urlForSanitySource(otherService.thumb)
-                            .width(otherService.thumbWidth || 450)
-                            .url()}
-                          layout="intrinsic"
-                          width={otherService.thumbWidth || 450}
-                          height={otherService.thumbHeight || 300}
-                        />
-                      </div>
+          {relatedServicesToDisplay.map((otherService) => {
+            return (
+              <Link
+                key={otherService._id}
+                href={`/service/${otherService.slug?.current}`}
+              >
+                <a className="mx-auto lg:mx-0 my-2 py-12 flex flex-col justify-between max-w-xs rounded-lg border border-gray-800 hover:border-gray-500 transition-all duration-300">
+                  <h3 className="text-2xl font-bold">{otherService.title}</h3>
+                  <div className="flex items-center my-8">
+                    <div className="h-38 w-3/4 mx-auto">
+                      <Image
+                        src={urlForSanitySource(otherService.thumb)
+                          .width(otherService.thumbWidth || 450)
+                          .url()}
+                        layout="intrinsic"
+                        width={otherService.thumbWidth || 450}
+                        height={otherService.thumbHeight || 300}
+                      />
                     </div>
-                    <div>
-                      <BlockContent blocks={otherService.homeSummary} />
-                      <div className="mt-6">
-                        <p className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
-                          View Details
-                        </p>
-                      </div>
+                  </div>
+                  <div>
+                    <BlockContent blocks={otherService.homeSummary} />
+                    <div className="mt-6">
+                      <p className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
+                        View Details
+                      </p>
                     </div>
-                  </a>
-                </Link>
-              );
-            })}
+                  </div>
+                </a>
+              </Link>
+            );
+          })}
         </div>
         <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
       </div>
@@ -309,7 +315,18 @@ export async function getStaticProps(context) {
       `),
       service: await getClient().fetch(
         groq`
-        *[_type == "services" && slug.current == $slug][0]{_id, pageSections, slug, summary, thumb, thumbWidth, thumbHeight, title, poster}
+        *[_type == "services" && slug.current == $slug][0]{
+          _id,
+          pageSections,
+          slug,
+          summary,
+          thumb,
+          thumbWidth,
+          thumbHeight,
+          title,
+          poster,
+          related_services[]->
+        }
         `,
         { slug }
       ),

@@ -163,6 +163,17 @@ export default {
       },
     },
     {
+      name: 'related_services',
+      title: 'Related Services',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'services' }],
+        },
+      ],
+    },
+    {
       name: 'order',
       title: 'Order',
       type: 'number',
