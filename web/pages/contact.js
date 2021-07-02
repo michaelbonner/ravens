@@ -44,13 +44,13 @@ function Contact({ contact }) {
   }, [successContainer, state]);
 
   useEffect(() => {
-    const bgImage = urlForSanitySource(contact.poster);
+    const bgImage = urlForSanitySource(contact.poster).width(1600);
     document.querySelector(
       ".ui-header-and-content"
     ).style.backgroundImage = `url(${bgImage})`;
     document.querySelector(
       ".ui-header-and-content"
-    ).style.backgroundPosition = `center`;
+    ).style.backgroundPosition = `50% 25%`;
     document.querySelector(
       ".ui-header-and-content"
     ).style.backgroundSize = `cover`;
