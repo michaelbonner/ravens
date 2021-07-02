@@ -39,9 +39,9 @@ const About = (props) => {
                     <header>
                       <img
                         alt={person.name}
-                        src={urlForSanitySource(person.image).url()}
+                        src={urlForSanitySource(person.image).width(300).url()}
                       />
-                      <p className="uppercase text-gold tracking-wider font-bold mb-2">
+                      <p className="uppercase text-gold tracking-wider font-bold mb-2 mt-4">
                         {person.name}
                         <br />
                         {person.title}
