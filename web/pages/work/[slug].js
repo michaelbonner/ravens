@@ -135,7 +135,7 @@ const Project = (data, preview) => {
             </>
           )}
 
-          {behindTheScenes && behindTheScenes.length && (
+          {behindTheScenes && behindTheScenes.length > 0 && (
             <>
               <h2 className="font-bold text-3xl text-center my-12 uppercase">
                 BTS
