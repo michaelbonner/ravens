@@ -23,8 +23,8 @@ const heroContent = () => {
 };
 
 const Home = (props) => {
-  const { services = [] } = props;
   const { home = {} } = props;
+  const services = home.services || [];
 
   return (
     <Layout
@@ -104,11 +104,13 @@ const Home = (props) => {
 export async function getStaticProps(context) {
   return {
     props: {
-      services: await getClient().fetch(groq`
-        *[_type == "services"][0...3]|order(order asc)
-      `),
       home: await getClient().fetch(groq`
-        *[_type == "home"][0]
+        *[_type == "home"][0]{
+          poster,
+          heading,
+          text,
+          services[]->
+        }
       `),
     },
   };

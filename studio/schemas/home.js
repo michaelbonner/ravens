@@ -29,6 +29,17 @@ export default {
       title: 'Text',
       type: 'blockContent',
     },
+    {
+      name: 'services',
+      title: 'Services',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'services' }],
+        },
+      ],
+    },
   ],
   preview: {
     select: {
