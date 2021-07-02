@@ -110,8 +110,8 @@ function Contact({ contact }) {
                     }}
                   >
                     {({ isSubmitting, isValid }) => (
-                      <Form className="grid grid-cols-1 gap-y-6">
-                        <div className="border-gray-300 rounded-md bg-white relative">
+                      <Form className="grid grid-cols-1 gap-y-6 max-w-3xl mx-auto">
+                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
                           <Field
                             as="input"
                             name="name"
@@ -125,7 +125,7 @@ function Contact({ contact }) {
                           />
                         </div>
 
-                        <div className="border-gray-300 rounded-md bg-white relative">
+                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
                           <Field
                             as="input"
                             name="emailAddress"
@@ -139,7 +139,7 @@ function Contact({ contact }) {
                           />
                         </div>
 
-                        <div className="border-gray-300 rounded-md bg-white relative">
+                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
                           <Field
                             as="input"
                             name="phoneNumber"
@@ -153,13 +153,13 @@ function Contact({ contact }) {
                           />
                         </div>
 
-                        <div className="border-gray-300 rounded-md bg-white relative">
+                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
                           <Field
                             as="textarea"
                             name="message"
                             placeholder="Message"
                             rows="4"
-                            className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md"
+                            className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
                           />
                           <ErrorMessage
                             name="message"
@@ -170,7 +170,7 @@ function Contact({ contact }) {
 
                         <button
                           type="submit"
-                          className={`inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 hover:bg-gold hover:text-black transition-all
+                          className={`inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 bg-black bg-opacity-50 hover:bg-gold hover:text-black transition-all
                           ${isSubmitting || !isValid ? "opacity-50" : ""}
                         }`}
                           disabled={isSubmitting}
