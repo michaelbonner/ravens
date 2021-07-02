@@ -277,23 +277,10 @@ const Layout = ({
           </div>
 
           <div className="max-w-3xl mt-12 mx-auto flex items-center justify-center space-x-16">
-            <p className="text-gray-300 tracking-wider">AFFILIATE PARTNERS:</p>
-            <div className="flex space-x-4 items-center">
-              <a href="https://www.jmillsent.com/" className="w-32">
-                <Image
-                  src="/images/jme_logo_box.png"
-                  width="433"
-                  height="274"
-                />
-              </a>
-              <a href="https://film.utah.gov/" className="w-16">
-                <Image
-                  src="/images/utah-film-commision.png"
-                  width="148"
-                  height="148"
-                />
-              </a>
-            </div>
+            <p className="text-gray-300 tracking-wider">AFFILIATE STUDIO:</p>
+            <a href="https://www.jmillsent.com/" className="w-32">
+              <Image src="/images/jme_logo_box.png" width="433" height="274" />
+            </a>
           </div>
 
           <nav className="flex flex-wrap justify-center lg:justify-between max-w-3xl mx-auto pt-4">
