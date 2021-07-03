@@ -256,13 +256,11 @@ const Service = ({ services, service }) => {
                   <h3 className="text-2xl font-bold">{otherService.title}</h3>
                   <div className="flex items-center my-8">
                     <div className="h-38 w-3/4 mx-auto">
-                      <Image
+                      <img
+                        alt={otherService.title}
                         src={urlForSanitySource(otherService.thumb)
-                          .width(otherService.thumbWidth || 450)
+                          .width(450)
                           .url()}
-                        layout="intrinsic"
-                        width={otherService.thumbWidth || 450}
-                        height={otherService.thumbHeight || 300}
                       />
                     </div>
                   </div>
@@ -321,8 +319,6 @@ export async function getStaticProps(context) {
           slug,
           summary,
           thumb,
-          thumbWidth,
-          thumbHeight,
           title,
           poster,
           related_services[]->

@@ -44,13 +44,9 @@ const Services = (props) => {
                   </h3>
                   <div className="flex flex-1 items-center my-8">
                     <div className="h-38 w-3/4 mx-auto">
-                      <Image
-                        src={urlForSanitySource(service.thumb)
-                          .width(service.thumbWidth || 450)
-                          .url()}
-                        layout="intrinsic"
-                        width={service.thumbWidth || 450}
-                        height={service.thumbHeight || 300}
+                      <img
+                        alt={service.title}
+                        src={urlForSanitySource(service.thumb).width(450).url()}
                       />
                     </div>
                   </div>
