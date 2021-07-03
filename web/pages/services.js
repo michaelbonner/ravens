@@ -37,7 +37,7 @@ const Services = (props) => {
                 <a
                   className={`py-5 flex flex-col justify-between px-5 ${
                     index + 1 !== services.length ? `border-b-2` : ``
-                  } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-opacity-50 bg-gradient-to-t from-transparent to-transparent hover:to-gray-900`}
+                  } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
                 >
                   <h3 className="text-2xl font-bold lg:px-10">
                     {service.title}

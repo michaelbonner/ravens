@@ -10,7 +10,7 @@ import FourOhFour from "../404";
 const heroContent = (title) => {
   return (
     <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
+      <span className="text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8 bg-black bg-opacity-50">
         {title}
       </span>
     </h1>
@@ -245,39 +245,49 @@ const Service = ({ services, service }) => {
       </article>
       <div>
         <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
-        <div className="lg:flex lg:space-x-4 items-stretch justify-center text-center mt-6">
-          {relatedServicesToDisplay.map((otherService) => {
-            return (
-              <Link
-                key={otherService._id}
-                href={`/service/${otherService.slug?.current}`}
-              >
-                <a className="mx-auto lg:mx-0 my-2 py-12 flex flex-col justify-between max-w-xs rounded-lg border border-gray-800 hover:border-gray-500 transition-all duration-300">
-                  <h3 className="text-2xl font-bold">{otherService.title}</h3>
-                  <div className="flex items-center my-8">
-                    <div className="h-38 w-3/4 mx-auto">
-                      <img
-                        alt={otherService.title}
-                        src={urlForSanitySource(otherService.thumb)
-                          .width(450)
-                          .url()}
-                      />
+        <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
+          <div className="flex justify-center mx-auto space-x-6">
+            {relatedServicesToDisplay.map((otherService, index) => {
+              return (
+                <Link
+                  href={`/service/${otherService.slug?.current}`}
+                  key={otherService._id}
+                >
+                  <a
+                    className={`py-5 flex flex-col justify-between px-5 w-full sm:w-1/3 ${
+                      index + 1 !== relatedServicesToDisplay.length
+                        ? `border-b-2`
+                        : ``
+                    } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
+                  >
+                    <h3 className="text-2xl font-bold lg:px-10">
+                      {otherService.title}
+                    </h3>
+                    <div className="flex flex-1 items-center my-8">
+                      <div className="h-38 w-3/4 mx-auto">
+                        <img
+                          alt={otherService.title}
+                          src={urlForSanitySource(otherService.thumb)
+                            .width(450)
+                            .url()}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <BlockContent blocks={otherService.homeSummary} />
-                    <div className="mt-6">
-                      <p className="inline-block rounded-full font-bold uppercase tracking-wider border border-white pt-3 pb-2 px-8 hover:bg-gold hover:text-black transition-all">
-                        View Details
-                      </p>
+                    <div className="leading-8 text-sm mb-5">
+                      <BlockContent blocks={otherService.summary} />
                     </div>
-                  </div>
-                </a>
-              </Link>
-            );
-          })}
+
+                    <button className="rounded-full font-bold uppercase border border-white py-3 px-6 hover:bg-gold hover:text-black transition-all">
+                      All Options
+                    </button>
+                  </a>
+                </Link>
+              );
+            })}
+          </div>
+
+          <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
         </div>
-        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
       </div>
     </Layout>
   );
