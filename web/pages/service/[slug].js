@@ -6,6 +6,7 @@ import groq from "groq";
 import Link from "next/link";
 import Image from "next/image";
 import FourOhFour from "../404";
+import StandardHR from "../../components/standard-hr";
 
 const heroContent = (title) => {
   return (
@@ -35,7 +36,7 @@ const BannerBlocks = (section, index) => {
 };
 
 const GoldBarBlocks = (section, index) => {
-  return <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />;
+  return <StandardHR />;
 };
 
 const HighlightBlocks = (section, index) => {
@@ -286,7 +287,7 @@ const Service = ({ services, service }) => {
             })}
           </div>
 
-          <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
+          <StandardHR />
         </div>
       </div>
     </Layout>

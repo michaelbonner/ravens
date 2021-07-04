@@ -3,8 +3,8 @@ import { getClient } from "../lib/sanity";
 import groq from "groq";
 import urlForSanitySource from "../lib/urlForSanitySource";
 import Link from "next/link";
-import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
+import StandardHR from "../components/standard-hr";
 
 const heroContent = () => {
   return (
@@ -63,7 +63,7 @@ const Services = (props) => {
           })}
         </div>
 
-        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold my-16" />
+        <StandardHR />
       </div>
     </Layout>
   );

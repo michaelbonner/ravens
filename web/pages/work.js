@@ -4,6 +4,7 @@ import groq from "groq";
 import Link from "next/link";
 import urlForSanitySource from "../lib/urlForSanitySource";
 import { useState } from "react";
+import StandardHR from "../components/standard-hr";
 
 const gridColumnCount = (itemCount) => {
   if (itemCount > 6) {
@@ -105,7 +106,7 @@ const Work = (props) => {
         })}
       </div>
       <div className="container mx-auto">
-        <hr className="border border-gold mb-8 mt-12" />
+        <StandardHR />
       </div>
     </Layout>
   );

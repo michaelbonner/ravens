@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 import Layout from "../../components/layout";
-import { getClient, usePreviewSubscription } from "../../lib/sanity";
+import StandardHR from "../../components/standard-hr";
+import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
 
@@ -108,7 +109,7 @@ const Project = (data, preview) => {
                 </div>
               );
             })}
-            <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold mt-12" />
+            <StandardHR />
           </>
         )}
 
@@ -162,7 +163,7 @@ const Project = (data, preview) => {
           )}
         </div>
 
-        <hr className="border-t-2 w-full lg:w-96 mx-auto border-gold mt-20" />
+        <StandardHR />
       </article>
     </Layout>
   );

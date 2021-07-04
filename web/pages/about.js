@@ -4,7 +4,7 @@ import urlForSanitySource from "../lib/urlForSanitySource";
 import groq from "groq";
 import Link from "next/link";
 import BlockContent from "@sanity/block-content-to-react";
-import Image from "next/image";
+import StandardHR from "../components/standard-hr";
 
 const heroContent = () => {
   return (
@@ -54,13 +54,13 @@ const About = (props) => {
             </div>
           </section>
 
-          <hr className="border-t-2 w-full  mx-auto border-gold my-16" />
+          <StandardHR />
 
           <section className="md:px-32 mb-20 user-text">
             <BlockContent blocks={about.locations} />
           </section>
 
-          <hr className="border-t-2 w-full  mx-auto border-gold my-16" />
+          <StandardHR />
         </div>
       </div>
     </Layout>

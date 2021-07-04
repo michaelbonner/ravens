@@ -5,6 +5,7 @@ import { getClient } from "../lib/sanity";
 import groq from "groq";
 import BlockContent from "@sanity/block-content-to-react";
 import urlForSanitySource from "../lib/urlForSanitySource";
+import StandardHR from "../components/standard-hr";
 
 const heroContent = () => {
   return (
@@ -76,7 +77,7 @@ const Home = (props) => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <hr className="border border-gold my-8" />
+          <StandardHR />
 
           <div className="lg:pt-12">
             <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
@@ -90,7 +91,7 @@ const Home = (props) => {
             </p>
           </div>
 
-          <hr className="border border-gold my-8" />
+          <StandardHR />
         </div>
       </div>
     </Layout>
