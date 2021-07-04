@@ -1,10 +1,4 @@
 import Layout from "../components/layout";
-import { getClient } from "../lib/sanity";
-import urlForSanitySource from "../lib/urlForSanitySource";
-import groq from "groq";
-import Link from "next/link";
-
-import BlockContent from "@sanity/block-content-to-react";
 
 const FourOhFour = () => {
   return (

@@ -5,6 +5,7 @@ import { useState } from "react";
 import ReactPlayer from "react-player";
 import Layout from "../../components/layout";
 import StandardHR from "../../components/standard-hr";
+import WorkItem from "../../components/work-item";
 import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
@@ -15,6 +16,7 @@ const BackgroundFallback = ({ image }) => {
 
 const projectQuery = groq`
 *[_type == "project" && slug.current == $slug][0]{
+  _id,
   behindTheScenes,
   clientName,
   credits,
@@ -27,18 +29,12 @@ const projectQuery = groq`
 }
 `;
 
-const Project = (data, preview) => {
+const Project = ({ project = {}, projects = [] }) => {
   const [showVideo, setShowVideo] = useState(false);
   const router = useRouter();
-  if (!router.isFallback && !data.title) {
+  if (!router.isFallback && !project.title) {
     return <FourOhFour />;
   }
-
-  const { data: project } = usePreviewSubscription(projectQuery, {
-    params: { slug: data.slug?.current },
-    initialData: data,
-    enabled: preview,
-  });
 
   const {
     behindTheScenes = [],
@@ -49,8 +45,21 @@ const Project = (data, preview) => {
     poster = "",
     video_id = null,
     extraPaddingOnVideo = false,
-  } = data;
+  } = project;
   const fullTitle = clientName ? `${clientName} | ${title}` : title;
+
+  const currentProjectIndex = projects
+    .map(function (x) {
+      return x._id;
+    })
+    .indexOf(project._id);
+
+  const nextProjectIndex =
+    projects.length === currentProjectIndex + 1 ? 0 : currentProjectIndex + 1;
+  const nextProject = projects[nextProjectIndex];
+  const previousProjectIndex =
+    currentProjectIndex === 0 ? projects.length - 1 : currentProjectIndex - 1;
+  const previousProject = projects[previousProjectIndex];
 
   return (
     <Layout title={`${fullTitle} | RAVENS Special Film Tactics`}>
@@ -164,6 +173,20 @@ const Project = (data, preview) => {
         </div>
 
         <StandardHR />
+        <div className="mt-12 mb-24">
+          <h2 className="font-bold text-3xl text-center my-12 uppercase">
+            Other Work
+          </h2>
+          <div className="max-w-4xl mx-auto grid grid-cols-2 gap-x-12">
+            <div>
+              <WorkItem project={previousProject} />
+            </div>
+            <div>
+              <WorkItem project={nextProject} />
+            </div>
+          </div>
+        </div>
+        <StandardHR />
       </article>
     </Layout>
   );
@@ -188,19 +211,16 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params, preview = false }) {
+export async function getStaticProps({ params }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
   try {
-    const cmsData = await getClient(preview).fetch(projectQuery, { slug });
-    if (!cmsData) {
-      return {
-        preview,
-        props: {},
-      };
-    }
+    const projects = await getClient().fetch(groq`
+      *[_type == "project"]|order(order asc)
+    `);
+    const project = await getClient().fetch(projectQuery, { slug });
     return {
-      props: cmsData,
+      props: { project, projects },
     };
   } catch (error) {
     return {
