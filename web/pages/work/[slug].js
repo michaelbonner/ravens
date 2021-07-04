@@ -21,7 +21,8 @@ const projectQuery = groq`
   poster,
   slug,
   title,
-  video_id
+  video_id,
+  extraPaddingOnVideo
 }
 `;
 
@@ -46,6 +47,7 @@ const Project = (data, preview) => {
     title = "",
     poster = "",
     video_id = null,
+    extraPaddingOnVideo = false,
   } = data;
   const fullTitle = clientName ? `${clientName} | ${title}` : title;
 
@@ -61,7 +63,7 @@ const Project = (data, preview) => {
           <div
             className={`aspect-w-16 aspect-h-9 transition-all duration-700 ${
               showVideo ? `opacity-100` : `opacity-0`
-            }`}
+            }${extraPaddingOnVideo ? ` mt-12 lg:mt-28` : ``}`}
           >
             <ReactPlayer
               allow="autoplay; fullscreen; picture-in-picture"

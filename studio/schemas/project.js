@@ -39,7 +39,14 @@ export default {
       name: 'video_id',
       title: 'Video ID',
       type: 'string',
-      description: 'https://player.vimeo.com/video/{{video id}}?badge=0&autopause=0&player_id=0&app_id=58479',
+      description:
+        'Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
+    },
+    {
+      name: 'extraPaddingOnVideo',
+      title: 'Extra padding on video',
+      type: 'boolean',
+      description: 'Should we add a little padding to the top of the video?',
     },
     {
       name: 'poster',
