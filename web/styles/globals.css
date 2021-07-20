@@ -298,7 +298,7 @@ p {
 
 @media (min-width: 768px) {
   .bpd-hero {
-    min-height: 65vh;
+    min-height: 700px;
   }
 }
 
