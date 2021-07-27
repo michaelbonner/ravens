@@ -17,7 +17,7 @@
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^10.2.6",
-    "aws-sdk": "^2.939.0",
+    "aws-sdk": "^2.955.0",
     "formik": "^2.2.9",
     "groq": "^2.2.6",
     "next": "^11.0.1",
