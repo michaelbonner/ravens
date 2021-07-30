@@ -150,7 +150,7 @@ const Project = ({ project = {}, projects = [] }) => {
           {behindTheScenes && behindTheScenes.length > 0 && (
             <>
               <h2 className="font-bold text-3xl text-center my-12 uppercase">
-                BTS
+                Behind the Scenes
               </h2>
               <div className="lg:grid grid-cols-2 gap-12">
                 {behindTheScenes.map((image) => {
