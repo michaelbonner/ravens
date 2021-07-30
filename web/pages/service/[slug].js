@@ -218,7 +218,7 @@ const Service = ({ services, service }) => {
   if (!service) {
     return <FourOhFour />;
   }
-  const { pageSections, title, poster } = service;
+  const { pageSections, title, poster, video_id } = service;
 
   const relatedServices = service.related_services || [];
 
@@ -233,6 +233,11 @@ const Service = ({ services, service }) => {
     <Layout
       title={`${title} | RAVENS Special Film Tactics`}
       heroContent={heroContent(title)}
+      heroVideoUrl={
+        video_id
+          ? `https://player.vimeo.com/video/${video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
+          : ``
+      }
       heroImage={urlForSanitySource(poster).width(1600).url()}
     >
       <article className="container mx-auto">
@@ -315,28 +320,31 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
+
   const { slug = "" } = context.params;
+  const service = await getClient().fetch(
+    groq`
+    *[_type == "services" && slug.current == $slug][0]{
+      _id,
+      pageSections,
+      slug,
+      summary,
+      thumb,
+      title,
+      poster,
+      video_id,
+      related_services[]->
+    }
+    `,
+    { slug }
+  );
 
   return {
     props: {
       services: await getClient().fetch(groq`
         *[_type == "services"]|order(order asc)
       `),
-      service: await getClient().fetch(
-        groq`
-        *[_type == "services" && slug.current == $slug][0]{
-          _id,
-          pageSections,
-          slug,
-          summary,
-          thumb,
-          title,
-          poster,
-          related_services[]->
-        }
-        `,
-        { slug }
-      ),
+      service,
     },
   };
 }
