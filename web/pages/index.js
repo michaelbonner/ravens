@@ -32,7 +32,7 @@ const Home = (props) => {
       title="RAVENS | Special Film Tactics"
       heroContent={heroContent()}
       heroImage={urlForSanitySource(home.poster).url()}
-      heroVideoUrl={`https://player.vimeo.com/video/536021758?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
+      heroVideoUrl={`https://player.vimeo.com/video/${home.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
       fadeIn={true}
     >
       <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
@@ -103,6 +103,7 @@ export async function getStaticProps(context) {
     props: {
       home: await getClient().fetch(groq`
         *[_type == "home"][0]{
+          video_id,
           poster,
           heading,
           text,
