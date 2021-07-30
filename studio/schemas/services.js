@@ -26,6 +26,13 @@ export default {
       type: 'blockContent',
     },
     {
+      name: 'video_id',
+      title: 'Hero Video ID',
+      type: 'string',
+      description:
+        'Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
+    },
+    {
       name: 'poster',
       title: 'Poster Image',
       type: 'image',
