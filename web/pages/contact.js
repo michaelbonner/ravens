@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import "yup-phone";
 import Layout from "../components/layout";
-import Confetti from "react-confetti";
 import { getClient } from "../lib/sanity";
 import groq from "groq";
 import urlForSanitySource from "../lib/urlForSanitySource";
@@ -26,8 +25,6 @@ const contactSchema = Yup.object().shape({
 
 function Contact({ contact }) {
   const [state, setState] = useState("initial");
-  const [confettiWidth, setConfettiWidth] = useState(0);
-  const [confettiHeight, setConfettiHeight] = useState(0);
   const contactForm = {
     name: "",
     emailAddress: "",
@@ -35,13 +32,6 @@ function Contact({ contact }) {
     message: "",
   };
   const successContainer = useRef(null);
-
-  useEffect(() => {
-    if (successContainer.current) {
-      setConfettiWidth(successContainer.current.offsetWidth);
-      setConfettiHeight(successContainer.current.offsetHeight);
-    }
-  }, [successContainer, state]);
 
   useEffect(() => {
     const bgImage = urlForSanitySource(contact.poster).width(1600);
@@ -187,14 +177,6 @@ function Contact({ contact }) {
                     className="relative bg-blue-100 rounded-md shadow-md py-24 px-8 text-gray-900"
                     ref={successContainer}
                   >
-                    <div className="absolute inset-0 opacity-50 z-10">
-                      <Confetti
-                        gravity={0.03}
-                        height={confettiHeight}
-                        numberOfPieces={100}
-                        width={confettiWidth}
-                      />
-                    </div>
                     <h2 className="font-medium text-2xl relative z-20">
                       Thank you for contacting us!
                       <br />
