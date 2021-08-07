@@ -293,7 +293,8 @@ p {
 @media (max-width: 767px) {
   .bpd-hero {
     min-height: 50vh;
-    max-width: 100%;
+    @apply max-w-full;
+    @apply overflow-x-hidden;
   }
 }
 
