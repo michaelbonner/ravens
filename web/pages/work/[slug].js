@@ -63,7 +63,7 @@ const Project = ({ project = {}, projects = [] }) => {
 
   return (
     <Layout title={`${fullTitle} | RAVENS Special Film Tactics`}>
-      <article className="container mx-auto">
+      <article className="-mx-4">
         <div className="flex justify-center">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold">
             {fullTitle}
@@ -102,91 +102,96 @@ const Project = ({ project = {}, projects = [] }) => {
             src={urlForSanitySource(poster).width(1200).url()}
           />
         )}
-        {credits && credits.length > 0 && (
-          <>
-            <h2 className="font-bold text-3xl text-center my-12 uppercase">
-              Credits
-            </h2>
-            {credits.map((credit, index) => {
-              if (credit.role === "space") {
-                return <div key={index} className="h-4" />;
-              }
-              return (
-                <div className="grid grid-cols-2 gap-12 font-bold" key={index}>
-                  <div className="text-right">{credit.role}</div>
-                  <div>{credit.value}</div>
+        <div className="container mx-auto">
+          {credits && credits.length > 0 && (
+            <>
+              <h2 className="font-bold text-3xl text-center my-12 uppercase">
+                Credits
+              </h2>
+              {credits.map((credit, index) => {
+                if (credit.role === "space") {
+                  return <div key={index} className="h-4" />;
+                }
+                return (
+                  <div
+                    className="grid grid-cols-2 gap-12 font-bold"
+                    key={index}
+                  >
+                    <div className="text-right">{credit.role}</div>
+                    <div>{credit.value}</div>
+                  </div>
+                );
+              })}
+              <StandardHR />
+            </>
+          )}
+
+          <div className="max-w-7xl mx-auto">
+            {frames && frames.length > 0 && (
+              <>
+                <h2 className="font-bold text-3xl text-center my-12 uppercase">
+                  Frames
+                </h2>
+                <div className="lg:grid grid-cols-2 gap-12">
+                  {frames.map((image) => {
+                    return (
+                      <Image
+                        className="w-full overflow-hidden"
+                        key={image._key}
+                        width="717"
+                        height="300"
+                        src={urlForSanitySource(image)
+                          .width(717)
+                          .height(300)
+                          .url()}
+                      />
+                    );
+                  })}
                 </div>
-              );
-            })}
-            <StandardHR />
-          </>
-        )}
+              </>
+            )}
 
-        <div className="max-w-7xl mx-auto">
-          {frames && frames.length > 0 && (
-            <>
-              <h2 className="font-bold text-3xl text-center my-12 uppercase">
-                Frames
-              </h2>
-              <div className="lg:grid grid-cols-2 gap-12">
-                {frames.map((image) => {
-                  return (
-                    <Image
-                      className="w-full overflow-hidden"
-                      key={image._key}
-                      width="717"
-                      height="300"
-                      src={urlForSanitySource(image)
-                        .width(717)
-                        .height(300)
-                        .url()}
-                    />
-                  );
-                })}
+            {behindTheScenes && behindTheScenes.length > 0 && (
+              <>
+                <h2 className="font-bold text-3xl text-center my-12 uppercase">
+                  Behind the Scenes
+                </h2>
+                <div className="lg:grid grid-cols-2 gap-12">
+                  {behindTheScenes.map((image) => {
+                    return (
+                      <Image
+                        className="w-full overflow-hidden"
+                        key={image._key}
+                        width="717"
+                        height="300"
+                        src={urlForSanitySource(image)
+                          .width(717)
+                          .height(300)
+                          .url()}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </div>
+
+          <StandardHR />
+          <div className="mt-12 mb-24">
+            <h2 className="font-bold text-3xl text-center my-12 uppercase">
+              Other Work
+            </h2>
+            <div className="max-w-4xl mx-auto grid grid-cols-2 gap-x-12">
+              <div>
+                <WorkItem project={previousProject} />
               </div>
-            </>
-          )}
-
-          {behindTheScenes && behindTheScenes.length > 0 && (
-            <>
-              <h2 className="font-bold text-3xl text-center my-12 uppercase">
-                Behind the Scenes
-              </h2>
-              <div className="lg:grid grid-cols-2 gap-12">
-                {behindTheScenes.map((image) => {
-                  return (
-                    <Image
-                      className="w-full overflow-hidden"
-                      key={image._key}
-                      width="717"
-                      height="300"
-                      src={urlForSanitySource(image)
-                        .width(717)
-                        .height(300)
-                        .url()}
-                    />
-                  );
-                })}
+              <div>
+                <WorkItem project={nextProject} />
               </div>
-            </>
-          )}
-        </div>
-
-        <StandardHR />
-        <div className="mt-12 mb-24">
-          <h2 className="font-bold text-3xl text-center my-12 uppercase">
-            Other Work
-          </h2>
-          <div className="max-w-4xl mx-auto grid grid-cols-2 gap-x-12">
-            <div>
-              <WorkItem project={previousProject} />
-            </div>
-            <div>
-              <WorkItem project={nextProject} />
             </div>
           </div>
+          <StandardHR />
         </div>
-        <StandardHR />
       </article>
     </Layout>
   );
