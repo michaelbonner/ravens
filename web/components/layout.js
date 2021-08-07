@@ -182,7 +182,7 @@ const Layout = ({
             <meta name="theme-color" content="#967738" />
           </Head>
           {loadVideo && heroVideoUrl && (
-            <div className="bpd-hero-video-foreground absolute z-0 h-full w-full inset-0">
+            <div className="bpd-hero-foreground absolute z-0 h-full w-full inset-0">
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 controls={false}
@@ -211,13 +211,18 @@ const Layout = ({
           )}
 
           {heroImage && (
-            <div className="bpd-hero-image">
+            <div
+              className={`absolute z-0 h-full w-full inset-0 transition-opacity ${
+                videoPlaying ? `opacity-0` : `opacity-100`
+              }`}
+            >
               <img
-                className={`transition-opacity duration-500 absolute z-10 h-full w-full inset-0 ${
-                  videoPlaying ? `opacity-0` : `opacity-100`
-                }`}
+                className="h-full w-full object-cover"
                 src={heroImage}
-                alt=""
+                alt={title}
+                style={{
+                  pointerEvents: "none",
+                }}
               />
             </div>
           )}

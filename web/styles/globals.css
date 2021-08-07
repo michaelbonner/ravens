@@ -310,14 +310,14 @@ p {
 }
 
 @media (min-aspect-ratio: 4/3) {
-  .bpd-hero-video-foreground {
+  .bpd-hero-foreground {
     height: 300%;
     transform: translate3d(0, -33%, 0);
   }
 }
 
 @media (max-aspect-ratio: 4/3) {
-  .bpd-hero-video-foreground {
+  .bpd-hero-foreground {
     width: 300%;
     transform: translate3d(-33%, 0, 0);
   }
