@@ -293,6 +293,7 @@ p {
 @media (max-width: 767px) {
   .bpd-hero {
     min-height: 50vh;
+    max-width: 100%;
   }
 }
 
@@ -312,6 +313,7 @@ p {
   @apply z-0;
   @apply h-full;
   @apply w-full;
+  @apply max-w-full;
   @apply inset-0;
 }
 
