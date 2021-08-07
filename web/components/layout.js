@@ -112,6 +112,63 @@ const Layout = ({
           siteLoaded ? `opacity-100` : `opacity-0`
         } transition-opacity ease-in delay-300 duration-1000 ui-header-and-content`}
       >
+        <nav
+          className={`${
+            menuOpen ? "translate-x-0" : "translate-x-4 opacity-0"
+          } ${
+            menuVisible ? "fixed" : "hidden"
+          } inset-0 bg-black transform transition-all ease-in duration-300 z-50 text-right flex flex-col justify-center items-center`}
+        >
+          <button
+            className="w-12 h-8 focus:outline-none absolute top-4 right-4"
+            onClick={() => toggleMenu(!menuOpen)}
+          >
+            <span
+              className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
+                menuVisible ? "absolute" : "hidden"
+              } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
+            >
+              <Image
+                className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
+                src={`/images/menu-close.svg`}
+                layout="fill"
+              />
+            </span>
+          </button>
+          <Link href="/work">
+            <a
+              className={`relative group px-8 py-6 uppercase text-bold text-3xl md:text-4xl transition-all`}
+            >
+              <span className="relative z-10">Work</span>
+              <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+            </a>
+          </Link>
+          <Link href="/about">
+            <a
+              className={`relative group px-8 py-6 uppercase text-bold text-3xl md:text-4xl transition-all`}
+            >
+              <span className="relative z-10">About</span>
+              <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+            </a>
+          </Link>
+          <Link href="/services">
+            <a
+              className={`relative group px-8 py-6 uppercase text-bold text-3xl md:text-4xl transition-all`}
+            >
+              <span className="relative z-10">Services</span>
+              <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+            </a>
+          </Link>
+          <Link href="/contact">
+            <a
+              className={`relative group px-8 py-6 uppercase text-bold text-3xl md:text-4xl transition-all`}
+            >
+              <span className="relative z-10">Contact</span>
+              <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+            </a>
+          </Link>
+        </nav>
+
         <div
           className={`${
             heroContent || heroVideoUrl ? `bpd-hero ` : ``
@@ -187,62 +244,6 @@ const Layout = ({
                   </span>
                 </button>
               </div>
-            </div>
-            <div
-              className={`${
-                menuOpen ? "translate-x-0" : "translate-x-4 opacity-0"
-              } ${
-                menuVisible ? "fixed" : "hidden"
-              } inset-0 bg-black transform transition-all ease-in duration-300 z-40 text-right flex flex-col justify-center items-center`}
-            >
-              <button
-                className="w-12 h-8 focus:outline-none absolute top-4 right-4"
-                onClick={() => toggleMenu(!menuOpen)}
-              >
-                <span
-                  className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
-                    menuVisible ? "absolute" : "hidden"
-                  } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
-                >
-                  <Image
-                    className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
-                    src={`/images/menu-close.svg`}
-                    layout="fill"
-                  />
-                </span>
-              </button>
-              <Link href="/work">
-                <a
-                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                >
-                  <span className="relative z-10">Work</span>
-                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
-                </a>
-              </Link>
-              <Link href="/about">
-                <a
-                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                >
-                  <span className="relative z-10">About</span>
-                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
-                </a>
-              </Link>
-              <Link href="/services">
-                <a
-                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                >
-                  <span className="relative z-10">Services</span>
-                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
-                </a>
-              </Link>
-              <Link href="/contact">
-                <a
-                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                >
-                  <span className="relative z-10">Contact</span>
-                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
-                </a>
-              </Link>
             </div>
           </header>
 
