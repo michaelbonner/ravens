@@ -296,9 +296,14 @@ p {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1400px) {
   .bpd-hero {
     min-height: 600px;
+  }
+}
+@media (min-width: 1401px) {
+  .bpd-hero {
+    min-height: 700px;
   }
 }
 
