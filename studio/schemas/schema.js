@@ -9,6 +9,7 @@ import goldBar from './goldBar'
 import platformPayloadTable from './platformPayloadTable'
 import cameraPayloadTable from './cameraPayloadTable'
 import lensesPayloadTable from './lensesPayloadTable'
+import cameraResolutionAndFpsTable from './cameraResolutionAndFpsTable'
 
 import project from './project'
 import projects from './projects'
@@ -42,6 +43,7 @@ export default createSchema({
     goldBar,
     platformPayloadTable,
     cameraPayloadTable,
+    cameraResolutionAndFpsTable,
     lensesPayloadTable,
   ]),
 })

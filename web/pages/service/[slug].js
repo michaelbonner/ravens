@@ -147,6 +147,33 @@ const CameraTable = (section, index) => {
   );
 };
 
+const CameraResolutionAndFpsTable = (section, index) => {
+  return (
+    <div className="text-center max-w-md mx-auto mb-12">
+      <table className="min-w-full mt-8">
+        <thead>
+          <tr className="border-b">
+            <th className="text-sm pb-4 text-left">Resolution</th>
+            <th className="text-sm pb-4">FPS</th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.cameraResolutionAndFpsRows?.map((row) => {
+            return (
+              <tr key={row._key}>
+                <td className="pb-3 pt-3 text-xs text-left">
+                  {row.resolution}
+                </td>
+                <td className="pb-3 pt-3 text-xs">{row.fps}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
 const LensesTable = (section, index) => {
   return (
     <div className="text-center max-w-5xl mx-auto mb-12">
@@ -210,6 +237,8 @@ const Blocks = {
   highlight: (section, index) => HighlightBlocks(section, index),
   platformPayloadTable: (section, index) => PlatformTable(section, index),
   cameraPayloadTable: (section, index) => CameraTable(section, index),
+  cameraResolutionAndFpsTable: (section, index) =>
+    CameraResolutionAndFpsTable(section, index),
   lensesPayloadTable: (section, index) => LensesTable(section, index),
   payloadContent: (section, index) => RemExtPayloadContent(section, index),
 };

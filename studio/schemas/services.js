@@ -62,6 +62,7 @@ export default {
         { type: 'goldBar' },
         { type: 'platformPayloadTable' },
         { type: 'cameraPayloadTable' },
+        { type: 'cameraResolutionAndFpsTable' },
         { type: 'lensesPayloadTable' },
         {
           name: 'banner',
