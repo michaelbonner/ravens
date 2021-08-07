@@ -72,12 +72,12 @@ const Layout = ({
       styles.left = 0;
       styles.height = "100%";
     }
-    if (heroImage) {
-      styles.backgroundImage = `url(${heroImage})`;
-      styles.backgroundPosition = `center center`;
-      styles.backgroundRepeat = `no-repeat`;
-      styles.backgroundSize = `cover`;
-    }
+    // if (heroImage) {
+    //   styles.backgroundImage = `url(${heroImage})`;
+    //   styles.backgroundPosition = `center center`;
+    //   styles.backgroundRepeat = `no-repeat`;
+    //   styles.backgroundSize = `cover`;
+    // }
 
     if (videoPlaying) {
       styles.backgroundImage = "";
@@ -182,7 +182,7 @@ const Layout = ({
             <meta name="theme-color" content="#967738" />
           </Head>
           {loadVideo && heroVideoUrl && (
-            <div className="bpd-hero-video-foreground">
+            <div className="bpd-hero-video-foreground absolute z-0 h-full w-full inset-0">
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 controls={false}
@@ -206,6 +206,18 @@ const Layout = ({
                 title="Ravens Film Works"
                 url={heroVideoUrl}
                 width={`100%`}
+              />
+            </div>
+          )}
+
+          {heroImage && (
+            <div className="bpd-hero-image">
+              <img
+                className={`transition-opacity duration-500 absolute z-10 h-full w-full inset-0 ${
+                  videoPlaying ? `opacity-0` : `opacity-100`
+                }`}
+                src={heroImage}
+                alt=""
               />
             </div>
           )}

@@ -309,14 +309,6 @@ p {
   }
 }
 
-.bpd-hero-video-foreground {
-  @apply absolute;
-  @apply z-0;
-  @apply h-full;
-  @apply w-full;
-  @apply inset-0;
-}
-
 @media (min-aspect-ratio: 4/3) {
   .bpd-hero-video-foreground {
     height: 300%;
