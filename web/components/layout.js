@@ -93,6 +93,18 @@ const Layout = ({
     }, 300);
   }, []);
 
+  useEffect(() => {
+    const handleRouteChangeComplete = () => {
+      setMenuVisible(false);
+      setMenuOpen(false);
+    };
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    };
+  }, [router]);
+
   return (
     <>
       <div
@@ -202,7 +214,6 @@ const Layout = ({
               <Link href="/work">
                 <a
                   className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                  onClick={() => toggleMenu(!menuOpen)}
                 >
                   <span className="relative z-10">Work</span>
                   <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
@@ -211,7 +222,6 @@ const Layout = ({
               <Link href="/about">
                 <a
                   className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                  onClick={() => toggleMenu(!menuOpen)}
                 >
                   <span className="relative z-10">About</span>
                   <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
@@ -220,7 +230,6 @@ const Layout = ({
               <Link href="/services">
                 <a
                   className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                  onClick={() => toggleMenu(!menuOpen)}
                 >
                   <span className="relative z-10">Services</span>
                   <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
@@ -229,7 +238,6 @@ const Layout = ({
               <Link href="/contact">
                 <a
                   className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
-                  onClick={() => toggleMenu(!menuOpen)}
                 >
                   <span className="relative z-10">Contact</span>
                   <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
