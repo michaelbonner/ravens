@@ -313,7 +313,6 @@ p {
   @apply z-0;
   @apply h-full;
   @apply w-full;
-  @apply max-w-full;
   @apply inset-0;
 }
 
