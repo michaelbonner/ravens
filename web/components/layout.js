@@ -163,17 +163,6 @@ const Layout = ({
                   onClick={() => toggleMenu(!menuOpen)}
                 >
                   <span
-                    className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
-                      menuVisible ? "absolute" : "hidden"
-                    } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
-                  >
-                    <Image
-                      className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
-                      src={`/images/menu-close.svg`}
-                      layout="fill"
-                    />
-                  </span>
-                  <span
                     className={`${!menuOpen ? "opacity-100" : "opacity-0"} ${
                       !menuVisible ? "absolute" : "hidden"
                     } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
@@ -185,45 +174,67 @@ const Layout = ({
                     />
                   </span>
                 </button>
-                <div
-                  className={`${
-                    menuOpen
-                      ? "translate-x-0 opacity-90"
-                      : "translate-x-4 opacity-0"
-                  } ${
-                    menuVisible ? "absolute" : "hidden"
-                  } bg-black bg-opacity-25 transform transition-all ease-in duration-300 z-40 right-0 top-14 text-right`}
-                >
-                  <Link href="/work">
-                    <a
-                      className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
-                    >
-                      Work
-                    </a>
-                  </Link>
-                  <Link href="/about">
-                    <a
-                      className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
-                    >
-                      About
-                    </a>
-                  </Link>
-                  <Link href="/services">
-                    <a
-                      className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
-                    >
-                      Services
-                    </a>
-                  </Link>
-                  <Link href="/contact">
-                    <a
-                      className={`px-4 bg-black bg-opacity-0 hover:bg-opacity-50 block transform py-5 uppercase text-bold text-xl transition-all`}
-                    >
-                      Contact
-                    </a>
-                  </Link>
-                </div>
               </div>
+            </div>
+            <div
+              className={`${
+                menuOpen ? "translate-x-0" : "translate-x-4 opacity-0"
+              } ${
+                menuVisible ? "fixed" : "hidden"
+              } inset-0 bg-black transform transition-all ease-in duration-300 z-40 text-right flex flex-col justify-center items-center`}
+            >
+              <button
+                className="w-12 h-8 focus:outline-none absolute top-4 right-4"
+                onClick={() => toggleMenu(!menuOpen)}
+              >
+                <span
+                  className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
+                    menuVisible ? "absolute" : "hidden"
+                  } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
+                >
+                  <Image
+                    className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
+                    src={`/images/menu-close.svg`}
+                    layout="fill"
+                  />
+                </span>
+              </button>
+              <Link href="/work">
+                <a
+                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
+                  onClick={() => toggleMenu(!menuOpen)}
+                >
+                  <span className="relative z-10">Work</span>
+                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+                </a>
+              </Link>
+              <Link href="/about">
+                <a
+                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
+                  onClick={() => toggleMenu(!menuOpen)}
+                >
+                  <span className="relative z-10">About</span>
+                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+                </a>
+              </Link>
+              <Link href="/services">
+                <a
+                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
+                  onClick={() => toggleMenu(!menuOpen)}
+                >
+                  <span className="relative z-10">Services</span>
+                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+                </a>
+              </Link>
+              <Link href="/contact">
+                <a
+                  className={`relative group px-8 py-6 uppercase text-bold text-xl md:text-4xl transition-all`}
+                  onClick={() => toggleMenu(!menuOpen)}
+                >
+                  <span className="relative z-10">Contact</span>
+                  <span className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 bottom-10 left-0 right-0 h-1 w-full bg-gold"></span>
+                </a>
+              </Link>
             </div>
           </header>
 
