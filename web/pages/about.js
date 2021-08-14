@@ -24,6 +24,11 @@ const About = (props) => {
       title="About | RAVENS"
       heroContent={heroContent()}
       heroImage={urlForSanitySource(about.poster).url()}
+      heroVideoUrl={
+        about.video_id
+          ? `https://player.vimeo.com/video/${about.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
+          : null
+      }
     >
       <div className="container mx-auto text-center">
         <div className="max-w-5xl mx-auto mt-16">
@@ -73,6 +78,7 @@ export async function getStaticProps() {
       about: await getClient().fetch(groq`
         *[_type == "about"][0]{
           title,
+          video_id,
           poster,
           text,
           locations,

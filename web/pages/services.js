@@ -25,6 +25,11 @@ const Services = (props) => {
       title="Services | RAVENS"
       heroContent={heroContent()}
       heroImage={urlForSanitySource(servicePage.poster).url()}
+      heroVideoUrl={
+        servicePage.video_id
+          ? `https://player.vimeo.com/video/${servicePage.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
+          : null
+      }
     >
       <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -73,6 +78,7 @@ export async function getStaticProps() {
   const servicePage = await getClient().fetch(groq`
   *[_type == "services-page"][0]{
     title,
+    video_id,
     poster
   }
 `);
