@@ -48,6 +48,7 @@ const Layout = ({
   const [loadVideo, setLoadVideo] = useState(false);
   const heroRef = useRef(null);
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [hoveredMenuItem, setHoveredMenuItem] = useState("");
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -137,44 +138,76 @@ const Layout = ({
           </button>
           <Link href="/work">
             <a
-              className={`relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all w-64 text-center`}
+              className={`${
+                !hoveredMenuItem || hoveredMenuItem === "/work"
+                  ? "text-white"
+                  : "text-gray-400"
+              } relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all duration-700 w-64 text-center`}
+              onMouseEnter={() => setHoveredMenuItem("/work")}
+              onMouseLeave={() => setHoveredMenuItem("")}
             >
               <span className="relative z-10">Work</span>
               <span
-                className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 left-0 right-0 h-1 w-full bg-gold"
+                className={`${
+                  hoveredMenuItem === "/work" ? "w-full" : "w-0"
+                } transition-all delay-500 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
                 style={{ bottom: "calc(50% - 1px)" }}
               ></span>
             </a>
           </Link>
           <Link href="/about">
             <a
-              className={`relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all w-64 text-center`}
+              className={`${
+                !hoveredMenuItem || hoveredMenuItem === "/about"
+                  ? "text-white"
+                  : "text-gray-400"
+              } relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all duration-700 w-64 text-center`}
+              onMouseEnter={() => setHoveredMenuItem("/about")}
+              onMouseLeave={() => setHoveredMenuItem("")}
             >
               <span className="relative z-10">About</span>
               <span
-                className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 left-0 right-0 h-1 w-full bg-gold"
+                className={`${
+                  hoveredMenuItem === "/about" ? "w-full" : "w-0"
+                } transition-all delay-500 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
                 style={{ bottom: "calc(50% - 1px)" }}
               ></span>
             </a>
           </Link>
           <Link href="/services">
             <a
-              className={`relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all w-64 text-center`}
+              className={`${
+                !hoveredMenuItem || hoveredMenuItem === "/services"
+                  ? "text-white"
+                  : "text-gray-400"
+              } relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all duration-700 w-64 text-center`}
+              onMouseEnter={() => setHoveredMenuItem("/services")}
+              onMouseLeave={() => setHoveredMenuItem("")}
             >
               <span className="relative z-10">Services</span>
               <span
-                className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 left-0 right-0 h-1 w-full bg-gold"
+                className={`${
+                  hoveredMenuItem === "/services" ? "w-full" : "w-0"
+                } transition-all delay-200 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
                 style={{ bottom: "calc(50% - 1px)" }}
               ></span>
             </a>
           </Link>
           <Link href="/contact">
             <a
-              className={`relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all w-64 text-center`}
+              className={`${
+                !hoveredMenuItem || hoveredMenuItem === "/contact"
+                  ? "text-white"
+                  : "text-gray-400"
+              } relative group py-6 uppercase text-bold text-3xl md:text-4xl transition-all duration-700 w-64 text-center`}
+              onMouseEnter={() => setHoveredMenuItem("/contact")}
+              onMouseLeave={() => setHoveredMenuItem("")}
             >
               <span className="relative z-10">Contact</span>
               <span
-                className="transition-all bg-opacity-0 group-hover:bg-opacity-100 absolute z-0 left-0 right-0 h-1 w-full bg-gold"
+                className={`${
+                  hoveredMenuItem === "/contact" ? "w-full" : "w-0"
+                } transition-all delay-500 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
                 style={{ bottom: "calc(50% - 1px)" }}
               ></span>
             </a>
