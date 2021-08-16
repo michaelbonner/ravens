@@ -10,7 +10,7 @@ import StandardHR from "../components/standard-hr";
 const heroContent = () => {
   return (
     <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="w-80 lg:w-1/3 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
+      <span className="w-64 lg:w-1/3 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
         <img
           alt="SLC X KAUAI"
           height="300"
