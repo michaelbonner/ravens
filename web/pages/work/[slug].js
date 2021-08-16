@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import groq from "groq";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -11,7 +12,7 @@ import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
 
 const BackgroundFallback = ({ image }) => {
-  return <img className="w-full" src={image} />;
+  return <img alt="Background" className="w-full" src={image} />;
 };
 
 const projectQuery = groq`
@@ -98,6 +99,7 @@ const Project = ({ project = {}, projects = [] }) => {
           </div>
         ) : (
           <img
+            alt="Poster image"
             className="w-full mt-14"
             src={urlForSanitySource(poster).width(1200).url()}
           />
@@ -133,17 +135,18 @@ const Project = ({ project = {}, projects = [] }) => {
                   Frames
                 </h2>
                 <div className="lg:grid grid-cols-2 gap-12">
-                  {frames.map((image) => {
+                  {frames.map((image, index) => {
                     return (
                       <Image
+                        alt={`frames ${index + 1}`}
                         className="w-full overflow-hidden"
-                        key={image._key}
-                        width="717"
                         height="300"
+                        key={image._key}
                         src={urlForSanitySource(image)
                           .width(717)
                           .height(300)
                           .url()}
+                        width="717"
                       />
                     );
                   })}
@@ -157,17 +160,18 @@ const Project = ({ project = {}, projects = [] }) => {
                   Behind the Scenes
                 </h2>
                 <div className="lg:grid grid-cols-2 gap-12">
-                  {behindTheScenes.map((image) => {
+                  {behindTheScenes.map((image, index) => {
                     return (
                       <Image
+                        alt={`behind the scenes ${index + 1}`}
                         className="w-full overflow-hidden"
-                        key={image._key}
-                        width="717"
                         height="300"
+                        key={image._key}
                         src={urlForSanitySource(image)
                           .width(717)
                           .height(300)
                           .url()}
+                        width="717"
                       />
                     );
                   })}

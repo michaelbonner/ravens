@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -130,7 +131,7 @@ const Layout = ({
             <button
               className="w-12 h-8 focus:outline-none absolute top-4 right-4 lg:right-0"
               onClick={() => toggleMenu(!menuOpen)}
-              ariaLabel="Close menu"
+              aria-label="Close menu"
             >
               <span
                 className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
@@ -284,9 +285,9 @@ const Layout = ({
               }`}
             >
               <img
+                alt={title}
                 className="h-full w-full object-cover"
                 src={heroImage}
-                alt={title}
                 style={{
                   pointerEvents: "none",
                 }}
@@ -314,7 +315,7 @@ const Layout = ({
                 <button
                   className="w-12 h-8 focus:outline-none relative"
                   onClick={() => toggleMenu(!menuOpen)}
-                  ariaLabel="Open menu"
+                  aria-label="Open menu"
                 >
                   <span
                     className={`${!menuOpen ? "opacity-100" : "opacity-0"} ${
@@ -387,7 +388,12 @@ const Layout = ({
         <div className="max-w-3xl mt-12 mx-auto flex items-center justify-center space-x-16">
           <p className="text-gray-300 tracking-wider">AFFILIATE STUDIO:</p>
           <a href="https://www.jmillsent.com/" className="w-32">
-            <Image src="/images/jme_logo_box.png" width="433" height="274" />
+            <Image
+              alt="JmillsENT"
+              height="274"
+              src="/images/jme_logo_box.png"
+              width="433"
+            />
           </a>
         </div>
 

@@ -56,7 +56,7 @@ function Contact({ contact }) {
         ".ui-header-and-content"
       ).style.backgroundSize = ``;
     };
-  }, []);
+  }, [contact.poster]);
 
   return (
     <Layout title="Contact | RAVENS">

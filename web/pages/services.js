@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Layout from "../components/layout";
 import { getClient } from "../lib/sanity";
 import groq from "groq";

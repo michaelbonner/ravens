@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Layout from "../../components/layout";
 import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
@@ -282,7 +283,7 @@ const Service = ({ services, service }) => {
       </article>
       <div>
         <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
-        <div className="text-center max-w-5xl pt-12 mt-6 lg:mx-8 lg:mx-auto">
+        <div className="text-center max-w-5xl pt-12 mt-6 lg:mx-auto">
           <div className="flex justify-center mx-auto space-x-6 flex-wrap">
             {relatedServicesToDisplay.map((otherService, index) => {
               return (
