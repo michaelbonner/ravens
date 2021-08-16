@@ -177,7 +177,7 @@ const Project = ({ project = {}, projects = [] }) => {
           </div>
 
           <StandardHR />
-          <div className="mt-12 mb-24">
+          <div className="mt-12 mb-24 mx-4 lg:mx-0">
             <h2 className="font-bold text-3xl text-center my-12 uppercase">
               Other Work
             </h2>

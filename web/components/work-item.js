@@ -18,9 +18,11 @@ const WorkItem = ({ project, gridColumnsCount = 2 }) => {
       <a
         className={`relative w-full text-right flex justify-end items-end transition-all duration-500 aspect-w-16 aspect-h-6 ${aspectHeight}`}
         style={{
-          background: `url(${urlForSanitySource(project.poster)
+          backgroundImage: `url(${urlForSanitySource(project.poster)
             .width(1200)
-            .url()}) center center no-repeat`,
+            .url()})`,
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
           backgroundSize: hovered ? "100%" : "105%",
         }}
         onMouseEnter={() => setHovered(true)}
