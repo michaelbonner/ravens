@@ -384,16 +384,14 @@ const Layout = ({
           </a>
         </div>
 
-        <nav className="flex flex-wrap justify-center lg:justify-between max-w-3xl mx-auto pt-4">
+        <nav className="flex flex-wrap justify-center max-w-3xl mx-auto pt-4">
           {navLinks.map((navLink) => {
             return (
               <Link key={navLink.path} href={navLink.path}>
                 <a
-                  className={
-                    router.pathname === navLink.path
-                      ? `text-gold px-4 outline-none transform py-6 uppercase text-bold`
-                      : `px-4 outline-none transform py-6 uppercase text-bold`
-                  }
+                  className={`${
+                    router.pathname === navLink.path ? `text-gold ` : ``
+                  } px-6 outline-none transform pt-6 uppercase text-bold`}
                 >
                   {navLink.title}
                 </a>
@@ -402,7 +400,7 @@ const Layout = ({
           })}
         </nav>
 
-        <div className="max-w-5xl mx-auto text-center text-gray-300">
+        <div className="mt-8 max-w-5xl mx-auto text-center text-gray-300">
           <p className="py-8">
             &copy; RAVENS FILM WORKS {new Date().getFullYear()}
           </p>

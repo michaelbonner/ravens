@@ -11,7 +11,7 @@ import StandardHR from "../../components/standard-hr";
 const heroContent = (title) => {
   return (
     <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8 bg-black bg-opacity-50">
+      <span className="text-3xl lg:text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8 bg-black bg-opacity-50">
         {title}
       </span>
     </h1>
@@ -280,8 +280,8 @@ const Service = ({ services, service }) => {
       </article>
       <div>
         <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
-        <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
-          <div className="flex justify-center mx-auto space-x-6">
+        <div className="text-center max-w-5xl pt-12 mt-6 lg:mx-8 lg:mx-auto">
+          <div className="flex justify-center mx-auto space-x-6 flex-wrap">
             {relatedServicesToDisplay.map((otherService, index) => {
               return (
                 <Link
@@ -289,7 +289,7 @@ const Service = ({ services, service }) => {
                   key={otherService._id}
                 >
                   <a
-                    className={`py-5 flex flex-col justify-between px-5 w-full sm:w-1/3 ${
+                    className={`mb-8 lg:mb-0 py-8 lg:py-5 flex flex-col justify-between px-5 w-full sm:w-1/3 ${
                       index + 1 !== relatedServicesToDisplay.length
                         ? `border-b-2`
                         : ``
