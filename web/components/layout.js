@@ -130,6 +130,7 @@ const Layout = ({
             <button
               className="w-12 h-8 focus:outline-none absolute top-4 right-4 lg:right-0"
               onClick={() => toggleMenu(!menuOpen)}
+              ariaLabel="Close menu"
             >
               <span
                 className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
@@ -138,6 +139,7 @@ const Layout = ({
                 style={{ width: "48px", height: "32px" }}
               >
                 <Image
+                  alt="Close menu"
                   className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
                   src={`/images/menu-close.svg`}
                   layout="fill"
@@ -312,6 +314,7 @@ const Layout = ({
                 <button
                   className="w-12 h-8 focus:outline-none relative"
                   onClick={() => toggleMenu(!menuOpen)}
+                  ariaLabel="Open menu"
                 >
                   <span
                     className={`${!menuOpen ? "opacity-100" : "opacity-0"} ${
@@ -319,6 +322,7 @@ const Layout = ({
                     } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
                   >
                     <Image
+                      alt="Open menu"
                       className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
                       src={`/images/menu.svg`}
                       layout="fill"

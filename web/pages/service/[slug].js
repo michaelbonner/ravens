@@ -23,6 +23,7 @@ const BannerBlocks = (section, index) => {
     <div>
       <div className="relative mb-12">
         <img
+          alt={section.text}
           className="w-full"
           src={urlForSanitySource(section.image).height(600).url()}
         />
@@ -44,6 +45,7 @@ const HighlightBlocks = (section, index) => {
     <div className="text-center max-w-5xl mx-auto mb-12">
       <div className="relative mb-6">
         <img
+          alt={section.heading}
           src={urlForSanitySource(section.image).width(500).url()}
           className="mx-auto"
         />
