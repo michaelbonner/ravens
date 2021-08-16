@@ -292,8 +292,8 @@ const Layout = ({
             <Link href="/">
               <a className="w-1/2 lg:w-72">
                 <Image
-                  width="300"
-                  height="100"
+                  width="270"
+                  height="90"
                   src="/images/ravens-logo-white.svg"
                   alt="Ravens Logo"
                 />
