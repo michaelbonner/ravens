@@ -95,6 +95,18 @@ const Layout = ({
   }, []);
 
   useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "inherit";
+    }
+
+    return () => {
+      document.body.style.overflow = "inherit";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
     const handleRouteChangeComplete = () => {
       setMenuVisible(false);
       setMenuOpen(false);
@@ -113,29 +125,34 @@ const Layout = ({
           siteLoaded ? `opacity-100` : `opacity-0`
         } transition-opacity ease-in delay-300 duration-1000 ui-header-and-content`}
       >
+        <div className="absolute w-full top-12 lg:top-16">
+          <div className="relative z-50 lg:container mx-auto flex justify-end items-center overflow-visible">
+            <button
+              className="w-12 h-8 focus:outline-none absolute top-4 right-4 lg:right-0"
+              onClick={() => toggleMenu(!menuOpen)}
+            >
+              <span
+                className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
+                  menuVisible ? "absolute" : "hidden"
+                } top-0 right-0 transform transition-all ease-in delay-500 duration-300`}
+                style={{ width: "48px", height: "32px" }}
+              >
+                <Image
+                  className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
+                  src={`/images/menu-close.svg`}
+                  layout="fill"
+                />
+              </span>
+            </button>
+          </div>
+        </div>
         <nav
           className={`${
             menuOpen ? "translate-x-0" : "translate-x-4 opacity-0"
           } ${
             menuVisible ? "fixed" : "hidden"
-          } inset-0 bg-black transform transition-all ease-in duration-300 z-50 text-right flex flex-col justify-center items-center`}
+          } inset-0 bg-black transform transition-all ease-in duration-300 z-40 text-right flex flex-col justify-center items-center`}
         >
-          <button
-            className="w-12 h-8 focus:outline-none absolute top-4 right-4"
-            onClick={() => toggleMenu(!menuOpen)}
-          >
-            <span
-              className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
-                menuVisible ? "absolute" : "hidden"
-              } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
-            >
-              <Image
-                className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
-                src={`/images/menu-close.svg`}
-                layout="fill"
-              />
-            </span>
-          </button>
           <Link href="/work">
             <a
               className={`${
@@ -150,7 +167,7 @@ const Layout = ({
               <span
                 className={`${
                   hoveredMenuItem === "/work" ? "w-full" : "w-0"
-                } transition-all delay-500 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
+                } transition-all delay-200 duration-500 absolute z-0 left-0 right-0 h-1 bg-gold`}
                 style={{ bottom: "calc(50% - 1px)" }}
               ></span>
             </a>
@@ -169,7 +186,7 @@ const Layout = ({
               <span
                 className={`${
                   hoveredMenuItem === "/about" ? "w-full" : "w-0"
-                } transition-all delay-500 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
+                } transition-all delay-200 duration-500 absolute z-0 left-0 right-0 h-1 bg-gold`}
                 style={{ bottom: "calc(50% - 1px)" }}
               ></span>
             </a>
@@ -207,7 +224,7 @@ const Layout = ({
               <span
                 className={`${
                   hoveredMenuItem === "/contact" ? "w-full" : "w-0"
-                } transition-all delay-500 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
+                } transition-all delay-200 duration-500 absolute z-0 left-0 right-0 h-1 bg-gold`}
                 style={{ bottom: "calc(50% - 1px)" }}
               ></span>
             </a>
