@@ -242,6 +242,9 @@ const Layout = ({
             <title>{title}</title>
             <link rel="icon" href="/favicon.ico" />
             <meta name="theme-color" content="#967738" />
+            <link rel="preconnect" href="https://player.vimeo.com" />
+            <link rel="preconnect" href="https://i.vimeocdn.com" />
+            <link rel="preconnect" href="https://f.vimeocdn.com" />
           </Head>
           {loadVideo && heroVideoUrl && (
             <div className="bpd-hero-foreground absolute z-0 h-full w-full inset-0">
