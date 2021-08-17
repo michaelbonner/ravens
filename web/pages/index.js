@@ -41,7 +41,7 @@ const Home = (props) => {
       }
     >
       <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-10 lg:gap-y-20">
           {services.map((service, index) => {
             return (
               <Link
@@ -51,11 +51,9 @@ const Home = (props) => {
                 <a
                   className={`py-12 flex flex-col justify-between ${
                     index + 1 !== services.length ? `border-b-2` : ``
-                  } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
+                  } lg:border-0 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700 rounded-md`}
                 >
-                  <h2 className="text-3xl font-bold lg:px-10">
-                    {service.title}
-                  </h2>
+                  <h2 className="text-2xl font-bold">{service.title}</h2>
                   <div className="flex flex-1 items-center my-8">
                     <div className="h-38 w-3/4 mx-auto">
                       <img
@@ -76,7 +74,7 @@ const Home = (props) => {
         <div className="py-8 mt-8">
           <Link href="/services">
             <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
-              All Options
+              All Services
             </a>
           </Link>
         </div>
@@ -90,7 +88,7 @@ const Home = (props) => {
             <p className="py-12">
               <Link href="/about">
                 <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
-                  Learn More
+                  Learn More About RAVENS
                 </a>
               </Link>
             </p>

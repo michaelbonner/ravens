@@ -286,7 +286,7 @@ const Service = ({ services, service }) => {
       <div>
         <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
         <div className="text-center max-w-5xl pt-12 mt-6 lg:mx-auto">
-          <div className="flex justify-center mx-auto space-x-6 flex-wrap">
+          <div className="flex justify-center mx-auto space-x-16 flex-wrap">
             {relatedServicesToDisplay.map((otherService, index) => {
               return (
                 <Link
@@ -298,7 +298,7 @@ const Service = ({ services, service }) => {
                       index + 1 !== relatedServicesToDisplay.length
                         ? `border-b-2`
                         : ``
-                    } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
+                    } lg:border-0 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700 rounded-md`}
                   >
                     <h3 className="text-2xl font-bold lg:px-10">
                       {otherService.title}

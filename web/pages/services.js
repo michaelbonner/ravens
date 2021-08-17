@@ -37,7 +37,7 @@ const Services = (props) => {
       }
     >
       <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-10 lg:gap-y-20">
           {sortedServices.map((service, index) => {
             return (
               <Link
@@ -47,12 +47,10 @@ const Services = (props) => {
                 <a
                   className={`py-5 flex flex-col justify-between px-5 ${
                     index + 1 !== services.length ? `border-b-2` : ``
-                  } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
+                  } lg:border-b-0 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700 rounded-md`}
                 >
-                  <h3 className="text-2xl font-bold lg:px-10">
-                    {service.title}
-                  </h3>
-                  <div className="flex flex-1 items-center my-8">
+                  <h3 className="text-2xl font-bold">{service.title}</h3>
+                  <div className="flex flex-1 items-center my-4">
                     <div className="h-38 w-3/4 mx-auto">
                       <img
                         alt={service.title}
