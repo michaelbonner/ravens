@@ -12,6 +12,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'seo_title',
+      title: 'SEO Title',
+      type: 'string',
+    },
+    {
+      name: 'seo_description',
+      title: 'SEO Description',
+      type: 'string',
+    },
+    {
       name: 'video_id',
       title: 'Hero Video ID',
       type: 'string',

@@ -12,6 +12,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'seo_title',
+      title: 'SEO Title',
+      type: 'string',
+    },
+    {
+      name: 'seo_description',
+      title: 'SEO Description',
+      type: 'string',
+    },
+    {
       name: 'poster',
       title: 'Poster Image',
       type: 'image',
