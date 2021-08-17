@@ -104,31 +104,33 @@ const Project = ({ project = {}, projects = [] }) => {
           </h1>
         </div>
         {video_id ? (
-          <div
-            className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
-              showVideo ? `opacity-100` : `opacity-0`
-            } ${extraPaddingOnVideo ? `mt-12 lg:mt-28` : `mt-8`}`}
-          >
-            <ReactPlayer
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen={true}
-              controls={true}
-              frameBorder="0"
-              height={`100%`}
-              title="RAVENS"
-              url={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-              width={`100%`}
-              fallback={
-                <BackgroundFallback
-                  image={urlForSanitySource(poster).width(1200).url()}
-                />
-              }
-              onReady={() => {
-                setTimeout(() => {
-                  setShowVideo(true);
-                }, [100]);
-              }}
-            ></ReactPlayer>
+          <div className="max-w-6xl mx-auto">
+            <div
+              className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
+                showVideo ? `opacity-100` : `opacity-0`
+              } ${extraPaddingOnVideo ? `mt-12 lg:mt-28` : `mt-8`}`}
+            >
+              <ReactPlayer
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen={true}
+                controls={true}
+                frameBorder="0"
+                height={`100%`}
+                title="RAVENS"
+                url={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+                width={`100%`}
+                fallback={
+                  <BackgroundFallback
+                    image={urlForSanitySource(poster).width(1200).url()}
+                  />
+                }
+                onReady={() => {
+                  setTimeout(() => {
+                    setShowVideo(true);
+                  }, [100]);
+                }}
+              ></ReactPlayer>
+            </div>
           </div>
         ) : (
           <img
