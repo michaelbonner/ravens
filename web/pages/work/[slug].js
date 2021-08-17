@@ -133,11 +133,19 @@ const Project = ({ project = {}, projects = [] }) => {
             </div>
           </div>
         ) : (
-          <img
-            alt="Poster image"
-            className="w-full mt-14"
-            src={urlForSanitySource(poster).width(1200).url()}
-          />
+          <div className="max-w-6xl mx-auto">
+            <div
+              className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
+                extraPaddingOnVideo ? `mt-12 lg:mt-28` : `mt-8`
+              }`}
+            >
+              <img
+                alt="Poster image"
+                className="w-full h-full"
+                src={urlForSanitySource(poster).width(1200).url()}
+              />
+            </div>
+          </div>
         )}
         <div className="container mx-auto">
           {credits && credits.length > 0 && (
