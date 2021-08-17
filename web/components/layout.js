@@ -171,8 +171,8 @@ const Layout = ({
               <span
                 className={`${
                   hoveredMenuItem === "/work" ? "w-full" : "w-0"
-                } transition-all delay-200 duration-500 absolute z-0 left-0 right-0 h-1 bg-gold`}
-                style={{ bottom: "calc(50% - 1px)" }}
+                } transition-all duration-500 absolute z-0 left-0 right-0 bg-gold`}
+                style={{ bottom: "calc(50% - 1px)", height: "2px" }}
               ></span>
             </a>
           </Link>
@@ -190,8 +190,8 @@ const Layout = ({
               <span
                 className={`${
                   hoveredMenuItem === "/about" ? "w-full" : "w-0"
-                } transition-all delay-200 duration-500 absolute z-0 left-0 right-0 h-1 bg-gold`}
-                style={{ bottom: "calc(50% - 1px)" }}
+                } transition-all duration-500 absolute z-0 left-0 right-0 bg-gold`}
+                style={{ bottom: "calc(50% - 1px)", height: "2px" }}
               ></span>
             </a>
           </Link>
@@ -209,8 +209,8 @@ const Layout = ({
               <span
                 className={`${
                   hoveredMenuItem === "/services" ? "w-full" : "w-0"
-                } transition-all delay-200 duration-700 absolute z-0 left-0 right-0 h-1 bg-gold`}
-                style={{ bottom: "calc(50% - 1px)" }}
+                } transition-all duration-500 absolute z-0 left-0 right-0 bg-gold`}
+                style={{ bottom: "calc(50% - 1px)", height: "2px" }}
               ></span>
             </a>
           </Link>
@@ -228,8 +228,8 @@ const Layout = ({
               <span
                 className={`${
                   hoveredMenuItem === "/contact" ? "w-full" : "w-0"
-                } transition-all delay-200 duration-500 absolute z-0 left-0 right-0 h-1 bg-gold`}
-                style={{ bottom: "calc(50% - 1px)" }}
+                } transition-all duration-500 absolute z-0 left-0 right-0 bg-gold`}
+                style={{ bottom: "calc(50% - 1px)", height: "2px" }}
               ></span>
             </a>
           </Link>
