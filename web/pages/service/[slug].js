@@ -12,7 +12,7 @@ import StandardHR from "../../components/standard-hr";
 const heroContent = (title) => {
   return (
     <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="text-3xl lg:text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8 bg-black bg-opacity-50">
+      <span className="text-3xl lg:text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8 bg-black bg-opacity-25">
         {title}
       </span>
     </h1>
