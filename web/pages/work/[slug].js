@@ -12,7 +12,7 @@ import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
 
 const BackgroundFallback = ({ image }) => {
-  return <img alt="Background" className="w-full" src={image} />;
+  return <img alt="Background" className="w-full h-full" src={image} />;
 };
 
 const projectQuery = groq`
