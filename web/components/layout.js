@@ -302,7 +302,7 @@ const Layout = ({
                 onPlay={() => {
                   setTimeout(() => {
                     setVideoPlaying(true);
-                  }, 1);
+                  }, 100);
                 }}
                 title="Ravens Film Works"
                 url={heroVideoUrl}
