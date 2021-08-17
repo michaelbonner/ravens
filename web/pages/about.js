@@ -30,6 +30,7 @@ const About = (props) => {
           ? `https://player.vimeo.com/video/${about.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
           : null
       }
+      description={about.text}
     >
       <div className="container mx-auto text-center">
         <div className="max-w-5xl mx-auto mt-16">

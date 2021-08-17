@@ -52,6 +52,7 @@ const Work = ({ projectsPage = {}, projects = [] }) => {
           ? `https://player.vimeo.com/video/${projectsPage.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
           : null
       }
+      description="Explore some of the work of RAVENS"
     >
       <div className={containerClasses}>
         {work.map((project) => {

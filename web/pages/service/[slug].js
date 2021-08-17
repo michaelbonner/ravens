@@ -23,11 +23,13 @@ const BannerBlocks = (section, index) => {
   return (
     <div>
       <div className="relative mb-12">
-        <img
-          alt={section.text}
-          className="w-full"
-          src={urlForSanitySource(section.image).height(600).url()}
-        />
+        {section.image && (
+          <img
+            alt="Banner image"
+            className="w-full"
+            src={urlForSanitySource(section.image).height(600).url()}
+          />
+        )}
       </div>
 
       <div className="text-center max-w-5xl mx-auto mb-12">
@@ -271,6 +273,7 @@ const Service = ({ services, service }) => {
           : ``
       }
       heroImage={urlForSanitySource(poster).width(1600).url()}
+      description={title}
     >
       <article className="container mx-auto">
         <div className="mx-auto user-text">

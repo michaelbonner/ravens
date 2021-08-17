@@ -63,7 +63,10 @@ const Project = ({ project = {}, projects = [] }) => {
   const previousProject = projects[previousProjectIndex];
 
   return (
-    <Layout title={`${fullTitle} | RAVENS Special Film Tactics`}>
+    <Layout
+      title={`${fullTitle} | RAVENS Special Film Tactics`}
+      description={title}
+    >
       <article className="-mx-4">
         <div className="flex justify-center">
           <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold">
