@@ -250,32 +250,12 @@ const Layout = ({
             <link rel="preconnect" href="https://i.vimeocdn.com" />
             <link rel="preconnect" href="https://f.vimeocdn.com" />
 
-            <meta
-              data-react-helmet="true"
-              name="description"
-              content={description}
-            />
-            <meta
-              data-react-helmet="true"
-              property="og:title"
-              content={title}
-            />
-            <meta
-              data-react-helmet="true"
-              property="og:image"
-              content="/og-image.jpg"
-            />
-            <meta
-              data-react-helmet="true"
-              property="og:description"
-              content={description}
-            />
-            <meta
-              data-react-helmet="true"
-              property="og:type"
-              content="website"
-            />
-            <meta data-react-helmet="true" name="author" content="RAVENS" />
+            <meta name="description" content={description} />
+            <meta property="og:title" content={title} />
+            <meta property="og:image" content="/og-image.jpg" />
+            <meta property="og:description" content={description} />
+            <meta property="og:type" content="website" />
+            <meta name="author" content="RAVENS" />
 
             <link
               rel="apple-touch-icon"
