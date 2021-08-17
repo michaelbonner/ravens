@@ -130,7 +130,7 @@ const Layout = ({
         <div className="absolute w-full top-12 lg:top-16">
           <div className="relative z-50 lg:container mx-auto flex justify-end items-center overflow-visible">
             <button
-              className="w-12 h-8 focus:outline-none absolute top-4 right-4 lg:right-0"
+              className="w-12 h-8 focus:outline-none absolute top-0 lg:top-4 right-4 lg:right-0"
               onClick={() => toggleMenu(!menuOpen)}
               aria-label="Close menu"
             >
@@ -347,9 +347,9 @@ const Layout = ({
               />
             </div>
           )}
-          <header className="relative z-10 lg:container mx-4 lg:mx-auto flex justify-between items-center py-12 overflow-visible">
+          <header className="flex items-center relative z-10 lg:container mx-4 lg:mx-auto justify-between py-8 lg:py-12 overflow-visible">
             <Link href="/">
-              <a className="w-1/2 lg:w-72">
+              <a className="w-1/3 lg:w-48 pt-2">
                 <Image
                   width="270"
                   height="90"
