@@ -145,7 +145,7 @@ const Project = ({ project = {}, projects = [] }) => {
                   {frames.map((image, index) => {
                     return (
                       <Image
-                        alt={`frames ${index + 1}`}
+                        alt={`Frames ${index + 1}`}
                         className="w-full overflow-hidden"
                         height="300"
                         key={image._key}
@@ -170,7 +170,7 @@ const Project = ({ project = {}, projects = [] }) => {
                   {behindTheScenes.map((image, index) => {
                     return (
                       <Image
-                        alt={`behind the scenes ${index + 1}`}
+                        alt={`Behind the scenes ${index + 1}`}
                         className="w-full overflow-hidden"
                         height="300"
                         key={image._key}
