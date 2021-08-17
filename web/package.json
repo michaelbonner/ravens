@@ -10,19 +10,19 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@aws-cdk/aws-dynamodb": "^1.111.0",
-    "@aws-cdk/core": "^1.111.0",
+    "@aws-cdk/aws-dynamodb": "^1.118.0",
+    "@aws-cdk/core": "^1.118.0",
     "@sanity/block-content-to-react": "^3.0.0",
-    "@sanity/client": "^2.11.0",
+    "@sanity/client": "^2.15.0",
     "@sanity/image-url": "^0.140.22",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^10.2.6",
-    "aws-sdk": "^2.955.0",
+    "aws-sdk": "^2.969.0",
     "formik": "^2.2.9",
-    "groq": "^2.2.6",
-    "next": "^11.0.1",
-    "next-sanity": "^0.3.0",
+    "groq": "^2.15.0",
+    "next": "^11.1.0",
+    "next-sanity": "^0.4.0",
     "postcss": "^8.3.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -38,6 +38,6 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.0",
-    "next-sitemap": "^1.6.124"
+    "next-sitemap": "^1.6.157"
   }
 }
