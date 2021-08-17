@@ -40,6 +40,7 @@ const Layout = ({
   heroContent = "",
   heroVideoUrl = "",
   fadeIn = false,
+  description = "We are skilled technicians with a unique sensibility for storytelling. RAVENS can execute nearly any mission from heavy lift aerials to pursuit tracking or technical phantom flex high speed work.",
 }) => {
   const [siteLoaded, setSiteLoaded] = useState(!fadeIn);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -248,6 +249,58 @@ const Layout = ({
             <link rel="preconnect" href="https://player.vimeo.com" />
             <link rel="preconnect" href="https://i.vimeocdn.com" />
             <link rel="preconnect" href="https://f.vimeocdn.com" />
+
+            <meta
+              data-react-helmet="true"
+              name="description"
+              content={description}
+            />
+            <meta
+              data-react-helmet="true"
+              property="og:title"
+              content={title}
+            />
+            <meta
+              data-react-helmet="true"
+              property="og:image"
+              content="/og-image.jpg"
+            />
+            <meta
+              data-react-helmet="true"
+              property="og:description"
+              content={description}
+            />
+            <meta
+              data-react-helmet="true"
+              property="og:type"
+              content="website"
+            />
+            <meta data-react-helmet="true" name="author" content="RAVENS" />
+
+            <link
+              rel="apple-touch-icon"
+              sizes="180x180"
+              href="/apple-touch-icon.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="/favicon-32x32.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="/favicon-16x16.png"
+            />
+            <link rel="manifest" href="/site.webmanifest" />
+            <link
+              rel="mask-icon"
+              href="/safari-pinned-tab.svg"
+              color="#967738"
+            />
+            <meta name="msapplication-TileColor" content="#967738" />
           </Head>
           {loadVideo && heroVideoUrl && (
             <div className="bpd-hero-foreground absolute z-0 h-full w-full inset-0">
