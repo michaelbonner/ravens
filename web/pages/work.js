@@ -82,9 +82,11 @@ export async function getStaticProps() {
       poster,
     }
   `);
-  const projects = await getClient().fetch(groq`
-    *[_type == "project"]|order(order asc)
-  `);
+  const projects = await getClient().fetch(
+    groq`
+    *[_type == "project"][!(_id in path('drafts.**'))]|order(order asc)
+  `
+  );
   return {
     props: {
       projectsPage,

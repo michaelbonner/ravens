@@ -232,7 +232,7 @@ export async function getStaticProps({ params }) {
   const { slug = "" } = params;
   try {
     const projects = await getClient().fetch(groq`
-      *[_type == "project"]|order(order asc)
+      *[_type == "project"][!(_id in path('drafts.**'))]|order(order asc)
     `);
     const project = await getClient().fetch(projectQuery, { slug });
     return {

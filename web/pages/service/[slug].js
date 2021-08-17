@@ -376,7 +376,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       services: await getClient().fetch(groq`
-        *[_type == "services"]|order(order asc)
+        *[_type == "services"][!(_id in path('drafts.**'))]|order(order asc)
       `),
       service,
     },
