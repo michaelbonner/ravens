@@ -23,7 +23,7 @@ const Services = (props) => {
 
   return (
     <Layout
-      title="Services | RAVENS"
+      title={servicePage.seo_title || "Services | RAVENS"}
       heroContent={heroContent()}
       heroImage={urlForSanitySource(servicePage.poster).url()}
       heroVideoUrl={
@@ -32,6 +32,7 @@ const Services = (props) => {
           : null
       }
       description={
+        servicePage.seo_description ||
         "If your production calls for specialty services we’d love to explore possibilities."
       }
     >

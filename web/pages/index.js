@@ -30,12 +30,15 @@ const Home = (props) => {
 
   return (
     <Layout
-      title="RAVENS | Special Film Tactics"
+      title={home.seo_title || "RAVENS | Special Film Tactics"}
       heroContent={heroContent()}
       heroImage={urlForSanitySource(home.poster).url()}
       heroVideoUrl={`https://player.vimeo.com/video/${home.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
       fadeIn={true}
-      description="We are skilled technicians with a unique sensibility for storytelling. RAVENS can execute nearly any mission from heavy lift aerials to pursuit tracking or technical phantom flex high speed work."
+      description={
+        home.seo_description ||
+        "We are skilled technicians with a unique sensibility for storytelling. RAVENS can execute nearly any mission from heavy lift aerials to pursuit tracking or technical phantom flex high speed work."
+      }
     >
       <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

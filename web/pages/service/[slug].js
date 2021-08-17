@@ -265,7 +265,7 @@ const Service = ({ services, service }) => {
 
   return (
     <Layout
-      title={`${title} | RAVENS Special Film Tactics`}
+      title={service.seo_title || `${title} | RAVENS Special Film Tactics`}
       heroContent={heroContent(title)}
       heroVideoUrl={
         video_id
@@ -273,7 +273,7 @@ const Service = ({ services, service }) => {
           : ``
       }
       heroImage={urlForSanitySource(poster).width(1600).url()}
-      description={title}
+      description={service.seo_description || service.title}
     >
       <article className="container mx-auto">
         <div className="mx-auto user-text">

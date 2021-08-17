@@ -64,8 +64,12 @@ const Project = ({ project = {}, projects = [] }) => {
 
   return (
     <Layout
-      title={`${fullTitle} | RAVENS Special Film Tactics`}
-      description={title}
+      title={
+        project.seo_description || `${fullTitle} | RAVENS Special Film Tactics`
+      }
+      description={
+        project.seo_description || `${fullTitle} | RAVENS Special Film Tactics`
+      }
     >
       <article className="-mx-4">
         <div className="flex justify-center">
