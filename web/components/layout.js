@@ -333,7 +333,7 @@ const Layout = ({
 
           {heroImage && (
             <div
-              className={`absolute z-0 h-full w-full inset-0 transition-opacity ${
+              className={`absolute z-0 h-full w-full inset-0 ${
                 videoPlaying ? `opacity-0` : `opacity-100`
               }`}
             >

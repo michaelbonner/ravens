@@ -5,7 +5,6 @@ import urlForSanitySource from "../../lib/urlForSanitySource";
 import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
 import Link from "next/link";
-import Image from "next/image";
 import FourOhFour from "../404";
 import StandardHR from "../../components/standard-hr";
 
