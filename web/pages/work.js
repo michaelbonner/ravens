@@ -44,7 +44,7 @@ const Work = ({ projectsPage = {}, projects = [] }) => {
 
   return (
     <Layout
-      title={projectsPage.seo_title || "Contact | RAVENS"}
+      title={projectsPage.seo_title || "Work | RAVENS"}
       heroContent={heroContent()}
       heroImage={urlForSanitySource(projectsPage.poster).url()}
       heroVideoUrl={
@@ -80,6 +80,8 @@ export async function getStaticProps() {
       title,
       video_id,
       poster,
+      seo_title,
+      seo_description,
     }
   `);
   const projects = await getClient().fetch(

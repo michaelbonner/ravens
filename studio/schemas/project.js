@@ -53,6 +53,26 @@ export default {
         'Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
     },
     {
+      name: 'videoWidthAspectRatio',
+      title: 'Video aspect ratio for width',
+      type: 'string',
+      description: 'What is the width of the aspect ratio',
+      options: {
+        list: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'],
+        layout: 'dropdown',
+      },
+    },
+    {
+      name: 'videoHeightAspectRatio',
+      title: 'Video aspect ratio for height',
+      type: 'string',
+      description: 'What is the height of the aspect ratio',
+      options: {
+        list: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'],
+        layout: 'dropdown',
+      },
+    },
+    {
       name: 'extraPaddingOnVideo',
       title: 'Extra padding on video',
       type: 'boolean',

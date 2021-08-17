@@ -21,12 +21,14 @@ const projectQuery = groq`
   behindTheScenes,
   clientName,
   credits,
+  extraPaddingOnVideo,
   frames,
   poster,
   slug,
   title,
   video_id,
-  extraPaddingOnVideo
+  videoHeightAspectRatio,
+  videoWidthAspectRatio,
 }
 `;
 
@@ -41,12 +43,16 @@ const Project = ({ project = {}, projects = [] }) => {
     behindTheScenes = [],
     clientName = "",
     credits = [],
-    frames = [],
-    title = "",
-    poster = "",
-    video_id = null,
     extraPaddingOnVideo = false,
+    frames = [],
+    poster = "",
+    title = "",
+    video_id = null,
   } = project;
+
+  const videoHeightAspectRatio = project.videoHeightAspectRatio || "9";
+  const videoWidthAspectRatio = project.videoWidthAspectRatio || "16";
+
   const fullTitle = clientName ? `${clientName} | ${title}` : title;
 
   const currentProjectIndex = projects
@@ -79,9 +85,9 @@ const Project = ({ project = {}, projects = [] }) => {
         </div>
         {video_id ? (
           <div
-            className={`aspect-w-16 aspect-h-9 transition-all duration-700 ${
+            className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
               showVideo ? `opacity-100` : `opacity-0`
-            }${extraPaddingOnVideo ? ` mt-12 lg:mt-28` : ``}`}
+            } ${extraPaddingOnVideo ? `mt-12 lg:mt-28` : `mt-8`}`}
           >
             <ReactPlayer
               allow="autoplay; fullscreen; picture-in-picture"
