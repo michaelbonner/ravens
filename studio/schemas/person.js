@@ -1,10 +1,10 @@
-import UserIcon from 'part:@sanity/base/user-icon'
+import { MdPersonPin as icon } from 'react-icons/md'
 
 export default {
   name: 'people',
   title: 'People',
   type: 'document',
-  icon: UserIcon,
+  icon: icon,
   fields: [
     {
       name: 'name',

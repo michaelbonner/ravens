@@ -2,7 +2,7 @@ import { MdCameraRoll as icon } from 'react-icons/md'
 
 export default {
   name: 'project',
-  title: 'Work',
+  title: 'Work Items',
   type: 'document',
   icon,
   fields: [
