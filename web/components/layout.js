@@ -384,7 +384,7 @@ const Layout = ({
               RAVENS HQ
               <br />
               <a href="https://goo.gl/maps/cBx6BL7eAkibPu9X9">
-                1569 W 2225 S SUITE A<br />
+                1589 W 2225 S<br />
                 Woods Cross, UT 84087
               </a>
             </p>
