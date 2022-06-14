@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from "../components/layout";
-import Image from "next/image";
-import Link from "next/link";
-import { getClient } from "../lib/sanity";
-import groq from "groq";
 import BlockContent from "@sanity/block-content-to-react";
-import urlForSanitySource from "../lib/urlForSanitySource";
+import groq from "groq";
+import Link from "next/link";
+import ReactPlayer from "react-player";
+import Layout from "../components/layout";
 import StandardHR from "../components/standard-hr";
+import { getClient } from "../lib/sanity";
+import urlForSanitySource from "../lib/urlForSanitySource";
 
 const heroContent = () => {
   return (
@@ -98,6 +98,32 @@ const Home = (props) => {
 
           <StandardHR />
         </div>
+        {home.reel_video_id && (
+          <div className="mx-auto">
+            {home.reel_heading && (
+              <div>
+                <h2 className="font-bold text-3xl uppercase">
+                  {home.reel_heading}
+                </h2>
+              </div>
+            )}
+            <div
+              className={`aspect-w-${home.reel_video_width_aspect_ratio} aspect-h-${home.reel_video_height_aspect_ratio}`}
+            >
+              <ReactPlayer
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen={true}
+                controls={true}
+                frameBorder="0"
+                height={`100%`}
+                title="RAVENS"
+                url={`https://player.vimeo.com/video/${home.reel_video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+                width={`100%`}
+              ></ReactPlayer>
+            </div>
+            <StandardHR />
+          </div>
+        )}
       </div>
     </Layout>
   );
@@ -112,7 +138,11 @@ export async function getStaticProps(context) {
           poster,
           heading,
           text,
-          services[]->
+          services[]->,
+          reel_heading,
+          reel_video_id,
+          reel_video_width_aspect_ratio,
+          reel_video_height_aspect_ratio
         }
       `),
     },
