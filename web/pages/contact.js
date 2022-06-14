@@ -90,15 +90,11 @@ function Contact({ contact }) {
                           setSubmitting(false);
                         } else {
                           setSubmitting(false);
-                          toast("Save failed", {
-                            type: toast.TYPE.ERROR,
-                          });
+                          toast.error("Save failed");
                         }
                       } catch (error) {
                         setSubmitting(false);
-                        toast("Save failed", {
-                          type: toast.TYPE.ERROR,
-                        });
+                        toast.error("Save failed");
                       }
                     }}
                   >

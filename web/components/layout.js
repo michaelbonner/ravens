@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
-import Obfuscate from "react-obfuscate";
-import { ToastContainer } from "react-toastify";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Obfuscate from "react-obfuscate";
 import ReactPlayer from "react-player/lazy";
+import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.min.css";
 
