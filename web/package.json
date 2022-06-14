@@ -15,29 +15,29 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^2.15.0",
     "@sanity/image-url": "^0.140.22",
-    "@tailwindcss/aspect-ratio": "^0.2.1",
-    "@tailwindcss/typography": "^0.4.1",
-    "autoprefixer": "^10.2.6",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.2",
     "aws-sdk": "^2.970.0",
     "formik": "^2.2.9",
     "groq": "^2.15.0",
     "next": "^11.1.0",
     "next-sanity": "^0.4.0",
-    "postcss": "^8.3.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-gtm-module": "^2.0.11",
     "react-obfuscate": "^3.6.8",
     "react-player": "^2.9.0",
     "react-toastify": "^7.0.4",
-    "tailwindcss": "^2.2.4",
     "uuid": "^8.3.2",
     "yup": "^0.32.9",
     "yup-phone": "^1.2.19"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.7",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.0",
-    "next-sitemap": "^1.6.157"
+    "next-sitemap": "^1.6.157",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.3"
   }
 }
