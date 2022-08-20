@@ -2,8 +2,8 @@
 import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
 import Link from "next/link";
-import ReactPlayer from "react-player";
 import Layout from "../components/layout";
+import ReelVideoPlayer from "../components/reel-video-player";
 import StandardHR from "../components/standard-hr";
 import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
@@ -27,7 +27,9 @@ const heroContent = () => {
 const Home = (props) => {
   const { home = {} } = props;
   const services = home.services || [];
-
+  const reelVideo = home.reel_video_id;
+  const reelVideoWidth = home.reel_video_width_aspect_ratio;
+  const reelVideoHeight = home.reel_video_height_aspect_ratio;
   return (
     <Layout
       title={home.seo_title || "RAVENS | Special Film Tactics"}
@@ -107,20 +109,11 @@ const Home = (props) => {
                 </h2>
               </div>
             )}
-            <div
-              className={`aspect-w-${home.reel_video_width_aspect_ratio} aspect-h-${home.reel_video_height_aspect_ratio}`}
-            >
-              <ReactPlayer
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen={true}
-                controls={true}
-                frameBorder="0"
-                height={`100%`}
-                title="RAVENS"
-                url={`https://player.vimeo.com/video/${home.reel_video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-                width={`100%`}
-              ></ReactPlayer>
-            </div>
+            <ReelVideoPlayer
+              video={reelVideo}
+              videoWidthAspectRatio={reelVideoWidth}
+              videoHeightAspectRatio={reelVideoHeight}
+            />
             <StandardHR />
           </div>
         )}

@@ -287,6 +287,11 @@ p {
   @apply leading-9;
 }
 
+.bpd-white-icon polygon,
+.bpd-white-icon path {
+  stroke: #fff;
+}
+
 .bpd-hero {
   overflow-y: hidden;
 }
