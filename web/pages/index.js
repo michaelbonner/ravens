@@ -111,6 +111,8 @@ const Home = (props) => {
             )}
             <ReelVideoPlayer
               video={reelVideo}
+              leftReelText={home.left_reel_text}
+              rightReelText={home.right_reel_text}
               videoWidthAspectRatio={reelVideoWidth}
               videoHeightAspectRatio={reelVideoHeight}
             />
@@ -133,6 +135,8 @@ export async function getStaticProps(context) {
           text,
           services[]->,
           reel_heading,
+          left_reel_text,
+          right_reel_text,
           reel_video_id,
           reel_video_width_aspect_ratio,
           reel_video_height_aspect_ratio

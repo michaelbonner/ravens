@@ -24,7 +24,7 @@ export const VideoPlayerControlBar = ({
   setIsPlaying,
 }) => {
   return (
-    <div className="hidden lg:flex space-x-8 relative z-10 container mx-auto pt-3 bg-black">
+    <div className="hidden lg:flex space-x-8 relative z-10 container mx-auto bg-black">
       <button
         className="relative text-4xl w-8 h-8"
         onClick={() => {

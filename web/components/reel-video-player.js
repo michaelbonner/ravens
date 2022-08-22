@@ -11,6 +11,8 @@ import screenfull from "screenfull";
 const ReelVideoPlayer = ({
   video,
   autoPlay,
+  leftReelText,
+  rightReelText,
   videoWidthAspectRatio,
   videoHeightAspectRatio,
 }) => {
@@ -112,7 +114,7 @@ const ReelVideoPlayer = ({
         {
           "h-screen flex flex-col justify-center items-center": isFullscreen,
         },
-        "bpd-player-container relative z-20 border-2 border-gold px-4 py-2"
+        "bpd-player-container relative z-20 border-2 border-gold px-4 pb-6"
       )}
     >
       <div
@@ -131,6 +133,19 @@ const ReelVideoPlayer = ({
             `transition-all duration-700`
           )}
         >
+          <div className="absolute flex items-center justify-center justify-items-center inset-0 w-full h-full z-10">
+            <div className="w-fit mx-auto px-6 py-4 border-2 border-gold">
+              <div className="flex flex-row items-center justify-center gap-x-10 text-5xl font-bold tracking-widest">
+                <h3>{leftReelText}</h3>
+                <img
+                  className="h-10 w-8"
+                  alt="X"
+                  src={"images/white_x_icon.png"}
+                />
+                <h3>{rightReelText}</h3>
+              </div>
+            </div>
+          </div>
           <ReactPlayer
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen={true}
