@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { useEffect, useRef } from "react";
 import {
   GrContract,
   GrExpand,
@@ -9,50 +10,73 @@ import {
 } from "react-icons/gr";
 
 export const VideoPlayerControlBar = ({
+  handleScrubberClick,
+  handleTogglePlay,
   isFullscreen,
-  player,
-  muted,
-  setMuted,
-  setVolume,
-  scrubber,
-  scrubberWidth,
-  scrubberPosition,
-  setScrubberPosition,
-  setHasClicked,
-  toggleFullScreen,
   isPlaying,
-  setIsPlaying,
+  muted,
+  scrubberPosition,
+  scrubberWidth,
+  setHasClicked,
+  setMuted,
+  setScrubberWidth,
+  toggleFullScreen,
 }) => {
+  const scrubber = useRef(null);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setScrubberWidth(scrubber?.current?.clientWidth || 100);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [setScrubberWidth]);
+
   return (
-    <div className="hidden lg:flex space-x-8 relative z-10 container mx-auto bg-black">
+    <div
+      className={classNames(
+        {
+          "-mt-12": isFullscreen,
+          "p-3": isFullscreen,
+        },
+        "container relative z-10 mx-auto flex gap-x-2 bg-black pt-3",
+        "md:gap-x-8"
+      )}
+    >
       <button
-        className="relative text-4xl w-8 h-8"
-        onClick={() => {
-          setHasClicked(true);
-          setIsPlaying(!isPlaying);
-        }}
+        aria-label="Play/Pause"
+        className="relative h-6 w-6 text-4xl outline-0 md:h-8 md:w-8"
+        onClick={handleTogglePlay}
         title="Play/Pause"
       >
-        {isPlaying ? (
-          <GrPause
-            className={classNames(
-              `bpd-white-icon`,
-              `absolute inset-0 transition-all duration-500 fill-current`
-            )}
-          />
-        ) : (
-          <GrPlay
-            className={classNames(
-              `bpd-white-icon`,
-              `absolute inset-0 transition-all duration-500 fill-current`
-            )}
-          />
-        )}
+        <GrPause
+          className={classNames(
+            `bpd-white-icon`,
+            {
+              "opacity-100": isPlaying,
+              "opacity-0": !isPlaying,
+            },
+            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
+          )}
+        />
+        <GrPlay
+          className={classNames(
+            `bpd-white-icon`,
+            {
+              "opacity-100": !isPlaying,
+              "opacity-0": isPlaying,
+            },
+            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
+          )}
+        />
       </button>
       <button
-        className="relative w-full border-2 border-gray-300 rounded"
+        aria-label="Player scrubber bar"
+        className="relative flex-grow overflow-hidden rounded border-2 border-gray-300"
         onClick={(e) => {
-          setHasClicked(true);
+          if (!scrubber.current) {
+            return;
+          }
           const scrubberBoundingClientRect =
             scrubber.current.getBoundingClientRect();
 
@@ -62,37 +86,36 @@ export const VideoPlayerControlBar = ({
           const xPercentageClicked =
             zeroBasedClickPosition / scrubber.current.clientWidth;
 
-          player.current.seekTo(xPercentageClicked, "fraction");
-          setScrubberPosition(xPercentageClicked * scrubberWidth);
+          handleScrubberClick(xPercentageClicked * scrubberWidth);
         }}
         ref={scrubber}
       >
         <div
-          className="h-full w-1 bg-gray-500 absolute top-0"
+          className="absolute top-0 h-full w-1 bg-gray-500"
           style={{
             transform: `translate3d(${scrubberPosition}px,0, 0)`,
           }}
         ></div>
       </button>
-      <div className="text-2xl flex items-center space-x-6">
+      <div className="flex items-center gap-x-2 text-2xl md:gap-x-6">
         {muted === true ? (
           <button
+            aria-label="Unmute"
             className="bpd-white-icon"
             onClick={() => {
               setHasClicked(true);
               setMuted(false);
-              setVolume(0.5);
             }}
           >
             <GrVolumeMute />
           </button>
         ) : (
           <button
+            aria-label="Mute"
             className="bpd-white-icon"
             onClick={() => {
               setHasClicked(true);
               setMuted(true);
-              setVolume(0);
             }}
           >
             <GrVolume />
@@ -100,7 +123,8 @@ export const VideoPlayerControlBar = ({
         )}
         {isFullscreen ? (
           <button
-            className="bpd-white-icon"
+            aria-label="Exit fullscreen"
+            className="bpd-white-icon hidden md:block"
             onClick={() => {
               setHasClicked(true);
               toggleFullScreen(false);
@@ -110,7 +134,8 @@ export const VideoPlayerControlBar = ({
           </button>
         ) : (
           <button
-            className="bpd-white-icon"
+            aria-label="Enter fullscreen"
+            className="bpd-white-icon hidden md:block"
             onClick={() => {
               setHasClicked(true);
               toggleFullScreen(true);

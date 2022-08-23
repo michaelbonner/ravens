@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import BlockContent from "@sanity/block-content-to-react";
+import classNames from "classnames";
 import groq from "groq";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Layout from "../components/layout";
-import ReelVideoPlayer from "../components/reel-video-player";
 import StandardHR from "../components/standard-hr";
 import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
+
+const VideoPlayer = dynamic(() => import("../components/video-player"), {});
 
 const heroContent = () => {
   return (
@@ -27,9 +30,8 @@ const heroContent = () => {
 const Home = (props) => {
   const { home = {} } = props;
   const services = home.services || [];
-  const reelVideo = home.reel_video_id;
-  const reelVideoWidth = home.reel_video_width_aspect_ratio;
-  const reelVideoHeight = home.reel_video_height_aspect_ratio;
+  console.log(home, "home");
+
   return (
     <Layout
       title={home.seo_title || "RAVENS | Special Film Tactics"}
@@ -42,8 +44,13 @@ const Home = (props) => {
         "We are skilled technicians with a unique sensibility for storytelling. RAVENS can execute nearly any mission from heavy lift aerials to pursuit tracking or technical phantom flex high speed work."
       }
     >
-      <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div
+        className={classNames(
+          "text-center max-w-5xl pt-12 mt-6 mx-8",
+          "lg:mx-auto"
+        )}
+      >
+        <div className={classNames("grid grid-cols-1 gap-6", "lg:grid-cols-3")}>
           {services.map((service, index) => {
             return (
               <Link
@@ -55,7 +62,7 @@ const Home = (props) => {
                     index + 1 !== services.length ? `border-b-2` : ``
                   } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
                 >
-                  <h2 className="text-3xl font-bold lg:px-10">
+                  <h2 className={classNames("text-3xl font-bold", "lg:px-10")}>
                     {service.title}
                   </h2>
                   <div className="flex flex-1 items-center my-8">
@@ -91,7 +98,12 @@ const Home = (props) => {
             <BlockContent blocks={home.text} />
             <p className="py-12">
               <Link href="/about">
-                <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
+                <a
+                  className={classNames(
+                    "rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 transition-all",
+                    "hover:text-black hover:bg-gold"
+                  )}
+                >
                   Learn More
                 </a>
               </Link>
@@ -100,25 +112,32 @@ const Home = (props) => {
 
           <StandardHR />
         </div>
-        {home.reel_video_id && (
-          <div className="mx-auto">
-            {home.reel_heading && (
-              <div>
-                <h2 className="font-bold text-3xl uppercase">
-                  {home.reel_heading}
-                </h2>
-              </div>
-            )}
-            <ReelVideoPlayer
-              video={reelVideo}
+      </div>
+      {home.reel_video_id && (
+        <div className="mx-auto max-w-6xl">
+          {home.reel_heading && (
+            <div>
+              <h2 className="font-bold text-3xl uppercase">
+                {home.reel_heading}
+              </h2>
+            </div>
+          )}
+          <div className="border-2 border-gold px-4 py-6">
+            <VideoPlayer
+              poster={home.poster}
+              title={home.reel_heading}
+              videoId={home.reel_video_id}
+              videoHeightAspectRatio={home.reel_video_height_aspect_ratio}
+              videoWidthAspectRatio={home.reel_video_width_aspect_ratio}
               leftReelText={home.left_reel_text}
               rightReelText={home.right_reel_text}
-              videoWidthAspectRatio={reelVideoWidth}
-              videoHeightAspectRatio={reelVideoHeight}
+              autoPlay={true}
             />
-            <StandardHR />
           </div>
-        )}
+        </div>
+      )}
+      <div className={classNames("max-w-5xl mx-8", "sm:mx-auto")}>
+        <StandardHR />
       </div>
     </Layout>
   );
