@@ -1,11 +1,13 @@
-# Ravens Site
+![Ravens Website](./repo-image.jpg)
+
+# Ravens Film Works
 
 ### Running the front-end
 
 You'll need to create a `.env.local` file to store a few environment variables that Next will use to pull data from the Sanity API.
 
 ```js
-SANITY_API_TOKEN = "API-TOKEN-FROM MANAGE.SANITY.IO";
+SANITY_API_TOKEN = 'API-TOKEN-FROM MANAGE.SANITY.IO'
 ```
 
 Once those env variables are ready, you can run the following commands to get Next's development server up and running:
