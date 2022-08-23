@@ -30,7 +30,6 @@ const heroContent = () => {
 const Home = (props) => {
   const { home = {} } = props;
   const services = home.services || [];
-  console.log(home, "home");
 
   return (
     <Layout
