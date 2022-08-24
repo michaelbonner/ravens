@@ -130,7 +130,7 @@ const Home = (props) => {
               videoWidthAspectRatio={home.reel_video_width_aspect_ratio}
               leftReelText={home.left_reel_text}
               rightReelText={home.right_reel_text}
-              autoPlay={true}
+              autoPlay={false}
             />
           </div>
         </div>
