@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import BlockContent from "@sanity/block-content-to-react";
+import classNames from "classnames";
 import groq from "groq";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import ReactPlayer from "react-player";
 import Layout from "../components/layout";
 import StandardHR from "../components/standard-hr";
 import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
+
+const VideoPlayer = dynamic(() => import("../components/video-player"), {});
 
 const heroContent = () => {
   return (
@@ -40,8 +43,13 @@ const Home = (props) => {
         "We are skilled technicians with a unique sensibility for storytelling. RAVENS can execute nearly any mission from heavy lift aerials to pursuit tracking or technical phantom flex high speed work."
       }
     >
-      <div className="text-center max-w-5xl pt-12 mt-6 mx-8 lg:mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div
+        className={classNames(
+          "text-center max-w-5xl pt-12 mt-6 mx-8",
+          "lg:mx-auto"
+        )}
+      >
+        <div className={classNames("grid grid-cols-1 gap-6", "lg:grid-cols-3")}>
           {services.map((service, index) => {
             return (
               <Link
@@ -53,7 +61,7 @@ const Home = (props) => {
                     index + 1 !== services.length ? `border-b-2` : ``
                   } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
                 >
-                  <h2 className="text-3xl font-bold lg:px-10">
+                  <h2 className={classNames("text-3xl font-bold", "lg:px-10")}>
                     {service.title}
                   </h2>
                   <div className="flex flex-1 items-center my-8">
@@ -89,7 +97,12 @@ const Home = (props) => {
             <BlockContent blocks={home.text} />
             <p className="py-12">
               <Link href="/about">
-                <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
+                <a
+                  className={classNames(
+                    "rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 transition-all",
+                    "hover:text-black hover:bg-gold"
+                  )}
+                >
                   Learn More
                 </a>
               </Link>
@@ -98,32 +111,32 @@ const Home = (props) => {
 
           <StandardHR />
         </div>
-        {home.reel_video_id && (
-          <div className="mx-auto">
-            {home.reel_heading && (
-              <div>
-                <h2 className="font-bold text-3xl uppercase">
-                  {home.reel_heading}
-                </h2>
-              </div>
-            )}
-            <div
-              className={`aspect-w-${home.reel_video_width_aspect_ratio} aspect-h-${home.reel_video_height_aspect_ratio}`}
-            >
-              <ReactPlayer
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen={true}
-                controls={true}
-                frameBorder="0"
-                height={`100%`}
-                title="RAVENS"
-                url={`https://player.vimeo.com/video/${home.reel_video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-                width={`100%`}
-              ></ReactPlayer>
+      </div>
+      {home.reel_video_id && (
+        <div className="mx-auto max-w-6xl">
+          {home.reel_heading && (
+            <div>
+              <h2 className="font-bold text-3xl uppercase">
+                {home.reel_heading}
+              </h2>
             </div>
-            <StandardHR />
+          )}
+          <div className="border-2 border-gold px-4 py-6">
+            <VideoPlayer
+              poster={home.poster}
+              title={home.reel_heading}
+              videoId={home.reel_video_id}
+              videoHeightAspectRatio={home.reel_video_height_aspect_ratio}
+              videoWidthAspectRatio={home.reel_video_width_aspect_ratio}
+              leftReelText={home.left_reel_text}
+              rightReelText={home.right_reel_text}
+              autoPlay={false}
+            />
           </div>
-        )}
+        </div>
+      )}
+      <div className={classNames("max-w-5xl mx-8", "sm:mx-auto")}>
+        <StandardHR />
       </div>
     </Layout>
   );
@@ -140,6 +153,8 @@ export async function getStaticProps(context) {
           text,
           services[]->,
           reel_heading,
+          left_reel_text,
+          right_reel_text,
           reel_video_id,
           reel_video_width_aspect_ratio,
           reel_video_height_aspect_ratio

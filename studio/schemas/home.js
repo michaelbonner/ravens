@@ -63,6 +63,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'left_reel_text',
+      title: 'Left Reel Text',
+      type: 'string',
+    },
+    {
+      name: 'right_reel_text',
+      title: 'Right Reel Text',
+      type: 'string',
+    },
+    {
       name: 'reel_video_id',
       title: 'Reel Video ID',
       type: 'string',
