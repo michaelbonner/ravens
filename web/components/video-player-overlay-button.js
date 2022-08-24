@@ -95,18 +95,20 @@ export const VideoPlayerOverlayButton = ({
             <div className="absolute inset-0 mx-auto flex items-center justify-center">
               <div
                 className={classNames(
-                  "w-fit flex items-center justify-center text-center gap-x-6 px-8 py-4 border-2 border-gold text-3xl tracking-widest font-bold uppercase",
+                  "w-fit flex items-center justify-center text-center gap-x-6 px-8 pt-5 pb-4 border-2 border-gold text-3xl tracking-widest font-bold uppercase",
                   "lg:text-5xl"
                 )}
               >
-                <span className="h-[40px]">{leftReelText}</span>
-                <Image
-                  width={30}
-                  height={40}
-                  alt="X icon"
-                  src="/images/white_x_icon.png"
-                />
-                <span className="h-[40px]">{rightReelText}</span>
+                <span>{leftReelText}</span>
+                <div>
+                  <Image
+                    width={30}
+                    height={40}
+                    alt="X icon"
+                    src="/images/white_x_icon.png"
+                  />
+                </div>
+                <span>{rightReelText}</span>
               </div>
             </div>
           )}
