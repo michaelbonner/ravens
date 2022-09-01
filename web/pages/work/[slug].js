@@ -259,7 +259,7 @@ export async function getStaticPaths() {
       .map((path) => {
         return { params: { slug: path.slug.current } };
       }),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -273,6 +273,7 @@ export async function getStaticProps({ params }) {
     const project = await getClient().fetch(projectQuery, { slug });
     return {
       props: { project, projects },
+      notFound: !project,
     };
   } catch (error) {
     return {
