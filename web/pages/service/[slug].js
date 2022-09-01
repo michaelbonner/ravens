@@ -348,7 +348,7 @@ export async function getStaticPaths() {
       .map((path) => {
         return { params: { slug: path.slug.current } };
       }),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -380,6 +380,7 @@ export async function getStaticProps(context) {
       `),
       service,
     },
+    notFound: !service,
   };
 }
 
