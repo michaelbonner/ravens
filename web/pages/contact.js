@@ -173,13 +173,13 @@ function Contact({ contact }) {
 
                 {state === "submitted" && (
                   <div
-                    className="relative bg-white rounded-md shadow-md py-24 px-8 text-gray-900"
+                    className="flex mx-auto justify-center rounded-md shadow-md py-14 px-8 w-full max-w-3xl text-center border"
                     ref={successContainer}
                   >
-                    <h2 className="font-medium text-2xl relative z-20">
-                      Thank you for contacting us!
+                    <h2 className="font-medium text-xl tracking-wide">
+                      We&apos;ve received your message and
                       <br />
-                      We will be in touch soon.
+                      will be in touch shortly. Thanks.
                     </h2>
                   </div>
                 )}
