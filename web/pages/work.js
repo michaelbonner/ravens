@@ -1,9 +1,9 @@
-import Layout from "../components/layout";
-import { getClient } from "../lib/sanity";
 import groq from "groq";
-import urlForSanitySource from "../lib/urlForSanitySource";
+import Layout from "../components/layout";
 import StandardHR from "../components/standard-hr";
 import WorkItem from "../components/work-item";
+import { getClient } from "../lib/sanity";
+import urlForSanitySource from "../lib/urlForSanitySource";
 
 const gridColumnCount = (itemCount) => {
   if (itemCount > 6) {

@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from "../../components/layout";
-import { getClient } from "../../lib/sanity";
-import urlForSanitySource from "../../lib/urlForSanitySource";
 import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
 import Link from "next/link";
-import FourOhFour from "../404";
+import Layout from "../../components/layout";
 import StandardHR from "../../components/standard-hr";
+import { getClient } from "../../lib/sanity";
+import urlForSanitySource from "../../lib/urlForSanitySource";
+import FourOhFour from "../404";
 
 const heroContent = (title) => {
   return (

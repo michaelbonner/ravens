@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import BlockContent from "@sanity/block-content-to-react";
+import groq from "groq";
 import Layout from "../components/layout";
+import StandardHR from "../components/standard-hr";
 import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
-import groq from "groq";
-import Link from "next/link";
-import BlockContent from "@sanity/block-content-to-react";
-import StandardHR from "../components/standard-hr";
 
 const heroContent = () => {
   return (
