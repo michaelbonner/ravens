@@ -173,7 +173,7 @@ function Contact({ contact }) {
 
                 {state === "submitted" && (
                   <div
-                    className="relative bg-blue-100 rounded-md shadow-md py-24 px-8 text-gray-900"
+                    className="relative bg-white rounded-md shadow-md py-24 px-8 text-gray-900"
                     ref={successContainer}
                   >
                     <h2 className="font-medium text-2xl relative z-20">
