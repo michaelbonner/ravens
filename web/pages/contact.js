@@ -173,7 +173,7 @@ function Contact({ contact }) {
 
                 {state === "submitted" && (
                   <div
-                    className="flex mx-auto justify-center rounded-md shadow-md py-14 px-8 w-full max-w-3xl text-center border"
+                    className="flex bg-black bg-opacity-70 mx-auto justify-center rounded-md shadow-md py-14 px-8 w-full max-w-3xl text-center border"
                     ref={successContainer}
                   >
                     <h2 className="font-medium text-xl tracking-wide">
