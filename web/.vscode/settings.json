@@ -2,8 +2,8 @@
     "workbench.colorCustomizations": {
         "titleBar.activeForeground": "#092422",
         "titleBar.inactiveForeground": "#092422CC",
-        "titleBar.activeBackground": "#62b0bf",
-        "titleBar.inactiveBackground": "#62b0bfCC"
+        "titleBar.activeBackground": "#b59453",
+        "titleBar.inactiveBackground": "#b59453CC"
       },
       "cSpell.words": [
         "agur",
