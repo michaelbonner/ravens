@@ -3,8 +3,7 @@ module.exports = {
   generateRobotsTxt: true,
   transform: async (config, path) => {
     // custom function to ignore the path
-    console.log("path", path);
-    if (path === "/obfuscated") {
+    if (path.includes("obfuscated")) {
       return null;
     }
 
