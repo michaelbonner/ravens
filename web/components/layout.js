@@ -249,6 +249,10 @@ const Layout = ({
             <link rel="preconnect" href="https://player.vimeo.com" />
             <link rel="preconnect" href="https://i.vimeocdn.com" />
             <link rel="preconnect" href="https://f.vimeocdn.com" />
+            <link
+              rel="canonical"
+              href={`https://ravensfilmworks.com${router.asPath}`}
+            />
 
             <meta name="description" content={description} />
             <meta property="og:title" content={title} />
