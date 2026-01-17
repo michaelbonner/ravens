@@ -6,6 +6,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+defaults:
+  run:
+    working-directory: web
+
 jobs:
   quick-test:
     timeout-minutes: 30
@@ -30,13 +34,15 @@ jobs:
         run: bun run test:chromium
         env:
           CI: true
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: playwright-report-quick
-          path: playwright-report/
+          path: web/playwright-report/
           retention-days: 7
 
       - name: Upload Test Results
@@ -44,5 +50,5 @@ jobs:
         if: failure()
         with:
           name: test-results-quick
-          path: test-results/
+          path: web/test-results/
           retention-days: 7

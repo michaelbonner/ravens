@@ -181,7 +181,7 @@ npx playwright show-trace test-results/trace.zip
 
 ```bash
 # Quick test (Chromium)
-npm run test:chromium
+bun run test:chromium
 
 # Full CI simulation (all browsers)
 CI=true npm test

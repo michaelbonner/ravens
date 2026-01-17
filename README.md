@@ -13,9 +13,9 @@ SANITY_API_TOKEN = 'API-TOKEN-FROM MANAGE.SANITY.IO'
 Once those env variables are ready, you can run the following commands to get Next's development server up and running:
 
 ```bash
-npm install
+bun install
 
-npm run dev
+bun run dev
 ```
 
 The blog will be running at `http://localhost:3000`
@@ -24,7 +24,7 @@ The blog will be running at `http://localhost:3000`
 
 To run the Sanity Studio locally, you'll need to run the following commands:
 
-First install the Sanity CLI: `npm install -g @sanity/cli`.
+First install the Sanity CLI: `bun install -g @sanity/cli`.
 
 ```bash
 # From the project root
