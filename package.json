@@ -1,0 +1,20 @@
+{
+  "name": "ravens",
+  "version": "1.0.0",
+  "description": "![Ravens Website](./repo-image.jpg)",
+  "main": "prettier.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelbonner/ravens.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelbonner/ravens/issues"
+  },
+  "homepage": "https://github.com/michaelbonner/ravens#readme"
+}
