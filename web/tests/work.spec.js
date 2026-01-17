@@ -2,7 +2,9 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Work Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/work');
+    await page.goto('/work', { waitUntil: 'load' });
+    // Wait for initial animations/overlays
+    await page.waitForTimeout(1000);
   });
 
   test('should load successfully', async ({ page }) => {

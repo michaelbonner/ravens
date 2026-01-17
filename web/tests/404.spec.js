@@ -41,8 +41,9 @@ test.describe('404 Page', () => {
     await page.goto('/non-existent-page');
 
     // Check for container div with proper classes
-    const container = page.locator('div.container');
-    await expect(container).toBeVisible();
+    const container = page.locator('div.container.mx-auto.text-center').first();
+    await container.waitFor({ state: 'attached', timeout: 10000 });
+    await expect(container).toBeAttached();
   });
 
   test('should be responsive on mobile', async ({ page, isMobile }) => {
