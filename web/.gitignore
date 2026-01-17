@@ -42,3 +42,6 @@ test-timings.json
 # AWS
 .cdk.staging
 cdk.out
+
+playwright-report/
+test-results/
