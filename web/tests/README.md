@@ -29,27 +29,27 @@ npx playwright install
 
 ```bash
 # Run all tests (headless mode)
-npm test
+bun run test
 
 # Run tests with browser UI visible
-npm run test:headed
+bun run test:headed
 
 # Run tests with Playwright UI mode (interactive)
-npm run test:ui
+bun run test:ui
 
 # Run tests in specific browsers
-npm run test:chromium
-npm run test:firefox
-npm run test:webkit
+bun run test:chromium
+bun run test:firefox
+bun run test:webkit
 
 # Run mobile tests only
-npm run test:mobile
+bun run test:mobile
 
 # Run tests in debug mode
-npm run test:debug
+bun run test:debug
 
 # View test report
-npm run test:report
+bun run test:report
 ```
 
 ## Test Configuration
