@@ -33,7 +33,7 @@ const ProjectVideo = ({
   }, [videoReady]);
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="w-full">
       <div
         className={`project-video-stage ${
           extraPaddingOnVideo ? "mt-12 lg:mt-28" : "mt-8"
@@ -193,7 +193,7 @@ const Project = ({ project = {}, projects = [] }) => {
             extraPaddingOnVideo={extraPaddingOnVideo}
           />
         ) : (
-          <div className="max-w-6xl mx-auto">
+          <div className="w-full">
             <div
               className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
                 extraPaddingOnVideo ? `mt-12 lg:mt-28` : `mt-8`
