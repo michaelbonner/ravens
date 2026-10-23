@@ -852,11 +852,14 @@ p {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  border-bottom: 1px solid var(--gold-deep);
-  padding-block: 24px 12px;
+  padding-top: 24px;
   font-size: 15px;
 }
 .service-card-link span {
+  color: var(--gold);
+}
+.service-card:hover .service-card-link,
+.service-card:focus-visible .service-card-link {
   color: var(--gold);
 }
 .all-services-link {
