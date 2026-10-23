@@ -97,11 +97,10 @@ const Project = ({ project = {}, projects = [] }) => {
         project.seo_description || `${fullTitle} | RAVENS Special Film Tactics`
       }
     >
-      <article className="-mx-4">
-        <div className="flex justify-center">
-          <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-gold border-b-2 border-gold">
-            {fullTitle}
-          </h1>
+      <article className="site-container project-detail">
+        <div className="project-heading">
+          <p className="section-kicker">Selected work</p>
+          <h1 className="section-heading">{fullTitle}</h1>
         </div>
         {video_id ? (
           <div className="max-w-6xl mx-auto">

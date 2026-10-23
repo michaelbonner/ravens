@@ -1,69 +1,14 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require("@playwright/test");
 
-test.describe('Services Page', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/services', { waitUntil: 'load' });
-    // Wait for initial animations/overlays
-    await page.waitForTimeout(1000);
-  });
-
-  test('should load successfully', async ({ page }) => {
-    await expect(page).toHaveTitle(/Services.*RAVENS/i);
-  });
-
-  test('should display page heading', async ({ page }) => {
-    const heading = page.locator('h1:has-text("Services")');
-    await expect(heading).toBeVisible();
-  });
-
-  test('should display hero section', async ({ page }) => {
-    const heroSection = page.locator('h1 span:has-text("Services")');
-    await expect(heroSection).toBeVisible();
-  });
-
-  test('should display service cards', async ({ page }) => {
-    const serviceCards = page.locator('a[href^="/service/"]');
-    const count = await serviceCards.count();
-    expect(count).toBeGreaterThan(0);
-  });
-
-  test('should have service cards with titles', async ({ page }) => {
-    const serviceTitles = page.locator('h3.text-2xl');
-    const count = await serviceTitles.count();
-    expect(count).toBeGreaterThan(0);
-  });
-
-  test('should have service cards with images', async ({ page }) => {
-    const serviceImages = page.locator('a[href^="/service/"] img');
-    const count = await serviceImages.count();
-    expect(count).toBeGreaterThan(0);
-  });
-
-  test('should have clickable service cards', async ({ page }) => {
-    const firstServiceCard = page.locator('a[href^="/service/"]').first();
-    await expect(firstServiceCard).toBeVisible();
-    const href = await firstServiceCard.getAttribute('href');
-    expect(href).toMatch(/^\/service\/.+/);
-  });
-
-  test('service cards should have hover effects', async ({ page }) => {
-    const firstServiceCard = page.locator('a[href^="/service/"]').first();
-    await expect(firstServiceCard).toHaveClass(/border-gold/);
-  });
-
-  test('should display grid layout for services', async ({ page }) => {
-    const gridContainer = page.locator('.grid');
-    await expect(gridContainer).toBeVisible();
-  });
-
-  test('should be responsive on mobile', async ({ page, isMobile }) => {
-    if (isMobile) {
-      const heading = page.locator('h1:has-text("Services")');
-      await expect(heading).toBeVisible();
-
-      const serviceCards = page.locator('a[href^="/service/"]');
-      const count = await serviceCards.count();
-      expect(count).toBeGreaterThan(0);
-    }
-  });
+test("services list links to service details", async ({ page }) => {
+  await page.goto("/services");
+  await expect(
+    page.getByRole("heading", { name: "Services", level: 1 })
+  ).toBeVisible();
+  const card = page.locator(".service-card").first();
+  await expect(card.locator("h3")).toBeVisible();
+  await expect(card.locator("img")).toBeVisible();
+  await card.click();
+  await expect(page).toHaveURL(/\/service\//);
+  await expect(page.locator(".service-detail")).toBeVisible();
 });

@@ -2,19 +2,15 @@
 import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
 import Layout from "../components/layout";
-import StandardHR from "../components/standard-hr";
 import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
 
-const heroContent = () => {
-  return (
-    <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="text-4xl text-center text-white  uppercase w-80 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8 bg-black bg-opacity-25">
-        About
-      </span>
-    </h1>
-  );
-};
+const heroContent = () => (
+  <>
+    <p className="hero-eyebrow">The people</p>
+    <h1 className="hero-title">About</h1>
+  </>
+);
 
 const About = (props) => {
   const { about = {} } = props;
@@ -31,43 +27,49 @@ const About = (props) => {
       }
       description={about.seo_description || "About RAVENS"}
     >
-      <div className="container mx-auto text-center">
-        <div className="max-w-5xl mx-auto mt-16">
-          <section className="md:px-32 mb-20 user-text">
+      <div className="site-container page-body">
+        <section className="editorial-grid editorial-section">
+          <div>
+            <p className="section-kicker">About Ravens</p>
+            <h2 className="section-heading">People behind the shot.</h2>
+          </div>
+          <div className="editorial-copy user-text">
             <BlockContent blocks={about.text} />
-          </section>
-
-          <section className="text-center max-w-5xl mb-20 mx-8 lg:mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-              {about?.people?.map((person) => {
-                return (
-                  <article key={person._id}>
-                    <header>
-                      <img
-                        alt={person.name}
-                        src={urlForSanitySource(person.image).width(300).url()}
-                      />
-                      <p className="uppercase text-gold tracking-wider font-bold mb-2 mt-4">
-                        {person.name}
-                        <br />
-                        {person.title}
-                      </p>
-                      <BlockContent blocks={person.text} />
-                    </header>
-                  </article>
-                );
-              })}
+          </div>
+        </section>
+        {about.people?.length > 0 && (
+          <section className="editorial-section">
+            <p className="section-kicker">The crew</p>
+            <div className="people-grid">
+              {about.people.map((person) => (
+                <article className="person-card" key={person._id}>
+                  {person.image && (
+                    <img
+                      alt={person.name}
+                      src={urlForSanitySource(person.image).width(700).url()}
+                    />
+                  )}
+                  <h2>{person.name}</h2>
+                  <p className="person-title">{person.title}</p>
+                  <div className="person-bio">
+                    <BlockContent blocks={person.text} />
+                  </div>
+                </article>
+              ))}
             </div>
           </section>
-
-          <StandardHR />
-
-          <section className="md:px-32 mb-20 user-text">
-            <BlockContent blocks={about.locations} />
+        )}
+        {about.locations && (
+          <section className="editorial-section editorial-grid border-t border-gray-700">
+            <div>
+              <p className="section-kicker">Where we work</p>
+              <h2 className="section-heading">Based here. Ready anywhere.</h2>
+            </div>
+            <div className="editorial-copy user-text">
+              <BlockContent blocks={about.locations} />
+            </div>
           </section>
-
-          <StandardHR />
-        </div>
+        )}
       </div>
     </Layout>
   );

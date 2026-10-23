@@ -1,127 +1,126 @@
 /* eslint-disable @next/next/no-img-element */
 import BlockContent from "@sanity/block-content-to-react";
-import classNames from "classnames";
 import groq from "groq";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Layout from "../components/layout";
-import StandardHR from "../components/standard-hr";
 import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
 
 const VideoPlayer = dynamic(() => import("../components/video-player"), {});
 
-const heroContent = () => {
-  return (
-    <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="w-64 lg:w-1/3 mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8">
-        <img
-          alt="SLC X KAUAI"
-          height="300"
-          src="/images/slc-x-kauai.svg"
-          title="SLC X Kauai"
-          width="1600"
-        />
-      </span>
-    </h1>
-  );
-};
-
-const Home = (props) => {
-  const { home = {} } = props;
+const Home = ({ home = {} }) => {
   const services = home.services || [];
 
   return (
     <Layout
       title={home.seo_title || "RAVENS | Special Film Tactics"}
-      heroContent={heroContent()}
-      heroImage={urlForSanitySource(home.poster).url()}
-      heroVideoUrl={`https://player.vimeo.com/video/${home.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
-      fadeIn={true}
+      heroContent={
+        <>
+          <p className="hero-eyebrow">Salt Lake City & Kauai</p>
+          <h1 className="hero-title">Special film tactics.</h1>
+          <p className="hero-description">
+            Skilled technicians with a distinct eye for storytelling. Built for
+            the shots that take more.
+          </p>
+          <Link href="/work">
+            <a className="hero-link">
+              Explore our work <span aria-hidden="true">↗</span>
+            </a>
+          </Link>
+        </>
+      }
+      heroImage={
+        home.poster ? urlForSanitySource(home.poster).width(2000).url() : null
+      }
+      heroVideoUrl={
+        home.video_id
+          ? `https://player.vimeo.com/video/${home.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
+          : null
+      }
       description={
         home.seo_description ||
-        "We are skilled technicians with a unique sensibility for storytelling. RAVENS can execute nearly any mission from heavy lift aerials to pursuit tracking or technical phantom flex high speed work."
+        "RAVENS creates specialty film work, from aerials to pursuit tracking and high speed photography."
       }
     >
-      <div
-        className={classNames(
-          "text-center max-w-5xl pt-12 mt-6 mx-8",
-          "lg:mx-auto"
-        )}
-      >
-        <div className={classNames("grid grid-cols-1 gap-6", "lg:grid-cols-3")}>
-          {services.map((service, index) => {
-            return (
+      <section className="editorial-section">
+        <div className="site-container">
+          <div className="editorial-grid services-intro">
+            <div>
+              <p className="section-kicker">What we do</p>
+              <h2 className="section-heading">Built for the difficult shot.</h2>
+            </div>
+            <p className="editorial-copy">
+              From heavy lift aerials to pursuit tracking and technical high
+              speed work, our crews bring the equipment and the instincts to get
+              the shot.
+            </p>
+          </div>
+          <div className="service-grid">
+            {services.map((service, index) => (
               <Link
                 key={service._id}
                 href={`/service/${service.slug?.current}`}
               >
-                <a
-                  className={`py-12 flex flex-col justify-between ${
-                    index + 1 !== services.length ? `border-b-2` : ``
-                  } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
-                >
-                  <h2 className={classNames("text-3xl font-bold", "lg:px-10")}>
-                    {service.title}
-                  </h2>
-                  <div className="flex flex-1 items-center my-8">
-                    <div className="h-38 w-3/4 mx-auto">
+                <a className="service-card">
+                  <div className="service-card-image">
+                    {service.thumb && (
                       <img
-                        alt={service.title}
-                        src={urlForSanitySource(service.thumb).width(450).url()}
+                        alt=""
+                        src={urlForSanitySource(service.thumb).width(750).url()}
                       />
-                    </div>
+                    )}
                   </div>
-                  <div className="leading-8">
+                  <p className="service-number">
+                    Service {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3>{service.title}</h3>
+                  <div className="service-description">
                     <BlockContent blocks={service.homeSummary} />
                   </div>
+                  <span className="service-card-link">
+                    Explore service <span aria-hidden="true">↗</span>
+                  </span>
                 </a>
               </Link>
-            );
-          })}
-        </div>
-
-        <div className="py-8 mt-8">
+            ))}
+          </div>
           <Link href="/services">
-            <a className="rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 hover:bg-gold hover:text-black transition-all">
-              All Options
+            <a className="text-link all-services-link">
+              All options <span aria-hidden="true">↗</span>
             </a>
           </Link>
         </div>
+      </section>
 
-        <div className="max-w-4xl mx-auto">
-          <StandardHR />
-
-          <div className="lg:pt-12">
-            <h2 className="font-bold text-3xl mb-12">{home.heading}</h2>
-            <BlockContent blocks={home.text} />
-            <p className="py-12">
+      {(home.heading || home.text) && (
+        <section className="editorial-section warm-section">
+          <div className="site-container editorial-grid">
+            <div>
+              <p className="section-kicker">About Ravens</p>
+              <h2 className="section-heading">{home.heading}</h2>
+            </div>
+            <div className="editorial-copy">
+              <BlockContent blocks={home.text} />
               <Link href="/about">
-                <a
-                  className={classNames(
-                    "rounded-full font-bold uppercase tracking-wider border-2 border-white py-3 px-8 transition-all",
-                    "hover:text-black hover:bg-gold"
-                  )}
-                >
-                  Learn More
+                <a className="text-link">
+                  Learn more <span aria-hidden="true">↗</span>
                 </a>
               </Link>
-            </p>
+            </div>
           </div>
+        </section>
+      )}
 
-          <StandardHR />
-        </div>
-      </div>
       {home.reel_video_id && (
-        <div className="mx-auto max-w-6xl">
-          {home.reel_heading && (
-            <div>
-              <h2 className="font-bold text-3xl uppercase">
-                {home.reel_heading}
+        <section className="editorial-section reel-section">
+          <div className="site-container">
+            <div className="reel-heading">
+              <p className="section-kicker">On film</p>
+              <h2 className="section-heading">
+                {home.reel_heading || "The reel"}
               </h2>
             </div>
-          )}
-          <div className="border-2 border-gold px-4 py-6">
             <VideoPlayer
               poster={home.poster}
               title={home.reel_heading}
@@ -133,31 +132,20 @@ const Home = (props) => {
               autoPlay={false}
             />
           </div>
-        </div>
+        </section>
       )}
-      <div className={classNames("max-w-5xl mx-8", "sm:mx-auto")}>
-        <StandardHR />
-      </div>
     </Layout>
   );
 };
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   return {
     props: {
       home: await getClient().fetch(groq`
         *[_type == "home"][0]{
-          video_id,
-          poster,
-          heading,
-          text,
-          services[]->,
-          reel_heading,
-          left_reel_text,
-          right_reel_text,
-          reel_video_id,
-          reel_video_width_aspect_ratio,
-          reel_video_height_aspect_ratio
+          video_id, poster, heading, text, services[]->,
+          reel_heading, left_reel_text, right_reel_text,
+          reel_video_id, reel_video_width_aspect_ratio, reel_video_height_aspect_ratio
         }
       `),
     },
