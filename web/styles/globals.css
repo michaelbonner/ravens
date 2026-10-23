@@ -442,7 +442,7 @@ p {
 }
 .site-logo {
   display: block;
-  width: clamp(165px, 21vw, 255px);
+  width: clamp(145px, 18vw, 220px);
   flex: none;
 }
 .site-logo img {
