@@ -495,18 +495,26 @@ p {
 }
 .site-hero-image {
   object-fit: cover;
-  z-index: -3;
+  z-index: -2;
 }
 .site-hero-image.is-hidden {
   opacity: 0;
 }
 .site-hero-video {
-  z-index: -2;
+  z-index: -3;
   pointer-events: none;
+  container-type: size;
 }
 .site-hero-video > div {
   position: absolute !important;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, calc(100cqh * var(--hero-video-aspect))) !important;
+  height: max(
+    100cqh,
+    calc(100cqw * var(--hero-video-inverse-aspect))
+  ) !important;
+  transform: translate(-50%, -50%);
 }
 .site-hero-video iframe {
   width: 100%;

@@ -26,6 +26,7 @@ const Layout = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [videoAspectRatio, setVideoAspectRatio] = useState(null);
   const router = useRouter();
   const hasHero = Boolean(heroContent || heroImage || heroVideoUrl);
 
@@ -128,13 +129,24 @@ const Layout = ({
         <section className="site-hero" aria-label="Page introduction">
           {heroImage && (
             <img
-              className={`site-hero-image${videoPlaying ? " is-hidden" : ""}`}
+              className={`site-hero-image${
+                videoPlaying && videoAspectRatio ? " is-hidden" : ""
+              }`}
               src={heroImage}
               alt=""
             />
           )}
           {heroVideoUrl && (
-            <div className="site-hero-video" aria-hidden="true">
+            <div
+              className="site-hero-video"
+              aria-hidden="true"
+              style={{
+                "--hero-video-aspect": videoAspectRatio || 16 / 9,
+                "--hero-video-inverse-aspect": videoAspectRatio
+                  ? 1 / videoAspectRatio
+                  : 9 / 16,
+              }}
+            >
               <ReactPlayer
                 url={heroVideoUrl}
                 width="100%"
@@ -144,6 +156,17 @@ const Layout = ({
                 loop
                 playsinline
                 controls={false}
+                onReady={(player) => {
+                  const vimeoPlayer = player.getInternalPlayer();
+                  Promise.all([
+                    vimeoPlayer.getVideoWidth(),
+                    vimeoPlayer.getVideoHeight(),
+                  ])
+                    .then(([width, height]) => {
+                      setVideoAspectRatio(width / height);
+                    })
+                    .catch(() => setVideoAspectRatio(16 / 9));
+                }}
                 onPlay={() => setVideoPlaying(true)}
               />
             </div>
