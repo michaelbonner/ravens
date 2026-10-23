@@ -5,7 +5,7 @@ test("project detail contains media and adjacent work", async ({ page }) => {
   await page.locator(".work-tile").first().click();
   await expect(page.locator(".project-heading h1")).toBeVisible();
   await expect(
-    page.locator('.project-detail [class*="aspect-"]').first()
+    page.locator(".project-detail .project-video-stage")
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Other Work" })).toBeVisible();
   await expect(
