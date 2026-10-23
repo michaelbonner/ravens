@@ -15,20 +15,21 @@ const navLinks = [
   { title: "About", path: "/about" },
   { title: "Services", path: "/services" },
 ];
+const menuLinks = [...navLinks, { title: "Contact", path: "/contact" }];
 
 const Layout = ({
   children,
   title,
   heroImage,
   heroContent,
-  heroVideoUrl,
+  heroVideoId,
   description = "RAVENS Film Works creates specialty film work, from aerials to pursuit tracking and high speed photography.",
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [videoAspectRatio, setVideoAspectRatio] = useState(null);
   const router = useRouter();
-  const hasHero = Boolean(heroContent || heroImage || heroVideoUrl);
+  const hasHero = Boolean(heroContent || heroImage || heroVideoId);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -110,17 +111,13 @@ const Layout = ({
             id="mobile-navigation"
             aria-label="Mobile navigation"
           >
-            {[...navLinks, { title: "Contact", path: "/contact" }].map(
-              ({ title: label, path }) => (
-                <Link href={path} key={path}>
-                  <a
-                    aria-current={router.pathname === path ? "page" : undefined}
-                  >
-                    {label}
-                  </a>
-                </Link>
-              )
-            )}
+            {menuLinks.map(({ title: label, path }) => (
+              <Link href={path} key={path}>
+                <a aria-current={router.pathname === path ? "page" : undefined}>
+                  {label}
+                </a>
+              </Link>
+            ))}
           </nav>
         )}
       </header>
@@ -136,7 +133,7 @@ const Layout = ({
               alt=""
             />
           )}
-          {heroVideoUrl && (
+          {heroVideoId && (
             <div
               className="site-hero-video"
               aria-hidden="true"
@@ -148,7 +145,7 @@ const Layout = ({
               }}
             >
               <ReactPlayer
-                url={heroVideoUrl}
+                url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
                 width="100%"
                 height="100%"
                 muted
@@ -199,13 +196,11 @@ const Layout = ({
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
             <p className="section-kicker">Explore</p>
-            {[...navLinks, { title: "Contact", path: "/contact" }].map(
-              ({ title: label, path }) => (
-                <Link href={path} key={path}>
-                  <a>{label}</a>
-                </Link>
-              )
-            )}
+            {menuLinks.map(({ title: label, path }) => (
+              <Link href={path} key={path}>
+                <a>{label}</a>
+              </Link>
+            ))}
           </nav>
           <div className="footer-contact">
             <p className="section-kicker">Find us</p>

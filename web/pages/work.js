@@ -19,11 +19,7 @@ const Work = ({ projectsPage = {}, projects = [] }) => {
       title={projectsPage.seo_title || "Work | RAVENS"}
       heroContent={heroContent()}
       heroImage={urlForSanitySource(projectsPage.poster).url()}
-      heroVideoUrl={
-        projectsPage.video_id
-          ? `https://player.vimeo.com/video/${projectsPage.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
-          : null
-      }
+      heroVideoId={projectsPage.video_id}
       description={
         projectsPage.seo_description || "Explore some of the work of RAVENS"
       }

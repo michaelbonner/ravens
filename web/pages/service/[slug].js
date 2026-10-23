@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
-import Link from "next/link";
 import Layout from "../../components/layout";
+import ServiceCard from "../../components/service-card";
 import StandardHR from "../../components/standard-hr";
 import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
@@ -283,11 +283,7 @@ const Service = ({ services, service }) => {
     <Layout
       title={service.seo_title || `${title} | RAVENS Special Film Tactics`}
       heroContent={heroContent(title)}
-      heroVideoUrl={
-        video_id
-          ? `https://player.vimeo.com/video/${video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
-          : ``
-      }
+      heroVideoId={video_id}
       heroImage={urlForSanitySource(poster).width(1600).url()}
       description={service.seo_description || service.title}
     >
@@ -317,33 +313,12 @@ const Service = ({ services, service }) => {
             <h2 className="section-heading">Other services</h2>
             <div className="service-grid">
               {relatedServicesToDisplay.map((otherService, index) => (
-                <Link
-                  href={`/service/${otherService.slug?.current}`}
+                <ServiceCard
                   key={otherService._id}
-                >
-                  <a className="service-card">
-                    <div className="service-card-image">
-                      {otherService.thumb && (
-                        <img
-                          alt=""
-                          src={urlForSanitySource(otherService.thumb)
-                            .width(750)
-                            .url()}
-                        />
-                      )}
-                    </div>
-                    <p className="service-number">
-                      Service {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h3>{otherService.title}</h3>
-                    <div className="service-description">
-                      <BlockContent blocks={otherService.summary} />
-                    </div>
-                    <span className="service-card-link">
-                      Explore service <span aria-hidden="true">↗</span>
-                    </span>
-                  </a>
-                </Link>
+                  service={otherService}
+                  number={index + 1}
+                  summary={otherService.summary}
+                />
               ))}
             </div>
           </div>

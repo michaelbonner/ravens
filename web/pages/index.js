@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Layout from "../components/layout";
+import ServiceCard from "../components/service-card";
 import { getClient } from "../lib/sanity";
 import urlForSanitySource from "../lib/urlForSanitySource";
 
@@ -33,11 +33,7 @@ const Home = ({ home = {} }) => {
       heroImage={
         home.poster ? urlForSanitySource(home.poster).width(2000).url() : null
       }
-      heroVideoUrl={
-        home.video_id
-          ? `https://player.vimeo.com/video/${home.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
-          : null
-      }
+      heroVideoId={home.video_id}
       description={
         home.seo_description ||
         "RAVENS creates specialty film work, from aerials to pursuit tracking and high speed photography."
@@ -58,31 +54,12 @@ const Home = ({ home = {} }) => {
           </div>
           <div className="service-grid">
             {services.map((service, index) => (
-              <Link
+              <ServiceCard
                 key={service._id}
-                href={`/service/${service.slug?.current}`}
-              >
-                <a className="service-card">
-                  <div className="service-card-image">
-                    {service.thumb && (
-                      <img
-                        alt=""
-                        src={urlForSanitySource(service.thumb).width(750).url()}
-                      />
-                    )}
-                  </div>
-                  <p className="service-number">
-                    Service {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h3>{service.title}</h3>
-                  <div className="service-description">
-                    <BlockContent blocks={service.homeSummary} />
-                  </div>
-                  <span className="service-card-link">
-                    Explore service <span aria-hidden="true">↗</span>
-                  </span>
-                </a>
-              </Link>
+                service={service}
+                number={index + 1}
+                summary={service.homeSummary}
+              />
             ))}
           </div>
           <Link href="/services">

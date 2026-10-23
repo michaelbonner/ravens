@@ -20,11 +20,7 @@ const About = (props) => {
       title={about.seo_title || "About | RAVENS"}
       heroContent={heroContent()}
       heroImage={urlForSanitySource(about.poster).url()}
-      heroVideoUrl={
-        about.video_id
-          ? `https://player.vimeo.com/video/${about.video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
-          : null
-      }
+      heroVideoId={about.video_id}
       description={about.seo_description || "About RAVENS"}
     >
       <div className="site-container page-body">
