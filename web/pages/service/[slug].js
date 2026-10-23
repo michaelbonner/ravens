@@ -46,18 +46,32 @@ const GoldBarBlocks = (section, index) => {
 };
 
 const HighlightBlocks = (section, index) => {
+  const isTextOnly = !section.heading && !section.image;
+
   return (
-    <div className="text-center max-w-5xl mx-auto mb-12">
-      <div className="relative mb-6">
-        <img
-          alt={section.heading}
-          src={urlForSanitySource(section.image).width(500).url()}
-          className="mx-auto"
-        />
-      </div>
+    <div
+      className={
+        isTextOnly
+          ? "service-highlight-note"
+          : "text-center max-w-5xl mx-auto mb-12"
+      }
+    >
+      {section.image && (
+        <div className="relative mb-6">
+          <img
+            alt={section.heading || ""}
+            src={urlForSanitySource(section.image).width(500).url()}
+            className="mx-auto"
+          />
+        </div>
+      )}
 
       <div className="text-center">
-        <h2 className="font-bold text-2xl uppercase mb-8">{section.heading}</h2>
+        {section.heading && (
+          <h2 className="font-bold text-2xl uppercase mb-8">
+            {section.heading}
+          </h2>
+        )}
         <BlockContent blocks={section.text} />
       </div>
     </div>
