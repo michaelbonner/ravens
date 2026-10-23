@@ -2,7 +2,7 @@
 import groq from "groq";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import Layout from "../../components/layout";
 import StandardHR from "../../components/standard-hr";
@@ -11,8 +11,89 @@ import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
 
-const BackgroundFallback = ({ image }) => {
-  return <img alt="Background" className="w-full h-full" src={image} />;
+const ProjectVideo = ({
+  title,
+  poster,
+  videoId,
+  videoHeightAspectRatio,
+  videoWidthAspectRatio,
+  extraPaddingOnVideo,
+}) => {
+  const [videoReady, setVideoReady] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const [slowLoad, setSlowLoad] = useState(false);
+  const posterUrl = poster
+    ? urlForSanitySource(poster).width(1200).format("webp").quality(75).url()
+    : null;
+
+  useEffect(() => {
+    if (videoReady) return;
+    const timeout = setTimeout(() => setSlowLoad(true), 15000);
+    return () => clearTimeout(timeout);
+  }, [videoReady]);
+
+  return (
+    <div className="max-w-6xl mx-auto">
+      <div
+        className={`project-video-stage ${
+          extraPaddingOnVideo ? "mt-12 lg:mt-28" : "mt-8"
+        }`}
+        style={{
+          aspectRatio: `${videoWidthAspectRatio} / ${videoHeightAspectRatio}`,
+        }}
+      >
+        {!videoReady && (
+          <div className="project-video-loading">
+            {posterUrl && (
+              <img
+                alt={`${title} video poster`}
+                src={posterUrl}
+                loading="eager"
+              />
+            )}
+            <div className="project-video-loading-content" role="status">
+              {!videoError && (
+                <span className="project-video-spinner" aria-hidden="true" />
+              )}
+              <span>
+                {videoError
+                  ? "Video unavailable"
+                  : slowLoad
+                    ? "Still loading video"
+                    : "Loading video"}
+              </span>
+              {(videoError || slowLoad) && (
+                <a
+                  href={`https://vimeo.com/${videoId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Watch on Vimeo ↗
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+        <div className={`project-video-player ${videoReady ? "is-ready" : ""}`}>
+          <ReactPlayer
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen={true}
+            controls={true}
+            frameBorder="0"
+            height="100%"
+            title={title}
+            url={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
+            width="100%"
+            onReady={() => setVideoReady(true)}
+            onError={() => {
+              setVideoReady(false);
+              setVideoError(true);
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const projectQuery = groq`
@@ -53,7 +134,6 @@ aspect-w-16	aspect-h-16
 */
 
 const Project = ({ project = {}, projects = [] }) => {
-  const [showVideo, setShowVideo] = useState(false);
   const router = useRouter();
   if (!router.isFallback && !project.title) {
     return <FourOhFour />;
@@ -103,34 +183,15 @@ const Project = ({ project = {}, projects = [] }) => {
           <h1 className="section-heading">{fullTitle}</h1>
         </div>
         {video_id ? (
-          <div className="max-w-6xl mx-auto">
-            <div
-              className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
-                showVideo ? `opacity-100` : `opacity-0`
-              } ${extraPaddingOnVideo ? `mt-12 lg:mt-28` : `mt-8`}`}
-            >
-              <ReactPlayer
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen={true}
-                controls={true}
-                frameBorder="0"
-                height={`100%`}
-                title="RAVENS"
-                url={`https://player.vimeo.com/video/${video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-                width={`100%`}
-                fallback={
-                  <BackgroundFallback
-                    image={urlForSanitySource(poster).width(1200).url()}
-                  />
-                }
-                onReady={() => {
-                  setTimeout(() => {
-                    setShowVideo(true);
-                  }, [100]);
-                }}
-              ></ReactPlayer>
-            </div>
-          </div>
+          <ProjectVideo
+            key={video_id}
+            title={title}
+            poster={poster}
+            videoId={video_id}
+            videoHeightAspectRatio={videoHeightAspectRatio}
+            videoWidthAspectRatio={videoWidthAspectRatio}
+            extraPaddingOnVideo={extraPaddingOnVideo}
+          />
         ) : (
           <div className="max-w-6xl mx-auto">
             <div
