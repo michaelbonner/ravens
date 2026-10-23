@@ -1,2 +1,2 @@
-const StandardHR = () => <hr className="section-rule site-container" />;
+const StandardHR = () => <hr className="section-rule" />;
 export default StandardHR;
