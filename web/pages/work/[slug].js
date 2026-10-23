@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import Layout from "../../components/layout";
-import StandardHR from "../../components/standard-hr";
 import WorkItem from "../../components/work-item";
 import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
@@ -22,6 +21,9 @@ const ProjectVideo = ({
   const [videoReady, setVideoReady] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [slowLoad, setSlowLoad] = useState(false);
+  const [videoAspectRatio, setVideoAspectRatio] = useState(
+    `${videoWidthAspectRatio} / ${videoHeightAspectRatio}`
+  );
   const posterUrl = poster
     ? urlForSanitySource(poster).width(1200).format("webp").quality(75).url()
     : null;
@@ -38,9 +40,7 @@ const ProjectVideo = ({
         className={`project-video-stage ${
           extraPaddingOnVideo ? "mt-12 lg:mt-28" : "mt-8"
         }`}
-        style={{
-          aspectRatio: `${videoWidthAspectRatio} / ${videoHeightAspectRatio}`,
-        }}
+        style={{ aspectRatio: videoAspectRatio }}
       >
         {!videoReady && (
           <div className="project-video-loading">
@@ -84,7 +84,21 @@ const ProjectVideo = ({
             title={title}
             url={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
             width="100%"
-            onReady={() => setVideoReady(true)}
+            onReady={(player) => {
+              setVideoReady(true);
+              const vimeoPlayer = player.getInternalPlayer();
+              // Size the stage to the actual video so it never letterboxes
+              Promise.all([
+                vimeoPlayer.getVideoWidth(),
+                vimeoPlayer.getVideoHeight(),
+              ])
+                .then(([width, height]) => {
+                  if (width && height) {
+                    setVideoAspectRatio(`${width} / ${height}`);
+                  }
+                })
+                .catch(() => {});
+            }}
             onError={() => {
               setVideoReady(false);
               setVideoError(true);
@@ -112,26 +126,6 @@ const projectQuery = groq`
   videoWidthAspectRatio,
 }
 `;
-
-/*
-prevent purging of aspect ratio
-aspect-w-1	aspect-h-1
-aspect-w-2	aspect-h-2
-aspect-w-3	aspect-h-3
-aspect-w-4	aspect-h-4
-aspect-w-5	aspect-h-5
-aspect-w-6	aspect-h-6
-aspect-w-7	aspect-h-7
-aspect-w-8	aspect-h-8
-aspect-w-9	aspect-h-9
-aspect-w-10	aspect-h-10
-aspect-w-11	aspect-h-11
-aspect-w-12	aspect-h-12
-aspect-w-13	aspect-h-13
-aspect-w-14	aspect-h-14
-aspect-w-15	aspect-h-15
-aspect-w-16	aspect-h-16
-*/
 
 const Project = ({ project = {}, projects = [] }) => {
   const router = useRouter();
@@ -193,112 +187,82 @@ const Project = ({ project = {}, projects = [] }) => {
             extraPaddingOnVideo={extraPaddingOnVideo}
           />
         ) : (
-          <div className="w-full">
-            <div
-              className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
-                extraPaddingOnVideo ? `mt-12 lg:mt-28` : `mt-8`
-              }`}
-            >
+          <div
+            className={`project-video-stage ${
+              extraPaddingOnVideo ? "mt-12 lg:mt-28" : "mt-8"
+            }`}
+            style={{
+              aspectRatio: `${videoWidthAspectRatio} / ${videoHeightAspectRatio}`,
+            }}
+          >
+            {poster && (
               <img
-                alt="Poster image"
-                className="w-full h-full"
+                alt={`${title} poster`}
+                className="w-full h-full object-cover"
                 src={urlForSanitySource(poster).width(1200).url()}
               />
-            </div>
+            )}
           </div>
         )}
-        <div className="container mx-auto">
-          {credits && credits.length > 0 && (
-            <>
-              <h2 className="font-bold text-3xl text-center my-12 uppercase">
-                Credits
-              </h2>
-              {credits.map((credit, index) => {
-                if (credit.role === "space") {
-                  return <div key={index} className="h-4" />;
-                }
-                return (
-                  <div
-                    className="grid grid-cols-2 gap-12 font-bold"
-                    key={index}
-                  >
-                    <div className="text-right">{credit.role}</div>
-                    <div>{credit.value}</div>
+        {credits?.length > 0 && (
+          <section className="project-section">
+            <h2 className="section-kicker">Credits</h2>
+            <dl className="project-credits">
+              {credits.map((credit, index) =>
+                credit.role === "space" ? (
+                  <div className="project-credits-spacer" key={index} />
+                ) : (
+                  <div key={index}>
+                    <dt>{credit.role}</dt>
+                    <dd>{credit.value}</dd>
                   </div>
-                );
-              })}
-              <StandardHR />
-            </>
-          )}
+                )
+              )}
+            </dl>
+          </section>
+        )}
 
-          <div className="max-w-7xl mx-auto">
-            {frames && frames.length > 0 && (
-              <>
-                <h2 className="font-bold text-3xl text-center my-12 uppercase">
-                  Frames
-                </h2>
-                <div className="lg:grid grid-cols-2 gap-12">
-                  {frames.map((image, index) => {
-                    return (
-                      <Image
-                        alt={`Frames ${index + 1}`}
-                        className="w-full overflow-hidden"
-                        height="300"
-                        key={image._key}
-                        src={urlForSanitySource(image)
-                          .width(717)
-                          .height(300)
-                          .url()}
-                        width="717"
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
-
-            {behindTheScenes && behindTheScenes.length > 0 && (
-              <>
-                <h2 className="font-bold text-3xl text-center my-12 uppercase">
-                  Behind the Scenes
-                </h2>
-                <div className="lg:grid grid-cols-2 gap-12">
-                  {behindTheScenes.map((image, index) => {
-                    return (
-                      <Image
-                        alt={`Behind the scenes ${index + 1}`}
-                        className="w-full overflow-hidden"
-                        height="300"
-                        key={image._key}
-                        src={urlForSanitySource(image)
-                          .width(717)
-                          .height(300)
-                          .url()}
-                        width="717"
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
-          </div>
-
-          <StandardHR />
-          <div className="mt-12 mb-24 mx-4 lg:mx-0">
-            <h2 className="font-bold text-3xl text-center my-12 uppercase">
-              Other Work
-            </h2>
-            <div className="max-w-4xl mx-auto grid grid-cols-2 gap-x-12">
-              <div>
-                <WorkItem project={previousProject} />
-              </div>
-              <div>
-                <WorkItem project={nextProject} />
-              </div>
+        {frames?.length > 0 && (
+          <section className="project-section">
+            <h2 className="section-kicker">Frames</h2>
+            <div className="project-gallery">
+              {frames.map((image, index) => (
+                <Image
+                  alt={`Frames ${index + 1}`}
+                  height="300"
+                  key={image._key}
+                  src={urlForSanitySource(image).width(717).height(300).url()}
+                  width="717"
+                />
+              ))}
             </div>
+          </section>
+        )}
+
+        {behindTheScenes?.length > 0 && (
+          <section className="project-section">
+            <h2 className="section-kicker">Behind the Scenes</h2>
+            <div className="project-gallery">
+              {behindTheScenes.map((image, index) => (
+                <Image
+                  alt={`Behind the scenes ${index + 1}`}
+                  height="300"
+                  key={image._key}
+                  src={urlForSanitySource(image).width(717).height(300).url()}
+                  width="717"
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section className="project-section">
+          <h2 className="section-heading">Other Work</h2>
+          <div className="work-grid">
+            <WorkItem project={previousProject} />
+            <WorkItem project={nextProject} />
           </div>
-          <StandardHR />
-        </div>
+        </section>
       </article>
     </Layout>
   );
