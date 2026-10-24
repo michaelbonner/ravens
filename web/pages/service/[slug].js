@@ -1,22 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import BlockContent from "@sanity/block-content-to-react";
 import groq from "groq";
-import Link from "next/link";
 import Layout from "../../components/layout";
+import ServiceCard from "../../components/service-card";
 import StandardHR from "../../components/standard-hr";
 import { getClient } from "../../lib/sanity";
 import urlForSanitySource from "../../lib/urlForSanitySource";
 import FourOhFour from "../404";
 
-const heroContent = (title) => {
-  return (
-    <h1 className="absolute inset-0 flex justify-center items-center">
-      <span className="text-3xl lg:text-4xl text-center text-white  uppercase mx-4 lg:mx-0 mt-24 lg:mt-0 border-2 border-gold py-3 px-8 bg-black bg-opacity-25">
-        {title}
-      </span>
-    </h1>
-  );
-};
+const heroContent = (title) => (
+  <>
+    <p className="hero-eyebrow">What we do</p>
+    <h1 className="hero-title">{title}</h1>
+  </>
+);
 
 const BannerBlocks = (section, index) => {
   return (
@@ -38,23 +35,43 @@ const BannerBlocks = (section, index) => {
   );
 };
 
+const ContentBlocks = (section) => (
+  <div className="service-prose">
+    <BlockContent blocks={section.text} />
+  </div>
+);
+
 const GoldBarBlocks = (section, index) => {
   return <StandardHR />;
 };
 
 const HighlightBlocks = (section, index) => {
+  const isTextOnly = !section.heading && !section.image;
+
   return (
-    <div className="text-center max-w-5xl mx-auto mb-12">
-      <div className="relative mb-6">
-        <img
-          alt={section.heading}
-          src={urlForSanitySource(section.image).width(500).url()}
-          className="mx-auto"
-        />
-      </div>
+    <div
+      className={
+        isTextOnly
+          ? "service-highlight-note"
+          : "text-center max-w-5xl mx-auto mb-12"
+      }
+    >
+      {section.image && (
+        <div className="relative mb-6">
+          <img
+            alt={section.heading || ""}
+            src={urlForSanitySource(section.image).width(500).url()}
+            className="mx-auto"
+          />
+        </div>
+      )}
 
       <div className="text-center">
-        <h2 className="font-bold text-2xl uppercase mb-8">{section.heading}</h2>
+        {section.heading && (
+          <h2 className="font-bold text-2xl uppercase mb-8">
+            {section.heading}
+          </h2>
+        )}
         <BlockContent blocks={section.text} />
       </div>
     </div>
@@ -266,69 +283,47 @@ const Service = ({ services, service }) => {
     <Layout
       title={service.seo_title || `${title} | RAVENS Special Film Tactics`}
       heroContent={heroContent(title)}
-      heroVideoUrl={
-        video_id
-          ? `https://player.vimeo.com/video/${video_id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`
-          : ``
-      }
+      heroVideoId={video_id}
       heroImage={urlForSanitySource(poster).width(1600).url()}
       description={service.seo_description || service.title}
     >
-      <article className="container mx-auto">
-        <div className="mx-auto user-text">
-          {pageSections?.map((section, index) => {
-            return (
-              <div key={index}>{Blocks[section._type](section, index)}</div>
-            );
-          })}
-        </div>
-      </article>
-      <div>
-        <h3 className="text-3xl font-bold text-center">OTHER SERVICES</h3>
-        <div className="text-center max-w-5xl pt-12 mt-6 lg:mx-auto">
-          <div className="flex justify-center mx-auto space-x-6 flex-wrap">
-            {relatedServicesToDisplay.map((otherService, index) => {
-              return (
-                <Link
-                  href={`/service/${otherService.slug?.current}`}
-                  key={otherService._id}
-                >
-                  <a
-                    className={`mb-8 lg:mb-0 py-8 lg:py-5 flex flex-col justify-between px-5 w-full sm:w-1/3 ${
-                      index + 1 !== relatedServicesToDisplay.length
-                        ? `border-b-2`
-                        : ``
-                    } lg:border-2 border-gold hover:border-gray-500 transition-all ease-in duration-300 bg-gradient-to-t from-transparent to-transparent hover:to-gray-700`}
-                  >
-                    <h3 className="text-2xl font-bold lg:px-10">
-                      {otherService.title}
-                    </h3>
-                    <div className="flex flex-1 items-center my-8">
-                      <div className="h-38 w-3/4 mx-auto">
-                        <img
-                          alt={otherService.title}
-                          src={urlForSanitySource(otherService.thumb)
-                            .width(450)
-                            .url()}
-                        />
-                      </div>
-                    </div>
-                    <div className="leading-8 text-sm mb-5">
-                      <BlockContent blocks={otherService.summary} />
-                    </div>
-
-                    <button className="rounded-full font-bold uppercase border border-white py-3 px-6 hover:bg-gold hover:text-black transition-all">
-                      All Options
-                    </button>
-                  </a>
-                </Link>
-              );
-            })}
+      <article className="site-container service-detail">
+        <div className="service-detail-intro">
+          <p className="section-kicker">The details</p>
+          <div className="editorial-grid">
+            <h2 className="section-heading">{title}</h2>
+            <div className="editorial-copy">
+              <BlockContent blocks={service.summary} />
+            </div>
           </div>
-
-          <StandardHR />
         </div>
-      </div>
+        {pageSections?.map((section, index) => (
+          <section
+            className={`service-block service-block-${section._type}`}
+            key={section._key || index}
+          >
+            {Blocks[section._type]?.(section, index)}
+          </section>
+        ))}
+      </article>
+      {relatedServicesToDisplay.length > 0 && (
+        <section className="editorial-section warm-section related-services">
+          <div className="site-container">
+            <p className="section-kicker">Keep exploring</p>
+            <h2 className="section-heading">Other services</h2>
+            <div className="service-grid">
+              {relatedServicesToDisplay.map((otherService, index) => (
+                <ServiceCard
+                  key={otherService._id}
+                  service={otherService}
+                  number={index + 1}
+                  summary={otherService.summary}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </Layout>
   );
 };

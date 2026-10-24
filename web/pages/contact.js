@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import groq from "groq";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import "yup-phone";
@@ -31,163 +31,131 @@ function Contact({ contact }) {
     phoneNumber: "",
     message: "",
   };
-  const successContainer = useRef(null);
-
-  useEffect(() => {
-    const bgImage = urlForSanitySource(contact.poster).width(1600);
-    document.querySelector(
-      ".ui-header-and-content"
-    ).style.backgroundImage = `url(${bgImage})`;
-    document.querySelector(
-      ".ui-header-and-content"
-    ).style.backgroundPosition = `50% 25%`;
-    document.querySelector(
-      ".ui-header-and-content"
-    ).style.backgroundSize = `cover`;
-
-    return () => {
-      document.querySelector(
-        ".ui-header-and-content"
-      ).style.backgroundImage = ``;
-      document.querySelector(
-        ".ui-header-and-content"
-      ).style.backgroundPosition = ``;
-      document.querySelector(
-        ".ui-header-and-content"
-      ).style.backgroundSize = ``;
-    };
-  }, [contact.poster]);
 
   return (
     <Layout
       title={contact.seo_title || "Contact | RAVENS"}
       description={contact.seo_description || "Contact us"}
     >
-      <div className="text-center max-w-5xl mx-auto">
-        <div className="py-12">
-          <h1 className="inline-block px-4 lg:px-32 mx-auto pb-10 text-4xl text-center text-white border-b-2 border-white uppercase">
-            {contact.title || "Contact"}
-          </h1>
-          <div className="relative mx-auto">
-            <div className="py-16 px-4">
-              <div className="max-w-lg mx-auto lg:max-w-none">
-                {state === "initial" && (
-                  <Formik
-                    initialValues={contactForm}
-                    validationSchema={contactSchema}
-                    onSubmit={async (values, { setSubmitting }) => {
-                      try {
-                        const response = await fetch("/api/contact", {
-                          method: "post",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify(values),
-                        });
-
-                        if (response?.status === 201) {
-                          setState("submitted");
-                          setSubmitting(false);
-                        } else {
-                          setSubmitting(false);
-                          toast.error("Save failed");
-                        }
-                      } catch (error) {
-                        setSubmitting(false);
-                        toast.error("Save failed");
-                      }
-                    }}
-                  >
-                    {({ isSubmitting, isValid }) => (
-                      <Form className="grid grid-cols-1 gap-y-6 max-w-3xl mx-auto">
-                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
-                          <Field
-                            as="input"
-                            name="name"
-                            placeholder="Full Name"
-                            className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
-                          />
-                          <ErrorMessage
-                            name="name"
-                            className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
-                            component="div"
-                          />
-                        </div>
-
-                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
-                          <Field
-                            as="input"
-                            name="emailAddress"
-                            placeholder="Email Address"
-                            className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
-                          />
-                          <ErrorMessage
-                            name="emailAddress"
-                            className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
-                            component="div"
-                          />
-                        </div>
-
-                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
-                          <Field
-                            as="input"
-                            name="phoneNumber"
-                            placeholder="Phone Number"
-                            className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
-                          />
-                          <ErrorMessage
-                            name="phoneNumber"
-                            className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
-                            component="div"
-                          />
-                        </div>
-
-                        <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
-                          <Field
-                            as="textarea"
-                            name="message"
-                            placeholder="Message"
-                            rows="4"
-                            className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
-                          />
-                          <ErrorMessage
-                            name="message"
-                            className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
-                            component="div"
-                          />
-                        </div>
-
-                        <button
-                          type="submit"
-                          className={`inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 bg-black bg-opacity-50 hover:bg-gold hover:text-black transition-all
-                          ${isSubmitting || !isValid ? "opacity-50" : ""}
-                        }`}
-                          disabled={isSubmitting}
-                        >
-                          Submit
-                        </button>
-                      </Form>
-                    )}
-                  </Formik>
+      <section
+        className="contact-page"
+        style={{
+          "--contact-image": contact.poster
+            ? `url(${urlForSanitySource(contact.poster).width(1800).url()})`
+            : "none",
+        }}
+      >
+        <div className="site-container contact-page-inner">
+          <div className="contact-intro">
+            <p className="hero-eyebrow">Start here</p>
+            <h1>{contact.title || "Get in touch"}</h1>
+            <p>
+              Tell us what you are planning. We will find the right crew and
+              equipment for the shot.
+            </p>
+          </div>
+          <div>
+            {state === "initial" && (
+              <Formik
+                initialValues={contactForm}
+                validationSchema={contactSchema}
+                onSubmit={async (values, { setSubmitting }) => {
+                  try {
+                    const response = await fetch("/api/contact", {
+                      method: "post",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(values),
+                    });
+                    if (response?.status === 201) setState("submitted");
+                    else toast.error("Message could not be sent");
+                  } catch (error) {
+                    toast.error("Message could not be sent");
+                  } finally {
+                    setSubmitting(false);
+                  }
+                }}
+              >
+                {({ isSubmitting }) => (
+                  <Form className="contact-form">
+                    <label htmlFor="contact-name">
+                      Full name
+                      <Field
+                        as="input"
+                        id="contact-name"
+                        name="name"
+                        type="text"
+                        autoComplete="name"
+                        placeholder="Your name"
+                      />
+                      <ErrorMessage
+                        name="name"
+                        className="form-error"
+                        component="span"
+                      />
+                    </label>
+                    <label htmlFor="contact-email">
+                      Email address
+                      <Field
+                        as="input"
+                        id="contact-email"
+                        name="emailAddress"
+                        type="email"
+                        autoComplete="email"
+                        placeholder="you@example.com"
+                      />
+                      <ErrorMessage
+                        name="emailAddress"
+                        className="form-error"
+                        component="span"
+                      />
+                    </label>
+                    <label htmlFor="contact-phone">
+                      Phone number
+                      <Field
+                        as="input"
+                        id="contact-phone"
+                        name="phoneNumber"
+                        type="tel"
+                        autoComplete="tel"
+                        placeholder="(801) 555-0123"
+                      />
+                      <ErrorMessage
+                        name="phoneNumber"
+                        className="form-error"
+                        component="span"
+                      />
+                    </label>
+                    <label htmlFor="contact-message">
+                      Your project
+                      <Field
+                        as="textarea"
+                        id="contact-message"
+                        name="message"
+                        rows="5"
+                        placeholder="Tell us about the shot, location, and timing"
+                      />
+                      <ErrorMessage
+                        name="message"
+                        className="form-error"
+                        component="span"
+                      />
+                    </label>
+                    <button type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending…" : "Send message ↗"}
+                    </button>
+                  </Form>
                 )}
-
-                {state === "submitted" && (
-                  <div
-                    className="flex bg-black bg-opacity-70 mx-auto justify-center rounded-md shadow-md py-14 px-8 w-full max-w-3xl text-center border"
-                    ref={successContainer}
-                  >
-                    <h2 className="font-medium text-xl tracking-wide">
-                      We&apos;ve received your message and
-                      <br />
-                      will be in touch shortly. Thanks.
-                    </h2>
-                  </div>
-                )}
+              </Formik>
+            )}
+            {state === "submitted" && (
+              <div className="contact-success" role="status">
+                We have received your message and will be in touch shortly.
+                Thanks.
               </div>
-            </div>
+            )}
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }
